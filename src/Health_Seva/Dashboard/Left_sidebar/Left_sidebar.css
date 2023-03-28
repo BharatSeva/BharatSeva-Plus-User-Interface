@@ -1,0 +1,222 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(31, 30, 30);
+    /* overflow: hidden; */
+}
+.container{
+    height: 100vh;
+    font-size: 2.5vh;
+    
+}
+
+
+
+/* it will contain all the left and right containers */
+.Left_Right_container{
+    display: flex;
+}
+
+
+.left_sidebar{
+    background-color: rgb(31, 30, 30);
+    width: 17vw;
+    transition: 0.3s;
+}
+.left_sidebarFlex{
+    width: 0;
+}
+.ToggleBtn{
+    display: flex;
+    justify-content: space-between;
+    height: 7vh;
+    width: 98vw;
+    display: flex;
+    color: rgb(214, 205, 205);;
+    /* font-size: 2.2vh; */
+}
+.ToggleBtn:after {
+    content: '';
+    width: 17vw;
+    height: 0.2vh;
+    position: absolute;
+    background-color: #6a6a56;
+    top: 6.8vh;
+}
+.ToggleBtn h3{
+    margin: 0vh 0 0 0;
+}
+/* Hamburger Goes */
+.Hamburger {
+    height: 7vh;
+    margin-left: 0.3vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Hamburger i{
+    cursor: pointer;
+    padding: 0.8vh 2vh;
+    border-radius: 1vh;
+}
+.Hamburger i:hover{
+    transition: 0.3s linear;
+    background-color: gray;
+    color: black;
+}
+.Icontxt{
+    letter-spacing: 1px;
+    font-weight: bolder;
+    margin-left: 2vw; 
+    font-size: 2.5vh;
+}
+
+.right_sidebar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 83vw;
+    height: 93vh;
+    overflow-y: scroll;
+    background-color: rgb(158, 154, 154);
+    transition: 0.3s;
+    flex-wrap: wrap;
+}
+.right_sidebarFlex{
+    width: 100vw;
+}
+
+button{
+    border-radius: 1vh;
+    cursor: pointer;
+    color: wheat;
+    background-color: black;
+    border: none;
+    padding: 2vh;
+    transition: 1s;
+}
+
+button:hover{
+    background-color: red;
+    font-size: 2vh;
+    color: black;
+}
+
+
+/* Left Side Bar Goes */
+.column_container{
+    
+    margin: 0.5vh 0 0 0;
+    font-size: 2.3vh;
+    color: rgb(214, 205, 205);
+    display: flex;
+    flex-direction: column;
+    height: 92.5vh;
+    justify-content: space-between;
+    
+}
+.col{
+    border-radius: 0.6vh;
+    width: 17vw;
+    box-sizing: border-box;
+    margin: 0.5vh 0 0 0vh;
+    padding: 0.5vh;
+    transition: background-color 0.5s, color 1s;
+    cursor: pointer;
+    
+    display: flex;
+    justify-content:start;
+    align-items: center;
+}
+.col > i{
+    /* color: yellow; */
+    text-align: center;
+    width: 3vw;
+}
+.col:hover{
+    background-color: rgba(255, 89, 89, 0.795);
+}
+.col:hover i{
+    transition: 1s;
+    color: black;
+}
+/* Setting Drop Down Bar */
+.Setting{
+    height: 4.7vh;
+    overflow: hidden;
+}
+.Setting-txt{
+    width: 12vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Setting Submenu */
+.Extramenu{
+    transition: 0.5s;
+    height: 0vh;
+    overflow: hidden;
+}
+/* This will hide the Submenu */
+.Extramenu-settingDisplay{
+    height: 20vh;
+}
+
+.Extramenu ul{
+    margin: 1vh 0vh 1vh 0vh;
+}
+
+.Extramenu ul li {
+    width: 17vw;
+    border-radius: 0.5vh;
+    cursor: pointer;
+    padding: 0.8vh;
+    margin: -0.1vh 0 0 0;
+    font-size: 2vh;
+}
+.Extramenu ul li:hover{
+    background-color: rgb(97, 97, 35);
+}
+/* Tools Section Goes */
+.Tools_Section{
+    width: 12vw;
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+/* LeftSide Down Side */
+.LLside_downside{
+    width: 15vw;
+    font-size: 1.5vh;
+    display: flex;
+    height: 7vh;
+    justify-content: center;
+    align-items: center;
+}
+.LLside_downside ul{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        text-decoration-line: none;
+        list-style: none;
+        justify-content: space-between;
+        margin: 0vh 0vh 0vh 1.8vh ;
+}
+.LLside_downside li {
+    text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 0.2vh;
+    cursor: pointer;
+}
+.LLside_downside li:hover{
+    color: gray;
+}
+
+

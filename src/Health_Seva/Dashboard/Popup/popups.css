@@ -1,0 +1,86 @@
+.Account_popover {
+    position: absolute;
+    top: 7.5vh;
+    border-radius: 1vh;
+    box-shadow: 0 0 30px 0px rgb(51, 51, 51);
+    left: 86vw;
+    background-color: rgb(51, 51, 51);
+    padding: 1vh 1.2vw;
+    z-index: 1;
+    height: 33vh
+}
+
+.popups ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 2.2vh;
+    width: 10vw;
+}
+
+.Account_popover li {
+}
+
+.Account_popover li:nth-child(1) {
+    padding: 0vh;
+    font-weight: bolder;
+    color: rgb(96, 230, 96);
+}
+
+.Account_popover li:nth-child(2) {
+    padding-bottom: 1vh;
+    padding-top: 0vh;
+}
+/* This will targer all the List items */
+.Account_popover li:nth-child(n+3){
+    padding: 0.3vh 0.5vw;
+    margin: 0.6vh 0vw;
+    transition: 0.2s linear;
+    border-radius: 1vh;
+}
+.Account_popover li:nth-child(n+3):hover{
+    background-color: rgb(50, 124, 60);
+    cursor: pointer;
+}
+/* .Account_popover li:nth-child(7):hover{
+    color: red;
+} */
+.horizontalRule{
+    display: block;
+    background-color: rgb(35, 143, 35);
+    width: 10vw;
+    height: 2px;
+    margin: 0.2vh 0vh;
+    margin-bottom: 1vh;
+}
+.Account_popoverDisplay {
+    display: none;
+}
+
+
+
+/* This one For Notificaition */
+.Notification_popover {
+    position: absolute;
+    top: 7.5vh;
+    border-radius: 1vh;
+    box-shadow: 0 0 30px 0px rgb(51, 51, 51);
+    left: 73vw;
+    background-color: rgb(51, 51, 51);
+    padding: 0vh 2vw;
+
+    width: 17.5vw;
+    max-height: 39vh;
+    overflow: hidden;
+    z-index: 1;
+}
+.Notification_popover ul{
+    width: 16vw;
+}
+.Notification_popoverDisplay {
+    display: none;
+}
+
+.Notification_popover ul li{
+    list-style-type:circle;
+        
+}

@@ -1,0 +1,79 @@
+*{
+    box-sizing: border-box;
+}
+/* Hidden Text Container Goes Here */
+.InnerMessage{
+    height: 50vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    top: 0;
+    left: 0;
+}
+.InnerMessage p{
+    text-align: center;
+    font-size: 5vh;
+    margin:0;
+}
+.DisplayInnerMessage{
+    transition: 2s linear;
+    display: none;
+}
+
+/* Navigation Bar */
+/* Right Side Navigation Bar */
+.RightSide_Nav{
+    width: 30vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.NoticationBar{
+    height: 4vh;
+    width: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Account_Nav{
+    padding: 0vh 1.3vh;
+    width: 4.7vw;
+    height: 6vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.NoticationBar:hover, .Account_Nav:hover{
+    transition: 0.3s linear;
+    background-color: gray;
+    border-radius: 1vh;
+    cursor: pointer;
+    color:black;
+}
+/* Near By Goes Here */
+.NearBy_Nav{
+    font-size: 2.3vh;
+    max-width: 16   .5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vh;
+    border-radius: 1vh;
+    transition: 0.3s linear;
+    
+}
+/* this one for txt goes here */
+.Nearby-txt{
+    margin: 0 0 0 1vw;
+}
+.NearBy_Nav:hover{
+    background-color: rgb(88, 86, 86);
+    cursor: pointer;
+}
+.NearBy_Nav:hover > i{
+    color: black;
+}
+
+
