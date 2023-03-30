@@ -5,6 +5,9 @@ import NotificationPop from "./Popup/NotificationPop"
 import Right_sidebar from "./Right_sidebar/Right_sidebar"
 
 export default function Dashboard() {
+
+    document.title = "Dashboard | Bharat Seva";
+
     // Toggle On or off goes here
     const Change = (e) => {
         // Left side goes here

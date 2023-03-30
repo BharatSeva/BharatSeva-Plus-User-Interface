@@ -1,0 +1,66 @@
+/* This one For Spinner */
+.FetchingDataLogo{
+    font-size: 2.5vh;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 13vw;
+}
+.fa-solid.fa-rotate{
+    animation: RotateLogo 2s linear  infinite;
+}
+@keyframes RotateLogo {
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+.MyRecordsContainer h3,
+.Health_Issue {
+    margin: 0;
+    padding: 0;
+}
+
+/* Health Record Container Goes here */
+.Health_Record_Containers {
+    padding: 1vh;
+    margin: 1vh 0 2.5vh 0;
+    width: 80vw;
+    border-radius: 1vh;
+    background-color: rgb(100, 103, 104);
+    box-shadow: 7px 7px 5px rgb(78, 78, 78);
+}
+
+.Health_Record_Containers div {
+    margin: 0.6vh;
+    display: flex;
+    align-items: center;
+}
+.Issues{
+    width: 70vw;
+}
+.Issue_Statement {
+    width: 10vw;
+    /* background-color: red; */
+}
+
+.MyRecordHeader::after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    width: 39vw;
+    height: 0.5vh;
+    background-color: rgb(107, 13, 13);
+    margin: 1vh;
+}
+.MyRecordHeader{
+    text-align: center;
+}
+.MyRecordHeader h3 {
+    font-size: 5vh;
+    letter-spacing: 0.2vh;
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+}

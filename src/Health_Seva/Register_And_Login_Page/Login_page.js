@@ -14,7 +14,7 @@ export default function LoginPage() {
     const [IsAuthenticated, SetAuthenticated] = useState(false);
     const [Health_ID, SetHealth_ID] = useState("")
     const [password, Setpassword] = useState("")
-    console.log(Health_ID);
+    console.log(Health_ID,password);
 
     const LoginAPI = async () => {
         const Authorization = await fetch(`http://172.20.28.53:5000/api/v1/patientAuth/PatientLogin`, {
@@ -24,16 +24,17 @@ export default function LoginPage() {
             },
             body: JSON.stringify({
                 "health_id": Health_ID,
-                "email": "tron21vaibhv@gmail.com",
                 "password": `${password}`
-            })
+            }),
+            mode:"cors"
         })
-        let datas = await Authorization.json();
+        let datas = await Authorization.json()
         console.log(datas);
         if (datas.status === "Success") {
             datas.token = "Bearer " + datas.token;
             localStorage.setItem("BharatSevaToken", datas.token)
             localStorage.setItem("BharatSevaUserName", datas.user.name)
+            localStorage.setItem("BharatSevaHealth_ID", Health_ID)
             SetAuthenticated(true);
         }
         else {
