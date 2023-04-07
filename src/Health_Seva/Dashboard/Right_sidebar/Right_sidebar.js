@@ -22,8 +22,8 @@ export default function Right_sidebar({ toggle }) {
 
             {/* <Home /> */}
 
-            {/* <MyRecords/> */}
-            <Issues/>
+            <MyRecords/>
+            {/* <Issues/> */}
 
             <Outlet />
         </div >

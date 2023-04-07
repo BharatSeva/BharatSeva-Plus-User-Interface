@@ -44,14 +44,19 @@ export default function RegisterPage() {
             })
     })
             .then((result) => result.json())
-        .then((data) => {
+            .then((data) => {
             console.log(data)
+            if(data.message){
+                alert(data.message)
+                return;
+            }
             localStorage.setItem("BharatSevaUserName", data.user.name)
             data.token = "Bearer " + data.token
             localStorage.setItem("BharatSevaToken", data.token)
             localStorage.setItem("BharatSevaHealth_ID", Health_ID)
             SetIsregistered(true)
         })
+        
 }
 
 
