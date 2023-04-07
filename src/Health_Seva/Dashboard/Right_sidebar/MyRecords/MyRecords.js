@@ -9,6 +9,7 @@ function HealthData(props) {
             <div className="Description"> <div className="Issue_Statement">Description  :</div> <div className="Issues">{props.description}</div> </div>
             <div className="HIP_name"> <div className="Issue_Statement">HIP :</div> <div className="Issues">{props.HIP_name}</div></div>
             <div className="Issue_Date"> <div className="Issue_Statement">Issue Date :</div> <div className="Issues">{props.Created_At}</div></div>
+            <div className="Medical_Severity"><div className="Issue_Statement">Medical Severity :</div><div className="Issues">{props.medical_severity}</div></div>
         </div>
     )
 }
@@ -22,7 +23,7 @@ export default function MyRecords() {
     useEffect(() => {
         const Health_ID = localStorage.getItem("BharatSevaHealth_ID")
         const TokenID = localStorage.getItem("BharatSevaToken");
-        fetch(`http://172.20.28.53:5000/api/v1/patientDetails/get/${Health_ID}`, {
+        fetch(`http://localhost:5000/api/v1/patientDetails/get/${Health_ID}`, {
             method: "GET",
             headers: {
                 'Content-Type': "application/json",
@@ -48,10 +49,13 @@ export default function MyRecords() {
         if (UserData.Details_length > 0 ) {
 
             for (let i = 0; i < UserData.Details_length; i++) {
-                Health_id.push(<HealthData key={i} p_problem={UserData.details[i].p_problem}
+                Health_id.push(<HealthData key={i} 
+                    p_problem={UserData.details[i].p_problem}
                     description={UserData.details[i].description}
                     HIP_name={UserData.details[i].HIP_name}
-                    Created_At={UserData.details[i].Created_At} />)
+                    Created_At={UserData.details[i].Created_At}
+                    medical_severity={UserData.details[i].medical_severity}
+                    />)
             }
         }
         else{
@@ -67,7 +71,7 @@ export default function MyRecords() {
             {Fetched && (
                 <div className="MyRecordsContainer">
                     <div className="MyRecordHeader">
-                        <h3>My Health Records</h3>
+                        <h3>My Records</h3>
                         <p>Last Updated At : { UserData.Details_length>0  && UserData.details[0].Created_At}</p>
                     </div>
 

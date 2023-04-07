@@ -84,3 +84,8 @@
     list-style-type:circle;
         
 }
+
+a{
+    text-decoration: none;
+    color:white;
+}

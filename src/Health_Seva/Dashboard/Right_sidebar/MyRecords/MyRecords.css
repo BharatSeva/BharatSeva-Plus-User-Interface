@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
     width: 13vw;
+    height: 80vh;
 }
 .fa-solid.fa-rotate{
     animation: RotateLogo 2s linear  infinite;
@@ -16,18 +17,51 @@
     }
 }
 
-
-.MyRecordsContainer h3,
-.Health_Issue {
-    margin: 0;
-    padding: 0;
+.MyRecordsContainer{
+    width: 78vw;
 }
+.MyRecordHeader ,h3, p{
+    margin: 1vh;
+    padding: 0%;
+    text-align: left;
+}
+.MyRecordHeader h3{
+    color: rgb(58, 57, 57);
+    font-weight: bolder;
+}
+
+.MyRecordHeader p::before{
+    content: '';    
+    position: relative;
+    background-color: green;
+    height: 2vh;
+    width: 1vw;
+    display: inline-block;
+    border-radius: 1vh;
+    margin-right: 1vh;
+
+    animation: pulse 2s  infinite both;
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(25, 105, 25, 0.301);
+      }
+      70% {
+          box-shadow: 0 0 0 5px rgb(25, 105, 25, 0.301);
+      }
+      100% {
+          box-shadow: 0 0 0 0 rgb(25, 105, 25, 0.301);
+      }
+    
+}
+
+
 
 /* Health Record Container Goes here */
 .Health_Record_Containers {
     padding: 1vh;
     margin: 1vh 0 2.5vh 0;
-    width: 80vw;
+    width: 79vw;
     border-radius: 1vh;
     background-color: rgb(100, 103, 104);
     box-shadow: 7px 7px 5px rgb(78, 78, 78);
@@ -42,7 +76,7 @@
     width: 70vw;
 }
 .Issue_Statement {
-    width: 10vw;
+    width: 15vw;
     /* background-color: red; */
 }
 
@@ -50,11 +84,12 @@
     content: '';
     position: relative;
     display: inline-block;
-    width: 39vw;
+    width: 50vw;
     height: 0.5vh;
-    background-color: rgb(107, 13, 13);
+    background-color: rgb(95 95 95);
     margin: 1vh;
 }
+
 .MyRecordHeader{
     text-align: center;
 }

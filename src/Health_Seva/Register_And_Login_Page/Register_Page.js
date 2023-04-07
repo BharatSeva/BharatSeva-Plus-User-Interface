@@ -32,7 +32,7 @@ export default function RegisterPage() {
     // Register API Goes here
     const RegisterPatient = () =>{
 
-        fetch(`http://172.20.28.53:5000/api/v1/patientAuth/PatientRegister`, {
+        fetch(`http://localhost:5000/api/v1/patientAuth/PatientRegister`, {
             method: "post",
             headers: {
                 'Content-Type': "application/json"

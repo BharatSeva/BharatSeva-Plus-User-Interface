@@ -74,20 +74,8 @@ body{
     font-size: 2.5vh;
 }
 
-.right_sidebar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 83vw;
-    height: 93vh;
-    overflow-y: scroll;
-    background-color: rgb(158, 154, 154);
-    transition: 0.3s;
-    flex-wrap: wrap;
-}
-.right_sidebarFlex{
-    width: 100vw;
-}
+
+
 
 button{
     border-radius: 1vh;

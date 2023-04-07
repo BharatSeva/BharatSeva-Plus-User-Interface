@@ -14,10 +14,11 @@ export default function LoginPage() {
     const [IsAuthenticated, SetAuthenticated] = useState(false);
     const [Health_ID, SetHealth_ID] = useState("")
     const [password, Setpassword] = useState("")
-    console.log(Health_ID,password);
+    console.log(Health_ID, password);
 
     const LoginAPI = async () => {
-        const Authorization = await fetch(`http://172.20.28.53:5000/api/v1/patientAuth/PatientLogin`, {
+
+        const Authorization = await fetch(`http://localhost:5000/api/v1/patientAuth/PatientLogin`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
@@ -25,8 +26,7 @@ export default function LoginPage() {
             body: JSON.stringify({
                 "health_id": Health_ID,
                 "password": `${password}`
-            }),
-            mode:"cors"
+            })
         })
         let datas = await Authorization.json()
         console.log(datas);
@@ -52,7 +52,7 @@ export default function LoginPage() {
             {/* This Will Redirect you to Dashboard if Condition is true */}
             {IsAuthenticated && (
                 <div>
-                    <Message message="Login Success..."/>
+                    <Message message="Login Success..." />
                     <Navigate to="/" replace={true} />
                 </div>
             )}

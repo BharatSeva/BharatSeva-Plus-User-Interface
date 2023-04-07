@@ -1,0 +1,28 @@
+.IssueContainer{
+    border-radius: 1vh;
+    /* background-color: gray;    */
+}
+.Issues_Header_Container h3{
+    text-align: center;
+}
+.Issues_Header_Container p{
+    margin-bottom: -2vh;
+    text-align: center;
+}
+.Issues_Header_Container h3{
+    font-size: 5vh;
+}
+.Issues_Header_Container::after{
+    content: '';
+    background-color: red;
+    position: relative;
+    display: inline-block;
+    width: 40vw;
+    height: 0.3vh;
+    left: 20vw;
+}
+
+/* Container For Medical Issues Goes Here */
+.MedicalIssues_Container{
+    margin-top: 3vh;
+}
