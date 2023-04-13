@@ -20,9 +20,9 @@ export default function Right_sidebar({ toggle }) {
 
             {/* </Route> */}
 
-            {/* <Home /> */}
+            <Home />
 
-            <MyRecords/>
+            {/* <MyRecords/> */}
             {/* <Issues/> */}
 
             <Outlet />

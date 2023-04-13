@@ -44,7 +44,6 @@ export default function Issues() {
     if (IsFetched) {
         Issues = [];
         if (Fetched.Details_length > 0) {
-
             for (let i = 0; i < Fetched.Details_length; i++) {
 
                 if (Fetched.details[i].medical_severity === 'High') {

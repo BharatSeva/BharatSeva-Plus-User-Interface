@@ -29,7 +29,7 @@ export default function Home() {
                         SetIsBioData(true)
                         SetGetData(result)
                     })
-                    .catch((err) => alert('Something Went Wrong, Please Refresh the Page'))
+                    .catch((err) => alert('Server is not Responding Please try after some time'))
                     
             }else{
                 SetSmwrong(true);
