@@ -1,0 +1,22 @@
+.LockAccount_container{
+    background-color: gray;
+    padding: 2vh 5vw;
+    margin: 1vh;
+    border-radius: 1vh;
+}
+
+.LockAccount_Select{
+    color: black;
+    font-weight: bolder;
+}
+
+.LockAccount_Header{
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+}
+.LockAccount_NoticeRR{
+    color: yellow;
+}
+.LockAccount_Notice{
+    color: yellow;
+}

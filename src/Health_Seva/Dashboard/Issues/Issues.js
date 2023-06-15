@@ -34,7 +34,10 @@ export default function Issues() {
                 SetIsFetched(true);
                 SetFetched(data)
             })
-            .catch((err)=>alert("Something Went Wrong"))
+            .catch((err)=>{
+                console.log(err.message)
+                alert("Something Went Wrong")
+            })
 
         console.log("Issues Data has Been Fetched")
     }, [])

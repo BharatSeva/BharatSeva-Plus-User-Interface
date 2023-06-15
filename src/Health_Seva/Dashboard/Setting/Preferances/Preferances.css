@@ -1,0 +1,17 @@
+.Email_Select{
+    color: black;
+    font-weight: bolder;
+}
+.PreferancesHeader{
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+}
+.EmailPreferancesContainer{
+    background-color: gray;
+    padding: 2vh 5vw;
+    margin: 1vh;
+    border-radius: 1vh;
+}
+
+
+

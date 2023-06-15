@@ -6,6 +6,18 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RegisterPage from "../../Register_And_Login_Page/Register_Page";
 import Issues from "../Issues/Issues";
 
+
+import LockAccount from "../Setting/LockAccount/LockAccount";
+import Preferances from "../Setting/Preferances/Preferances";
+import Permission from "../Setting/Permission/Permission";
+import Settings from "../Setting/Settings";
+import Stats from "./Stats/Stats";
+
+
+
+
+
+
 export default function Right_sidebar({ toggle }) {
 
 
@@ -20,10 +32,12 @@ export default function Right_sidebar({ toggle }) {
 
             {/* </Route> */}
 
-            <Home />
+            {/* <Home /> */}
 
             {/* <MyRecords/> */}
             {/* <Issues/> */}
+            {/* <Settings/> */}
+            <Stats/>
 
             <Outlet />
         </div >

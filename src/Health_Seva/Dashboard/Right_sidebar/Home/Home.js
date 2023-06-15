@@ -3,7 +3,7 @@ import "./Home.css"
 
 export default function Home() {
 
-    const [GetData, SetGetData] = useState({})
+    const [GetData, SetGetData] = useState(false)
     const [SmWrong, SetSmwrong ] = useState(false)
     const [IsBioData, SetIsBioData] = useState(false)
 
@@ -13,23 +13,28 @@ export default function Home() {
             const GetHealthID = localStorage.getItem("BharatSevaHealth_ID")
 
             if (GetHealthID) {
-                fetch('http://localhost:5000/api/v1/patientDetails/patientBioData/patient', {
-                    method: 'post',
+                fetch(`http://localhost:5000/api/v1/patientDetails/patientBioData/patient/${GetHealthID}`, {
+                    method: 'GET',
                     headers: {
                         'Content-Type': "application/json",
                         'Authorization': `${TokenID}`,
                     },
-                    body: JSON.stringify({
-                        'health_id': GetHealthID,
-                    }),
                     mode: 'cors'
                 })
                     .then((data) => data.json())
                     .then((result) => {
                         SetIsBioData(true)
                         SetGetData(result)
+                        if(result.Data === null){
+                            console.log("Null Data is Detected")
+                            alert("Can't Find Your Data")
+                            SetGetData(false)
+                        }
                     })
-                    .catch((err) => alert('Server is not Responding Please try after some time'))
+                    .catch((err) => {
+                        alert('Server is not Responding Please try after some time')
+                        console.log(err.message)
+                    })
                     
             }else{
                 SetSmwrong(true);
@@ -44,11 +49,11 @@ export default function Home() {
 
     return (
         <>  
-            {SmWrong && (<div className="HomeLoadingScreen HomeLoadingScreenSWW ">Something Went Wrong ! 🙄</div>)}
+            {SmWrong && !GetData && (<div className="HomeLoadingScreen HomeLoadingScreenSWW ">Something Went Wrong ! 🙄</div>)}
 
             {!IsBioData && !SmWrong && (<div className="HomeLoadingScreen"><p>Fetching Data</p> <i className="fa-solid fa-rotate"></i></div>)}
 
-            {IsBioData && !SmWrong && (
+            {IsBioData && !SmWrong && GetData && (
                 <div className="HomeContainer">
 
                     <div className="profilebanner">

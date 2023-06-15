@@ -1,0 +1,15 @@
+.LockAccount_Select{
+     color: black;
+    font-weight: bolder;
+}
+.SettingOuterContainer{
+    padding-bottom: 6vh;
+}
+.SettingContainer{
+    background-color: rgb(104, 104, 104);
+    margin: 1vh;
+    border-radius: 1vh;
+    box-shadow: 5px 5px 10px black;
+    padding: 2vh 5vw;
+    /* padding-bottom: 10vh; */
+}

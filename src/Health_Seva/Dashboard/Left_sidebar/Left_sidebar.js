@@ -48,29 +48,36 @@ export default function Left_sidebar({ toggle, toggleHiddenMessage }) {
                         <div className="Extramenu">
                             <ul>
                                 <li>Permission</li>
-                                <li>Change Appearance</li>
+                                {/* <li>Change Appearance</li> */}
                                 <li>Preferances</li>
                                 <li>Lock My Account</li>
                             </ul>
                         </div>
-                        <div className="col Tools" onClick={ToolsExtraMenu} ><i className="fa-solid fa-wrench"></i>
+
+                        {/* This one for Tools Section Will be Implemented later */}
+                        {/* <div className="col Tools" onClick={ToolsExtraMenu} ><i className="fa-solid fa-wrench"></i>
                             <div className="Tools_Section">
                                 <div className="Tools-txt">Tools</div>
                                 <div className="Tools-fontawesome"><i className="fa-solid fa-chevron-down"></i></div>
                             </div>
-                        </div>
+                        </div> */}
                         {/* This one for Tools */}
-                        <div className="Extramenu ToolsExtraMenu">
+                        {/* <div className="Extramenu ToolsExtraMenu">
                             <ul>
                                 <li>My Payments</li>
                                 <li>Who Viewed My Records</li>
                                 <li>Invoke Permission</li>
                                 <li>Generate Report</li>
                             </ul>
-                        </div>
+                        </div> */}
+                        
                         {/* <div className="col Contact"><i className="fa-solid fa-location-dot"></i><div className="Contact-txt">Health Care Nearby</div></div> */}
                         {/* <div className="col logout"><i className="fa-solid fa-right-from-bracket"></i><div className="Log-Out-txt">Log Out</div></div> */}
                         {/* <div className="col About"><i className="fa-solid fa-user"></i><div className="About-txt">About</div></div> */}
+
+                        <div className="col Home" onClick={OnclickHome}><i className="fa-solid fa-scroll"></i> <div className="Home-innetxt">Stats</div></div>
+
+
                     </div>
 
                     <div className="LLside_downside">

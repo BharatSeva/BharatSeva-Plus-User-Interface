@@ -20,14 +20,15 @@ export default function MyRecords() {
     
     const [UserData, SetUserData] = useState({})
     const [Fetched, IsFetched] = useState(false)
+
     useEffect(() => {
         const Health_ID = localStorage.getItem("BharatSevaHealth_ID")
         const TokenID = localStorage.getItem("BharatSevaToken");
-        fetch(`http://localhost:5000/api/v1/patientDetails/get/${Health_ID}`, {
+        fetch(`http://localhost:5000/api/v1/patientDetails/patientgetdata/${Health_ID}`, {
             method: "GET",
             headers: {
                 'Content-Type': "application/json",
-                'Authorization': `${TokenID}`,
+                'Authorization': `${TokenID}`, 
                 // 'Access-Control-Allow-Origin': '*'
             },
             mode: "cors",
@@ -36,6 +37,7 @@ export default function MyRecords() {
             .then((data) => {
                 SetUserData(data)
                 IsFetched(true);
+                console.log(data)
             })
             .catch((err) => {
                 console.log(err.message)

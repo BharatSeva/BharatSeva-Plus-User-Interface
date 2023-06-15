@@ -1,0 +1,24 @@
+.Account_Stats{
+    background-color: gray;
+    border-radius: 1vh;
+    box-shadow: 2px 2px 10px black;
+    width: 45vw;
+    padding: 1vh 1vw;
+    margin: 1vh;
+}
+
+
+.StatsContainer span:nth-child(n){
+    display: inline-block;
+    width: 15vw;
+}
+.StatsContainer p:nth-child(odd){
+    background-color: rgb(94, 93, 93);
+    padding: 1.5vh;
+    border-radius: 1vh;
+}
+.StatsContainer p:nth-child(even){
+    background-color: rgb(150, 150, 150);
+    padding: 1.5vh;
+    border-radius: 1vh;
+}
