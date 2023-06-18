@@ -4,7 +4,7 @@ import "./Right_sidebar.css"
 import { Outlet, Link, Router } from "react-router-dom"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RegisterPage from "../../Register_And_Login_Page/Register_Page";
-import Issues from "../Issues/Issues";
+import Issues from "./Issues/Issues";
 
 
 import LockAccount from "../Setting/LockAccount/LockAccount";
@@ -37,7 +37,7 @@ export default function Right_sidebar({ toggle }) {
             {/* <MyRecords/> */}
             {/* <Issues/> */}
             {/* <Settings/> */}
-            <Stats/>
+            {/* <Stats/> */}
 
             <Outlet />
         </div >

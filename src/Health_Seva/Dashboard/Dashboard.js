@@ -3,6 +3,7 @@ import Left_sidebar from "./Left_sidebar/Left_sidebar"
 import AccountPopover from "./Popup/Account_popover"
 import NotificationPop from "./Popup/NotificationPop"
 import Right_sidebar from "./Right_sidebar/Right_sidebar"
+import SearchBox from "./SearchHealthFacilies/SearchBox"
 
 export default function Dashboard() {
 
@@ -48,7 +49,7 @@ export default function Dashboard() {
                 <div className="RightSide_Nav">
 
                     {/* Explore Near By */}
-                    <div className="NearBy_Nav"><i className="fa-solid fa-magnifying-glass"></i><div className="Nearby-txt">Health Facilities Nearby</div></div>
+                    <SearchBox/>
 
                     {/* Notificaionbar */}
                     <div className="NoticationBar" onClick={ShowNotificaionPop}>
@@ -68,10 +69,13 @@ export default function Dashboard() {
             {/* This one for Left Side and Right Side */}
             <div className="Left_Right_container">
 
+                {/* This One is for LeftSide View Goes Here */}
                 <div className="left_sidebar">
                     <Left_sidebar toggle={Change} toggleHiddenMessage={HiddenMsg} />
                 </div>
 
+
+                {/* This one is for Right Side View */}
                 <div className="right_sidebar">
                     <Right_sidebar toggle={Change} />
 

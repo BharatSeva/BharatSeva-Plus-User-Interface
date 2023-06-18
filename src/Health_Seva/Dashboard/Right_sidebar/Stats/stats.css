@@ -1,8 +1,14 @@
+
+.WholeStatscontainer{
+    margin: 2vh;
+    padding-bottom: 2vh;
+}
+
 .Account_Stats{
     background-color: gray;
     border-radius: 1vh;
     box-shadow: 2px 2px 10px black;
-    width: 45vw;
+    width: 54vw;
     padding: 1vh 1vw;
     margin: 1vh;
 }
@@ -21,4 +27,36 @@
     background-color: rgb(150, 150, 150);
     padding: 1.5vh;
     border-radius: 1vh;
+}
+
+/* Log Container Goes Here */
+.ListLogContainer{
+    box-shadow: 2px 2px 10px black;
+    background-color: gray;
+    padding: 2vh 2vw;
+    margin: 1vh;
+    border-radius: 1vh;
+}
+.LogText{
+    margin: 0;
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+}
+
+/* This One is for individuals Log Records */
+.LogContainer{
+    background-color: rgb(100, 100, 100);
+    padding: 1vh;
+    margin-bottom: 1vh;
+    margin-top: 2vh;
+
+    border-radius: 1vh;
+}
+
+/* Not available Text available Here Now */
+.notavailabletext{
+    color: yellow;
+}
+.statuslogLoading{
+    color: lime;
 }

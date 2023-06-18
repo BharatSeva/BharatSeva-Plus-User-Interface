@@ -25,7 +25,7 @@
 /* Navigation Bar */
 /* Right Side Navigation Bar */
 .RightSide_Nav{
-    width: 30vw;
+    width: 35vw;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -55,7 +55,7 @@
 /* Near By Goes Here */
 .NearBy_Nav{
     font-size: 2.3vh;
-    max-width: 16   .5vw;
+    width: 21vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,13 +64,31 @@
     transition: 0.3s linear;
     
 }
-/* this one for txt goes here */
-.Nearby-txt{
-    margin: 0 0 0 1vw;
+/* Search Box Goes Here */
+#SearchboxInput{
+    border-radius: 0.5vh;
+    width: 20vw;
+    height: 4.5vh;
+    border: none;
+    outline: none;
+    font-size: 2vh;
+    transition: 0.2s linear;
+    font-weight: bold;
+    
+    
+    background: url("/src/Health_Seva/Images_Assests/SearchLogo.png") no-repeat left;
+    background-size: 2.2vw;
+    padding-right: 1vw;
+    padding-left: 2.5vw;
+    background-color: wheat;
+}
+#SearchboxInput:is(:hover, :focus){
+    transform: scale(1.1);
+    
 }
 .NearBy_Nav:hover{
-    background-color: rgb(88, 86, 86);
     cursor: pointer;
+    background-color: rgb(88, 86, 86);
 }
 .NearBy_Nav:hover > i{
     color: black;

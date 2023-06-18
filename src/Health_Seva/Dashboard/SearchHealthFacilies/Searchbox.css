@@ -1,0 +1,93 @@
+/* .Search Box Popover Goes Here */
+.SearchPopoverContainer {
+    background-color: rgb(107, 107, 107);
+    padding: 3vh 4.3vw;
+    border-radius: 1vh;
+    box-shadow: 3px 3px 8px black;
+    position: absolute;
+    top: 8vh;
+    right: 15.5vw;
+    z-index: 100;
+    padding: 0;
+
+    /* height: 40vh; */
+    width: 20vw;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: flex-end; */
+}
+.SearchPopDisplayNone{
+    display: none;
+}
+
+.SearchPopoverContainer ul {
+    /* height: 33vh; */
+    text-overflow: hidden;
+    /* overflow-y: scroll; */
+    overflow-x: hidden;
+    width: 19.5vw;
+    list-style: none;
+    /* margin: 0; */
+    padding: 0;
+
+    
+}
+
+.SearchPopoverContainer ul li {
+    border-bottom: 2px dotted rgb(160, 159, 159);
+    overflow-x: hidden;
+    margin: 0.5vh;
+    margin-left: 1vw;
+    padding: 0.5vh;
+    text-align: left;
+    border-radius: 1vh;
+    
+    /* height: 5vh; */
+    text-overflow: ellipsis;
+    /* text-size-adjust: 1vh; */
+    /* overflow: ellipsis; */
+    transition: 1s linear;
+}
+
+.SearchPopoverContainer ul li:hover {
+    cursor: pointer;
+    background-color: rgb(43, 43, 43);
+    /* transform: scale(1.05); */
+    box-sizing: 5px 0px 15px black;
+}
+
+.SearchList{
+    font-size: 2.3vh;
+    text-align: center;
+}
+
+#RefreshSearcList{
+    color: rgb(204, 204, 204);
+    margin: 0;
+    padding-right: 1vh;
+    font-size: 1.8vh;
+    cursor: pointer;
+    text-align: end;
+    font-style: italic ;
+}
+#RefreshSearcList:hover{
+    color: wheat;
+}
+.SearchListFailed{
+    color: rgb(255, 82, 82);
+    text-align: center;
+    font-size: 2vh;
+}
+/* LOGO in serach Result Goes Here */
+.fa-searchengin{
+    color: rgb(37, 37, 37);
+    margin-right: 0.5vw;
+    margin-left: 0.3vw;
+    transition: 0.3s linear;
+}
+.SearchPopoverContainer ul li:hover > .fa-searchengin{
+    color: wheat;
+}
