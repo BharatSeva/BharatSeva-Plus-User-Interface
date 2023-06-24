@@ -1,4 +1,8 @@
 /* This one For Spinner */
+.MyRecordsOuterContainer{
+    padding: 2vh;
+}
+
 .FetchingDataLogo{
     font-size: 2.5vh;
     text-align: center;
@@ -19,6 +23,9 @@
 
 .MyRecordsContainer{
     width: 78vw;
+    background-color: gray;
+    border-radius: 1vh;
+    padding: 1vh;
 }
 .MyRecordHeader ,h3, p{
     margin: 1vh;
@@ -26,7 +33,7 @@
     text-align: left;
 }
 .MyRecordHeader h3{
-    color: rgb(58, 57, 57);
+    color: white;
     font-weight: bolder;
 }
 
@@ -60,8 +67,7 @@
 /* Health Record Container Goes here */
 .Health_Record_Containers {
     padding: 1vh;
-    margin: 1vh 0 2.5vh 0;
-    width: 79vw;
+    margin: 2vh;
     border-radius: 1vh;
     background-color: rgb(100, 103, 104);
     box-shadow: 7px 7px 5px rgb(78, 78, 78);
@@ -77,7 +83,6 @@
 }
 .Issue_Statement {
     width: 15vw;
-    /* background-color: red; */
 }
 
 .MyRecordHeader::after {
@@ -98,4 +103,34 @@
     letter-spacing: 0.2vh;
     text-decoration: underline;
     text-underline-offset: 1vh;
+}
+
+/* FOr Null Records  */
+.MyRecordsEmpty{
+    text-align: center;
+    font-style: italic;
+}
+.MyRecordsFilter{
+    width: 30vw;
+}
+.MyRecordsFilteContainer{
+    margin-left: 2vw;
+}
+#myrecordsFilterbtn{
+    font-size: 2vh;
+    border: none;
+    width: 14vw;
+    height: 5vh;
+    margin: 2vh;
+    border-radius: 1vh;
+    font-weight: bolder;
+    cursor: pointer;
+    /* background-color: white; */
+}
+.myrecordsClearbtn{
+    background-color: lime;
+    box-shadow: 0 0 5vh lime;
+}
+.btnnoseleceted{
+  color: red;
 }

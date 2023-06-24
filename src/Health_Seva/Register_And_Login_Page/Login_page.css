@@ -13,3 +13,25 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+.UserInputSectionLoginPage{
+  width: 23vw;
+  height: 5vh;
+  padding: 1vh;
+  border-radius: 0.5vh;
+  font-weight: bolder;
+  border: none;
+  outline: none;
+  font-size: 2vh;
+}
+.Submitbtn{
+  margin: 2vh 6vw;
+  border: none;
+  border-radius: 0.5vh;
+  font-size: 2vh;
+  width: 10vw;
+}
+.RegisterLoginPage{
+  font-size: 2vh;
+  text-decoration: underline;
+  text-underline-offset: 1vh;
+}

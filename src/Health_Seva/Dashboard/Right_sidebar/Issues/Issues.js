@@ -17,16 +17,15 @@ export default function Issues() {
 
 
     const [IsFetched, SetIsFetched] = useState(false)
-    const [Fetched, SetFetched] = useState({})
+    const [Fetched, SetFetched] = useState()
 
     useEffect(() => {
-        const Health_ID = localStorage.getItem("BharatSevaHealth_ID")
-        const TokenID = localStorage.getItem("BharatSevaToken");
-        fetch(`http://localhost:5000/api/v1/patientDetails/get/${Health_ID}`, {
+        const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
+        fetch(`http://localhost:5000/api/v1/userdetails/records/${UserData.healthId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `${TokenID}`,
+                'Authorization': `Bearer ${UserData.token}`,
             }
         })
             .then((res) => res.json())
@@ -34,7 +33,7 @@ export default function Issues() {
                 SetIsFetched(true);
                 SetFetched(data)
             })
-            .catch((err)=>{
+            .catch((err)=>{ 
                 console.log(err.message)
                 alert("Something Went Wrong")
             })
@@ -42,32 +41,12 @@ export default function Issues() {
         console.log("Issues Data has Been Fetched")
     }, [])
 
-    let Issues = [];
-    let issues;
-    if (IsFetched) {
-        Issues = [];
-        if (Fetched.Details_length > 0) {
-            for (let i = 0; i < Fetched.Details_length; i++) {
 
-                if (Fetched.details[i].medical_severity === 'High') {
-                        Issues.push( 
-                        <IssuesFormat key={i}
-                        p_problem={Fetched.details[i].p_problem}
-                        description={Fetched.details[i].description}
-                        HIP_name={Fetched.details[i].HIP_name}
-                        Created_At={Fetched.details[i].Created_At}
-                        medical_severity={Fetched.details[i].medical_severity}
-                    />
-                    )
-                }
-            }
-        }
-        else{
-            Issues.push(<div style={{color:"green", textAlign:"center"}} >You Don't have any Issues Yet </div>)
-        }
+    let Issues, IssuesFetched
+    if(IsFetched){
+        Issues = (Fetched.records.filter((data)=>data.medical_severity.includes("High") || data.medical_severity.includes("Dangerous")))
+        IssuesFetched = Issues ? Issues.map((data)=>IssuesFormat(data)) : (<p>You Have No Any Issues</p>)
     }
-
-
 
     return (
         <>
@@ -81,9 +60,7 @@ export default function Issues() {
                         </div>
 
                         <div className="MedicalIssues_Container">
-
-                            {Issues}
-
+                            {IssuesFetched}
                         </div>
                     </>
                 )}

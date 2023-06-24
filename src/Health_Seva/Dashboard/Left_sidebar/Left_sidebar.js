@@ -75,8 +75,8 @@ export default function Left_sidebar({ toggle, toggleHiddenMessage }) {
                         {/* <div className="col logout"><i className="fa-solid fa-right-from-bracket"></i><div className="Log-Out-txt">Log Out</div></div> */}
                         {/* <div className="col About"><i className="fa-solid fa-user"></i><div className="About-txt">About</div></div> */}
 
+                        <div className="col Home" onClick={OnclickHome}><i className="fa-solid fa-calendar-check"></i> <div className="Home-innetxt">Appointments</div></div>
                         <div className="col Home" onClick={OnclickHome}><i className="fa-solid fa-scroll"></i> <div className="Home-innetxt">Stats</div></div>
-
 
                     </div>
 

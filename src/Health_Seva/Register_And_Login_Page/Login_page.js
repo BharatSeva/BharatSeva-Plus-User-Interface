@@ -12,34 +12,36 @@ export default function LoginPage() {
 
     // UseEffect Condition Goes Here
     const [IsAuthenticated, SetAuthenticated] = useState(false);
-    const [Health_ID, SetHealth_ID] = useState("")
-    const [password, Setpassword] = useState("")
-    console.log(Health_ID, password);
+    const [Credentials, SetCredentials] = useState()
 
+
+    function Credential(e) {
+        const { name, value } = e.target
+        SetCredentials((prev) => ({
+            ...prev,
+            [name]: value
+        }))
+    }
     const LoginAPI = async () => {
-
-        const Authorization = await fetch(`http://localhost:5000/api/v1/patientAuth/PatientLogin`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                "health_id": Health_ID,
-                "password": `${password}`
+        try {
+            const Authorization = await fetch(`http://localhost:5000/api/v1/userauth/userlogin`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(Credentials)
             })
-        })
-        let datas = await Authorization.json()
-        console.log(datas);
-        if (datas.status === "Success") {
-            datas.token = "Bearer " + datas.token;
-            localStorage.setItem("BharatSevaToken", datas.token)
-            localStorage.setItem("BharatSevaUserName", datas.user.name)
-            localStorage.setItem("BharatSevaHealth_ID", Health_ID)
-            SetAuthenticated(true);
+            let Response = await Authorization.json()
+            if (Authorization.ok) {
+                sessionStorage.setItem("BharatSevaUser", JSON.stringify(Response))
+                SetAuthenticated(true);
+            } else {
+                alert(Response.message)
+            }
+        } catch (err) {
+            alert(err.message)
         }
-        else {
-            alert(datas.message)
-        }
+
     }
 
     const preventDefault = (e) => {
@@ -65,17 +67,16 @@ export default function LoginPage() {
 
                     <form className="EnterDetails" onSubmit={preventDefault}>
                         <label>Enter Your Health ID</label><br></br>
-                        <input type="Number" placeholder="Enter Your Health ID" onChange={e => SetHealth_ID(e.target.value)} required ></input><br></br>
+                        <input type="Number" className="UserInputSectionLoginPage" placeholder="Enter Your Health ID" name="health_id" onChange={Credential} onKeyUp={Credential} required ></input><br></br>
 
                         <label>Enter Your Password</label><br></br>
-                        <input type="password" placeholder="Enter Your Password" onChange={e => Setpassword(e.target.value)} required ></input><br></br>
+                        <input type="password" className="UserInputSectionLoginPage" placeholder="Enter Your Password" name="password" onChange={Credential} onKeyUp={Credential} required ></input><br></br>
 
-                        <input type="submit" className="Submitbtn"></input>
-                        {/* <Link to="/"> <input type="submit" className="Submitbtn" ></input></Link> */}
+                        <input type="submit" value="Login" className="Submitbtn"></input>
                     </form>
 
                     <div className="Login">
-                        <p>Don't Have A Account ? <Link to="/register" className="RegisterBtn">Register Here</Link></p>
+                        <p className="RegisterLoginPage">Don't Have A Account ? <Link to="/register" className="RegisterBtn">Register Here</Link></p>
                     </div>
 
                 </div>

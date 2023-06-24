@@ -1,8 +1,4 @@
 
-.Register h2{
-    margin: 1vh;
-}
-
 .BharatSeva_Registration{
     font-size:3vh;
     text-align: center;
@@ -35,15 +31,20 @@
     height: 95vh;
 }
 .Register h2{
-    text-align: left;
+    text-align: center;
     font-size: 3vh;
     letter-spacing: 0.1vh;
 }
 .EnterDetails{
     /* border: 1px solid black; */
-    padding: 3vh 0 0 0;
+    /* padding: 3vh 0 0 0; */
     text-align: left;
     border-radius: 1vh;
+}
+.EnterDetails label{
+    display: inline-block;
+    margin: 3vh 0 0 0;
+    padding: 0;
 }
 label{
     font-size: 2.2vh;
@@ -65,11 +66,9 @@ label{
     outline: none;
 }
 .Submitbtncontainer{
-    /* height: 10vh; */
-    /* background-color: red; */
-    /* padding-top: 0vh; */
-    /* display: flex; */
-    /* align-items: center; */
+    margin-top:2vh;
+    display: flex;
+    justify-content: center;
 }
 .Submitbtn{
     font-size: 2;
@@ -108,14 +107,26 @@ label{
     box-shadow: 0px 0px 5px greenyellow;    
 }
 .PasswordDonotmatch{
-    font-size: 2.5vh;
-    margin-top: 0vh;
+    font-size: 2vh;
+    margin-top: 2vh;
     margin-bottom: 2vh;
     color: rgb(255, 107, 107);
-    font-weight: bolder;
+    /* font-weight: bolder; */
     text-align: center;
     display: none;
 }
 .Displaypasstxt{
     display: block;
+}
+/* User Input Section Goes Here */
+
+.UserRegisterInput{
+    width: 30vw;
+    height: 5vh;
+    padding: 1vh;
+    outline: none;
+    border: none;
+    border-radius: 0.5vh;
+    font-size: 2vh;
+    font-weight: bolder;
 }

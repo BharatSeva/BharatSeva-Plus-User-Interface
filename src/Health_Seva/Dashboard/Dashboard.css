@@ -80,7 +80,7 @@
     background-size: 2.2vw;
     padding-right: 1vw;
     padding-left: 2.5vw;
-    background-color: wheat;
+    background-color: white;
 }
 #SearchboxInput:is(:hover, :focus){
     transform: scale(1.1);

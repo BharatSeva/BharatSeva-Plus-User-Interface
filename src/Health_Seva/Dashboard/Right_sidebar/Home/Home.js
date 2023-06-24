@@ -8,25 +8,23 @@ export default function Home() {
     const [IsBioData, SetIsBioData] = useState(false)
 
     useEffect(() => {
-        const TokenID = localStorage.getItem("BharatSevaToken");
         const GetBioApi = async () => {
-            const GetHealthID = localStorage.getItem("BharatSevaHealth_ID")
-
+            const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
+            let GetHealthID = UserData.healthId
             if (GetHealthID) {
-                fetch(`http://localhost:5000/api/v1/patientDetails/patientBioData/patient/${GetHealthID}`, {
+                fetch(`http://localhost:5000/api/v1/userdetails/user/${GetHealthID}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': "application/json",
-                        'Authorization': `${TokenID}`,
-                    },
-                    mode: 'cors'
+                        'Authorization': `Bearer ${UserData.token}`,
+                    }
                 })
                     .then((data) => data.json())
                     .then((result) => {
                         SetIsBioData(true)
                         SetGetData(result)
-                        if(result.Data === null){
-                            console.log("Null Data is Detected")
+                        if(result.BioData === null){
+                            console.log("Null DataDetected")
                             alert("Can't Find Your Data")
                             SetGetData(false)
                         }
@@ -66,8 +64,8 @@ export default function Home() {
                         <div className="profiledetails">
 
                             <div className="profiledetails_Left">
-                                <p>{GetData.Data.fname} {GetData.Data.lname}</p>
-                                <p>{GetData.Data.health_id}</p>
+                                <p>{GetData.BioData.fname} {GetData.BioData.lname}</p>
+                                <p>{GetData.BioData.health_id}</p>
                             </div>
 
                             <div className="profiledetails_Right">
@@ -83,24 +81,24 @@ export default function Home() {
 
                                 <h3 className="BioDataHeader">Bio Data</h3>
 
-                                <div><p>First Name :</p>  <p>{GetData.Data.fname}</p></div>
-                                <div><p>Middle Name :</p> <p>{GetData.Data.middlename}</p></div>
-                                <div><p>Last Name :</p>  <p>{GetData.Data.lname}</p></div>
-                                <div><p>Sex :</p>  <p>{GetData.Data.sex}</p></div>
-                                <div><p>Blood Group :</p> <p>{GetData.Data.bloodgrp}</p></div>
-                                <div><p>Weight :</p> <p>{GetData.Data.Weight}</p></div>
-                                <div><p>BMI :</p> <p>{GetData.Data.BMI}</p></div>
-                                <div><p>Marriage Status :</p><p> {GetData.Data.MarriageStatus}</p></div>
-                                <div><p>DOB :</p><p> {GetData.Data.dob}</p></div>
-                                <div><p>Email:</p><p>{GetData.Data.email}</p></div>
-                                <div><p>Mobile Number:</p><p>{GetData.Data.mobilenumber}</p></div>
-                                <div><p>Aadhaar Number:</p><p>{GetData.Data.aadharNumber}</p></div>
-                                <div><p>Primary From:</p><p>{GetData.Data.Plocation}</p></div>
-                                <div><p>Any Sibling: </p><p>{GetData.Data.sibling}</p></div>
-                                <div><p>Twin: </p><p>{GetData.Data.twin}</p></div>
+                                <div><p>First Name :</p>  <p>{GetData.BioData.fname}</p></div>
+                                <div><p>Middle Name :</p> <p>{GetData.BioData.middlename}</p></div>
+                                <div><p>Last Name :</p>  <p>{GetData.BioData.lname}</p></div>
+                                <div><p>Sex :</p>  <p>{GetData.BioData.sex}</p></div>
+                                <div><p>Blood Group :</p> <p>{GetData.BioData.bloodgrp}</p></div>
+                                <div><p>Weight :</p> <p>{GetData.BioData.Weight}</p></div>
+                                <div><p>BMI :</p> <p>{GetData.BioData.BMI}</p></div>
+                                <div><p>Marriage Status :</p><p> {GetData.BioData.MarriageStatus}</p></div>
+                                <div><p>DOB :</p><p> {GetData.BioData.dob}</p></div>
+                                <div><p>Email:</p><p>{GetData.BioData.email}</p></div>
+                                <div><p>Mobile Number:</p><p>{GetData.BioData.mobilenumber}</p></div>
+                                <div><p>Aadhaar Number:</p><p>{GetData.BioData.aadharNumber}</p></div>
+                                <div><p>Primary From:</p><p>{GetData.BioData.Plocation}</p></div>
+                                <div><p>Any Sibling: </p><p>{GetData.BioData.sibling}</p></div>
+                                <div><p>Twin: </p><p>{GetData.BioData.twin}</p></div>
 
-                                <div><p>Father's Name:</p><p>{GetData.Data.fathername}Pappa</p></div>
-                                <div><p>Mother's Name:</p><p>{GetData.Data.mothername}Mummy</p></div>
+                                <div><p>Father's Name:</p><p>{GetData.BioData.fathername}Pappa</p></div>
+                                <div><p>Mother's Name:</p><p>{GetData.BioData.mothername}Mummy</p></div>
                             </div>
                         </div>
 

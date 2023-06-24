@@ -77,7 +77,7 @@ body{
 
 
 
-button{
+/* button{
     border-radius: 1vh;
     cursor: pointer;
     color: wheat;
@@ -85,13 +85,13 @@ button{
     border: none;
     padding: 2vh;
     transition: 1s;
-}
+} */
 
-button:hover{
+/* button:hover{
     background-color: red;
     font-size: 2vh;
     color: black;
-}
+} */
 
 
 /* Left Side Bar Goes */

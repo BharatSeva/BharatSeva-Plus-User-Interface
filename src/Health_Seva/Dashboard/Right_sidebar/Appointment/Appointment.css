@@ -1,0 +1,48 @@
+.appointmentContainer {
+    background-color: gray;
+    padding: 1vh 2vw;
+    width: 65vw;
+    border-radius: 1vh;
+    margin: 1vh;
+}
+
+.appointmentContainer h2 {
+    margin: 1vh;
+}
+
+.apppointment_log{
+    margin: 1vh 0 1vh 0;
+    padding: 1vh;
+    border-radius: 1vh;
+    background-color: rgb(90, 90, 90);
+    margin-top: 2vh;
+}
+
+.apppointment_log span {
+    display: inline-block;
+    width: 14vw;
+    /* background-color: red; */
+}
+
+/* This One for Note Section */
+#AppointmentNoteSection {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 40vw;
+    display: inline-block;
+}
+
+.AppointmentLogtext{
+    color: yellow;
+}
+
+/* Upcoming */
+.Upcoming{
+    display: inline-block;
+    color: yellow;
+    /* background-color: red; */
+}
+.Completed{
+    color: lime;
+}

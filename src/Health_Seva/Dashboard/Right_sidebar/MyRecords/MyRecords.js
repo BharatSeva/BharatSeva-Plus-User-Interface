@@ -1,35 +1,40 @@
-import { ReactDOM, useEffect, useState } from "react"
-import { json } from "react-router-dom"
+import { ReactDOM, useEffect, useRef, useState } from "react"
+import Select from "react-select"
 import "./MyRecords.css"
 
-function HealthData(props) {
-    return (
-        <div className="Health_Record_Containers">
-            <div className="Health_Issue"> <div className="Issue_Statement">Issue :</div> <div className="Issues">{props.p_problem}</div>  </div>
-            <div className="Description"> <div className="Issue_Statement">Description  :</div> <div className="Issues">{props.description}</div> </div>
-            <div className="HIP_name"> <div className="Issue_Statement">HIP :</div> <div className="Issues">{props.HIP_name}</div></div>
-            <div className="Issue_Date"> <div className="Issue_Statement">Issue Date :</div> <div className="Issues">{props.Created_At}</div></div>
-            <div className="Medical_Severity"><div className="Issue_Statement">Medical Severity :</div><div className="Issues">{props.medical_severity}</div></div>
-        </div>
-    )
-}
-
-
-
 export default function MyRecords() {
-    
-    const [UserData, SetUserData] = useState({})
+    const [UserData, SetUserData] = useState()
+    const [FilterM, SetFilterM] = useState(false)
+    const [FilterS, SetFilterS] = useState(false)
     const [Fetched, IsFetched] = useState(false)
+    const [Searched, IsSearched] = useState(false)
+    let val
+    function ClearSelect() {
+        // Month.label == "Select" 
+        val = null
+        SetFilterM(false)
+        SetFilterS(false)
+        IsSearched(false)
+    }
+
+    function DisplayRecords(data) {
+        return (<div className="Health_Record_Containers">
+            <div className="Health_Issue"> <div className="Issue_Statement">Issue :</div> <div className="Issues">{data.p_problem}</div>  </div>
+            <div className="Description"> <div className="Issue_Statement">Description  :</div> <div className="Issues">{data.description}</div> </div>
+            <div className="HIP_name"> <div className="Issue_Statement">HIP :</div> <div className="Issues">{data.HIP_name}</div></div>
+            <div className="Issue_Date"> <div className="Issue_Statement">Issue Date :</div> <div className="Issues">{data.Created_At}</div></div>
+            <div className="Medical_Severity"><div className="Issue_Statement">Medical Severity :</div><div className="Issues">{data.medical_severity}</div></div>
+        </div>)
+    }
 
     useEffect(() => {
-        const Health_ID = localStorage.getItem("BharatSevaHealth_ID")
-        const TokenID = localStorage.getItem("BharatSevaToken");
-        fetch(`http://localhost:5000/api/v1/patientDetails/patientgetdata/${Health_ID}`, {
+
+        const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
+        fetch(`http://localhost:5000/api/v1/userdetails/records/${UserData.healthId}`, {
             method: "GET",
             headers: {
                 'Content-Type': "application/json",
-                'Authorization': `${TokenID}`, 
-                // 'Access-Control-Allow-Origin': '*'
+                'Authorization': `Bearer ${UserData.token}`,
             },
             mode: "cors",
         })
@@ -37,51 +42,102 @@ export default function MyRecords() {
             .then((data) => {
                 SetUserData(data)
                 IsFetched(true);
-                console.log(data)
             })
             .catch((err) => {
                 console.log(err.message)
+                alert(err.message)
             })
-            console.log("API has been Fetched")
+        // console.log("Records API has been Fetched")
     }, [])
 
-    let Health_id = []
+
+    function FilterRecordsMonths(e) {
+        if (UserData.records) {
+            const { value, name } = e
+            SetFilterM((UserData.records.filter((data) => value.includes(data.Created_At.split(" ")[1]))))
+            IsSearched(true)
+        }
+    }
+    let FilterRecord
+    function FilterRecords(e) {
+        if (UserData.records) {
+            const { name, value } = e
+            SetFilterS(FilterM.length ? (FilterM.filter((data) => data.medical_severity.includes(value))) : (UserData.records.filter((data) => data.medical_severity.includes(value))))
+            IsSearched(true)
+        }
+    }
+
+    if (FilterM.length && !FilterS) {
+        FilterRecord = FilterM.map((data) => DisplayRecords(data))
+        console.log("Yes")
+    }
+    else if (!FilterM.length && !FilterS.length) {
+        FilterRecord = false
+    }
+    else if (!FilterM && FilterS.length) {
+        FilterRecord = FilterS.map((data) => DisplayRecords(data))
+    }
+    else if (FilterM.length && !FilterS.length) {
+        FilterRecord = false
+    }
+    else if (FilterM.length && FilterS.length) {
+        FilterRecord = FilterS.map((data) => DisplayRecords(data))
+    }
+    let HealthRecords
     if (Fetched) {
-        Health_id = [];
-        if (UserData.Details_length > 0 ) {
-
-            for (let i = 0; i < UserData.Details_length; i++) {
-                Health_id.push(<HealthData key={i} 
-                    p_problem={UserData.details[i].p_problem}
-                    description={UserData.details[i].description}
-                    HIP_name={UserData.details[i].HIP_name}
-                    Created_At={UserData.details[i].Created_At}
-                    medical_severity={UserData.details[i].medical_severity}
-                    />)
-            }
-        }
-        else{
-            Health_id.push(<div style={{color:"red", textAlign:"center"}} >You Don't have any medical Record Yet </div>)
-        }
-
+        HealthRecords = UserData.records_length ? UserData.records.map((data) => DisplayRecords(data)) : (<p className="MyRecordsEmpty">You Don't Have Any medical Records Yet</p>)
     }
 
 
+
+    const Options = [
+        { "label": "Dangerous", "value": "Dangerous", "name": "Medical" },
+        { "label": "High", "value": "High", "name": "Medical" },
+        { "label": "Semi-Mid", "value": "Semi-Mid", "name": "Medical" },
+        { "label": "Low", "value": "Low", "name": "Medical" }
+    ]
+    const Month_Options = [
+        { "label": "January", "value": "January", "name": "Months" },
+        { "label": "February", "value": "February", "name": "Months" },
+        { "label": "March", "value": "March", "name": "Months" },
+        { "label": "April", "value": "April", "name": "Months" },
+        { "label": "May", "value": "May", "name": "Months" },
+        { "label": "June", "value": "June", "name": "Months" },
+        { "label": "July", "value": "July", "name": "Months" },
+        { "label": "August", "value": "August", "name": "Months" },
+        { "label": "September", "value": "September", "name": "Months" },
+        { "label": "October", "value": "October", "name": "Months" },
+        { "label": "November", "value": "November", "name": "Months" },
+        { "label": "December", "value": "December", "name": "Months" }
+    ]
+
     return (
         <>
-            {!Fetched && (<div className="FetchingDataLogo"> Fetching Records <i className="fa-solid fa-rotate"></i></div>)}
-            {Fetched && (
-                <div className="MyRecordsContainer">
-                    <div className="MyRecordHeader">
-                        <h3>My Records</h3>
-                        <p>Last Updated At : { UserData.Details_length>0  && UserData.details[0].Created_At}</p>
-                    </div>
+            <div className="MyRecordsOuterContainer">
 
-                    <div className="Records">
-                        {Health_id}
+                {!Fetched && (<div className="FetchingDataLogo"> Fetching Records <i className="fa-solid fa-rotate"></i></div>)}
+                {Fetched && (
+                    <div className="MyRecordsContainer">
+                        <div className="MyRecordHeader">
+                            <h3>My Records</h3>
+                            <p>Last Updated At : {UserData.records_length ? UserData.records[0].Created_At : (<span>--/--</span>)}</p>
+                            <div className="MyRecordsFilteContainer">
+                                <p>Filter By Month</p>
+                                <Select options={Month_Options} className="LockAccount_Select MyRecordsFilter FilterMonths" onChange={FilterRecordsMonths} value={val} />
+                                <p>Filter By Medical Severity</p>
+                                <Select options={Options} className="MyRecordsFilter LockAccount_Select FilterSeverity" onChange={FilterRecords} />
+                                <button id="myrecordsFilterbtn" className={Searched ? "myrecordsClearbtn" : "btnnoseleceted"} onClick={ClearSelect}>Clear Filter</button>
+                            </div>
+                        </div>
+
+                        {/* {!FilterM && !FilterS && HealthRecords} */}
+                        {/* {HealthRecords} */}
+                        <div className="Records">
+                            {Searched ? (FilterRecord ? FilterRecord : (<p>No Result Found !</p>)) : HealthRecords}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
 
         </>
     )

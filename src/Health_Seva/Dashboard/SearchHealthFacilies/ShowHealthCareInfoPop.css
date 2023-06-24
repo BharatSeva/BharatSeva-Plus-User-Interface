@@ -1,0 +1,93 @@
+.HealthCareInformationPopOuterContainer{
+    padding-bottom: 4vh;
+}
+.DisplaymeOne{
+    display: none;
+}
+
+.HealthCareInfo_PopOverContainer{
+    box-shadow: 0 0 10px black;
+
+    position: relative;
+    z-index: 50;
+    background-color: gray;
+    top: 2vh;
+
+    padding: 1vh 3vw;
+    width: 65vw;
+    /* height: 60vh; */
+    border-radius: 1vh;
+    
+    /* overflow-y: scroll; */
+    /* margin: 5vh; */
+
+}
+.textname{
+    padding: 0;
+    margin: 0;
+}
+.HealthCareLabelContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.HealthCareInformation{
+    background-color: rgb(109, 109, 109);
+    border-radius: 1vh;
+    padding: 2vh;
+    margin-top: 1vh;
+}
+.HealthCareInformation h3{
+    margin: 0 0 2vh 0;
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+}
+
+/* Appointment Booking Goes Here */
+.HealthCareBookAppointMent{
+    background-color: rgb(109, 109, 109);
+    border-radius: 1vh;
+    padding: 2vh;
+    margin-top: 1vh;
+}
+
+/* Appointment Button Goes */
+#AppointmentButton{
+    margin: 4vh 18vw;
+    width: 20vw;
+    height: 5vh;
+    border-radius: 1vh;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+    transition: 0.5s linear;   
+    font-size: 2vh;
+}
+#AppointmentButton:hover{
+    box-shadow: 0 0 8vh lime;
+    background-color: lime;
+    color: black;
+}
+
+/* Charge Text Goes Hewre */
+.ChargeHealthCare{
+    font-size: 3vh;
+    font-weight: bolder;
+}
+.BookedText{
+    color: yellow;
+}
+.BookedText strong{
+    color: rgba(255, 0, 0, 0.548);
+}
+
+/* HealthCare NOte */
+#textAreaNoteHealthCare{
+    width: 50vw;
+    height: 20vh;
+    border-radius: 1vh;
+    outline: none;
+    padding: 1vh;
+    font-size: 2vh;
+    font-weight: bold;
+}

@@ -1,13 +1,9 @@
 import "../App.css";
 
-export default function Message( props ) {
-
-
-
-
+export default function Message({ message }) {
     return (
         <div className="Message_Container">
-            <div className="MessageBox">{props.message}</div>
+            <div className="MessageBox">{message}</div>
         </div>
     )
-}
+} 

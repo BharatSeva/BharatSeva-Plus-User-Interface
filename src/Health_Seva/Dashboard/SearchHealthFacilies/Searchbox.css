@@ -3,15 +3,15 @@
     background-color: rgb(107, 107, 107);
     padding: 3vh 4.3vw;
     border-radius: 1vh;
-    box-shadow: 3px 3px 8px black;
+    box-shadow: 0px 0px 10px black;
     position: absolute;
     top: 8vh;
-    right: 15.5vw;
+    right: 12vw;
     z-index: 100;
     padding: 0;
 
     /* height: 40vh; */
-    width: 20vw;
+    width: 27vw;
 
 
     display: flex;
@@ -28,7 +28,7 @@
     text-overflow: hidden;
     /* overflow-y: scroll; */
     overflow-x: hidden;
-    width: 19.5vw;
+    /* width: 19.5vw; */
     list-style: none;
     /* margin: 0; */
     padding: 0;
@@ -46,7 +46,7 @@
     border-radius: 1vh;
     
     /* height: 5vh; */
-    text-overflow: ellipsis;
+    /* text-overflow: ellipsis; */
     /* text-size-adjust: 1vh; */
     /* overflow: ellipsis; */
     transition: 1s linear;
@@ -90,4 +90,15 @@
 }
 .SearchPopoverContainer ul li:hover > .fa-searchengin{
     color: wheat;
+}
+.SearchResultli{
+    width: 25vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+}
+.HealthCareCityName{
+    font-size: 2vh;
+    margin-left: 0.3vh;
 }

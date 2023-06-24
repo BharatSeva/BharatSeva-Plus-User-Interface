@@ -1,6 +1,5 @@
 /* Loading Screen Goes Here */
 .HomeLoadingScreen{
-    /* background-color: red; */
     display: flex;
     align-items: center;
     width: 12vw;
@@ -8,11 +7,6 @@
 }
 .HomeLoadingScreenSWW{
     width: 18vw;
-}
-
-
-.HomeContainer{
-    /* width:100vw; */
 }
 .profilebanner{
     height: 50vh;
@@ -38,8 +32,6 @@
 .profileImage{
     background:url("../../../Images_Assests/profileLogo.png") no-repeat center;
     background-size: cover;
-    /* background: linear-gradient(to right, rgba(255, 0, 0, 0.048), rgba(0, 0, 255, 0.158)); */
-    /* height: 5vh; */
 }
 .profilePhoto{
     background: url("../../../Images_Assests/profileLogo.png") no-repeat;
@@ -85,9 +77,6 @@
 .BioDataContainer{
     display: flex;
     justify-content: center;
-    /* align-items: center; */
-    /* width: 50vw; */
-    /* background-color: red; */
 }
 .BioDataHeader{
     font-size: 4vh;
@@ -100,7 +89,6 @@
 
 .BioDataAbout{
     width: 50vw;
-    /* background-color: rgb(134, 38, 38); */
     box-shadow: 10px 10px 20px rgb(82, 81, 81);
     margin: 3vh 0 5vh 0vh;
     border-radius: 1vh;

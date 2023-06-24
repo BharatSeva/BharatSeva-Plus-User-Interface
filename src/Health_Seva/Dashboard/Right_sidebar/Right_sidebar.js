@@ -14,6 +14,9 @@ import Settings from "../Setting/Settings";
 import Stats from "./Stats/Stats";
 
 
+import ShowHealthInfo_PopOver from "../SearchHealthFacilies/ShowHealthCareInfoPop";
+import Appointment from "./Appointment/Appointment";
+
 
 
 
@@ -33,11 +36,14 @@ export default function Right_sidebar({ toggle }) {
             {/* </Route> */}
 
             {/* <Home /> */}
-
             {/* <MyRecords/> */}
-            {/* <Issues/> */}
+            <Issues/>
             {/* <Settings/> */}
             {/* <Stats/> */}
+            {/* <ShowHealthInfo_PopOver/> */}
+
+            {/* <Appointment/> */}
+
 
             <Outlet />
         </div >
