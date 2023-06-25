@@ -37,11 +37,11 @@ export default function Right_sidebar({ toggle }) {
 
             {/* <Home /> */}
             {/* <MyRecords/> */}
-            <Issues/>
+            {/* <Issues/> */}
             {/* <Settings/> */}
             {/* <Stats/> */}
-            {/* <ShowHealthInfo_PopOver/> */}
 
+            {/* <ShowHealthInfo_PopOver/> */}
             {/* <Appointment/> */}
 
 

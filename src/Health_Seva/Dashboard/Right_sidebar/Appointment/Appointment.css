@@ -1,13 +1,22 @@
+.AppointmentUserOuterContainer{
+    padding: 1vh;
+}
+
 .appointmentContainer {
     background-color: gray;
     padding: 1vh 2vw;
-    width: 65vw;
+    width: 75vw;
     border-radius: 1vh;
     margin: 1vh;
 }
-
-.appointmentContainer h2 {
-    margin: 1vh;
+.USerappointmentHeader{
+    text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+    margin-bottom: 0;
+}
+.UserAppointmentSectionpara{
+    text-align: center;
 }
 
 .apppointment_log{
@@ -21,7 +30,6 @@
 .apppointment_log span {
     display: inline-block;
     width: 14vw;
-    /* background-color: red; */
 }
 
 /* This One for Note Section */
@@ -41,7 +49,6 @@
 .Upcoming{
     display: inline-block;
     color: yellow;
-    /* background-color: red; */
 }
 .Completed{
     color: lime;

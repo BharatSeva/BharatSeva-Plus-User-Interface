@@ -14,8 +14,6 @@ function IssuesFormat(props) {
 }
 
 export default function Issues() {
-
-
     const [IsFetched, SetIsFetched] = useState(false)
     const [Fetched, SetFetched] = useState()
 
@@ -33,23 +31,21 @@ export default function Issues() {
                 SetIsFetched(true);
                 SetFetched(data)
             })
-            .catch((err)=>{ 
+            .catch((err) => {
                 console.log(err.message)
                 alert("Something Went Wrong")
             })
 
         console.log("Issues Data has Been Fetched")
     }, [])
-
-
     let Issues, IssuesFetched
-    if(IsFetched){
-        Issues = (Fetched.records.filter((data)=>data.medical_severity.includes("High") || data.medical_severity.includes("Dangerous")))
-        IssuesFetched = Issues ? Issues.map((data)=>IssuesFormat(data)) : (<p>You Have No Any Issues</p>)
+    if (IsFetched) {
+        Issues = (Fetched.records.filter((data) => data.medical_severity.includes("High") || data.medical_severity.includes("Dangerous")))
+        IssuesFetched = Issues.length ? Issues.map((data) => IssuesFormat(data)) : (<p className="NoAnyIssues">You Have No Any Issues 🤗</p>)
     }
 
     return (
-        <>
+        <div className="IssuesOuterCOntaainer">
             <div className="IssueContainer">
                 {!IsFetched && (<div className="FetchingDataLogo"> Fetching Issues<i className="fa-solid fa-rotate"></i></div>)}
                 {IsFetched && (
@@ -66,6 +62,6 @@ export default function Issues() {
                 )}
 
             </div>
-        </>
+        </div>
     )
 }

@@ -1,11 +1,10 @@
 import "./LockAccount.css"
 import Select from "react-select"
-import { useEffect } from "react"
 export default function LockAccount({ OnchangeData, SettingResponse }) {
 
     let Key
     if (SettingResponse) {
-        Key = `${SettingResponse.Data.LockedAccount}`
+        Key = `${SettingResponse.LockedAccount}`
     } else {
         Key = "Updating..."
     }
@@ -20,7 +19,7 @@ export default function LockAccount({ OnchangeData, SettingResponse }) {
                 <Select value={values} className="LockAccount_Select" onChange={OnchangeData} options={Options} />
 
 
-                <note className="LockAccount_NoticeRR">You can Reactivate Your Account Any Time You Want !</note>
+                <p className="LockAccount_NoticeRR">You can Reactivate Your Account Any Time You Want !</p>
             </div>
             <p className="LockAccount_Notice">If You Lock Your Account HealthCare Can See still see Your Data but <br></br>they can't update your records !</p>
             <p className="LockAccount_Notice">Account Can Also be Auto Locked If We Didn't notice any Activity <br></br>Within 9-12 months,

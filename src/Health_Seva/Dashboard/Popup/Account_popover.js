@@ -6,7 +6,7 @@ import "./popups.css"
 
 
 export default function AccountPopover() {
-    const User_Name = JSON.parse(sessionStorage.getItem("BharatSevaUser")).name
+    const User_Name = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
 
 
     const ClearTokenAndName = () => {
@@ -16,7 +16,7 @@ export default function AccountPopover() {
         <div className="Account_popover Account_popoverDisplay popups">
             <ul>
                 <li>Signed in as</li>
-                <li className="UserNameAccountSection">{User_Name}</li>
+                <li className="UserNameAccountSection">{User_Name ? User_Name.name : (<p>--/--</p>)}</li>
                 <div className="horizontalRule"></div>
                 <li>Preferances</li>
                 <li>Help</li>

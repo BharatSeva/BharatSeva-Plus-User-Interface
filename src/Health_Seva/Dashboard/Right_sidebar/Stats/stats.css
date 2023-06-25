@@ -2,13 +2,18 @@
 .WholeStatscontainer{
     margin: 2vh;
     padding-bottom: 2vh;
+    width: 70vw;
 }
-
+.CouldNOConnectstatus{
+    text-align: center;
+    font-style: italic;
+    color: rgb(112, 0, 0);
+}
 .Account_Stats{
     background-color: gray;
     border-radius: 1vh;
     box-shadow: 2px 2px 10px black;
-    width: 54vw;
+    width: 69vw;
     padding: 1vh 1vw;
     margin: 1vh;
 }
@@ -59,4 +64,8 @@
 }
 .statuslogLoading{
     color: lime;
+}
+.StatsuFetchUser{
+    color: rgb(117, 0, 0);
+    font-weight: bolder;
 }

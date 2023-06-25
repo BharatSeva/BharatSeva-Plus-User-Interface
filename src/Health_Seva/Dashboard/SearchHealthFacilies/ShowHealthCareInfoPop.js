@@ -2,54 +2,61 @@ import "./ShowHealthCareInfoPop.css"
 import Select from "react-select"
 import DateTimePicker from 'react-datetime-picker';
 import { useEffect, useState } from "react";
+import Message from "../../Message";
+
 
 export default function ShowHealthInfo_PopOver() {
 
     const [Appointment, SetAppointment] = useState({
-        healthcare_name:"Vaibhav Hospital"
+        healthcare_name: "Vaibhav Hospital"
     })
     const [ListData, SetListData] = useState(false)
 
     // Post Appointment
-    let healthId = "9AgdsnGYs229HxBBZdqY"
-    function postAppointment(e) {
+    let healthIdc = "2021071042"
+    const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
+    async function postAppointment(e) {
         e.preventDefault()
-        fetch(`http://localhost:5000/api/v1/patientDetails/${healthId}/appointment/${localStorage.getItem("BharatSevaHealth_ID")}`, {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-                "Authorization": `${localStorage.getItem("BharatSevaToken")}`
-            },
-            body: JSON.stringify(Appointment)
-        })
-            .then((data) => data.json())
-            .then((res) => {
-                alert(res.message)
-
+        try {
+            let Response = await fetch(`http://localhost:5000/api/v1/user/${healthIdc}/createappointment/${UserData.healthId}`, {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                    "Authorization": `Bearer ${UserData.token}`
+                },
+                body: JSON.stringify(Appointment)
             })
-            .catch(err => alert("Appointment Not done !"))
+            let Data = await Response.json()
+            if (Response.ok) {
+                alert("Appointment Successful")
+            } else {
+                alert(Data.message)
+            }
+        } catch (err) {
+            alert(err.message)
+        }
     }
 
     // Fetch HealthCareHEre
     function GetHealthCareForAppointment() {
-        fetch(`http://localhost:5000/api/v1/healthcare/appointment/${healthId}`, {
+        fetch(`http://localhost:5000/api/v1/user/gethealthcare/2021071042`, {
             method: "GET",
             headers: {
                 "content-type": "application/json",
-                "Authorization": `${localStorage.getItem("BharatSevaToken")}`
+                "Authorization": `Bearer ${UserData.token}`
             }
         })
             .then((data) => data.json())
-            .then((res) => SetListData(res.data))
+            .then((res) => SetListData(res.healthcare))
             .catch(err => {
                 alert(err.message)
                 SetListData(false)
             })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         GetHealthCareForAppointment()
-    },[])
+    }, [])
 
     function dataselect(e) {
         const { name, value } = e

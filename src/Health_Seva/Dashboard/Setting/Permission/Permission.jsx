@@ -8,7 +8,7 @@ export default function Permission({ OnchangeData, SettingResponse }) {
 
     let Key
     if (SettingResponse) {
-        Key = `${SettingResponse.Data.View_permission}`
+        Key = `${SettingResponse.View_permission}`
     } else {
         Key = "Updating..."
     }

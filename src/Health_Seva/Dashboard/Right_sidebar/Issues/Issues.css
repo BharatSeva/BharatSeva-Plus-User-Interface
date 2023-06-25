@@ -1,9 +1,17 @@
+.IssuesOuterCOntaainer{
+    padding: 2vh;
+}
+
 .IssueContainer{
+    background-color: gray;
+    padding: 1vh;
     border-radius: 1vh;
-    /* background-color: gray;    */
+    width: 75vw;
 }
 .Issues_Header_Container h3{
     text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 1vh;
 }
 .Issues_Header_Container p{
     margin-bottom: -2vh;
@@ -17,12 +25,17 @@
     background-color: red;
     position: relative;
     display: inline-block;
-    width: 40vw;
+    width: 36vw;
     height: 0.3vh;
-    left: 20vw;
+    left: 19vw;
 }
 
 /* Container For Medical Issues Goes Here */
 .MedicalIssues_Container{
     margin-top: 3vh;
+}
+.NoAnyIssues{
+    text-align: center;
+    color: lime;
+    font-style: italic;
 }

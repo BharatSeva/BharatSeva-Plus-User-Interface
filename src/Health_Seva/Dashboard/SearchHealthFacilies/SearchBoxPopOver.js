@@ -5,39 +5,35 @@ import "./Searchbox.css"
 export default function SearchPopover({ Inputvalue }) {
 
     const [Name, SetName] = useState(false)
-    const [ID, SetID] = useState(false)
     const [IsData, SetIsData] = useState(true)
 
     async function GetHealthFacilities() {
         SetName(false)
+        const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
         try {
-            let response = await fetch('http://localhost:5000/api/v1/healthcare/Firebase/gethealthcare', {
+            let response = await fetch('http://localhost:5000/api/v1/user/gethealthcarename', {
                 method: "GET",
                 headers: {
                     'content-type': 'application/json',
-                    'Authorization': `${localStorage.getItem("BharatSevaToken")}`
+                    'Authorization': `Bearer ${UserData.token}`
                 }
             })
             let data = await response.json()
-            SetName(data.healthcares)
-            console.log("Search List Fetched")
+            response.ok ? SetName(data.healthcares) : alert("Something Went Wrong!")
         } catch (err) {
             SetIsData(false)
-            // alert("Could Not Fetch Search List From  Server...")
         }
     }
 
     useEffect(() => {
-        // GetHealthFacilities()
+        GetHealthFacilities()
     }, [])
 
-    function DisplayHealthPop(id){
-        // alert("Displaym")
-        // console.log(id)
+    function DisplayHealthPop(id) {
         const hide = document.querySelector(".SearchPopoverContainer")
         hide.classList.add("SearchPopDisplayNone")
-        const PopInfo = document.querySelector(".HealthCareInformationPopOuterContainer")
-        PopInfo.classList.remove("DisplaymeOne")
+        // const PopInfo = document.querySelector(".HealthCareInformationPopOuterContainer")
+        // PopInfo.classList.remove("DisplaymeOne")
     }
 
     let NewName = [], i = 0
@@ -47,11 +43,6 @@ export default function SearchPopover({ Inputvalue }) {
         NewName.length = NewName.length > 10 ? 10 : NewName.length // This will list maximum of Top 10 Search Result
         SearchedData = NewName.length > 0 ? NewName.map((data) => (<li onClick={DisplayHealthPop} className="SearchResultli" key={data.id}><i className="fa-brands fa-searchengin fa-lg"></i>{data.name}, <span className="HealthCareCityName">{data.location.city}, {data.location.state}</span></li>)) : (<p className="SearchListFailed">No Result Found...😔</p>)
     }
-
-    
-
-   
-
     return (
         <div className="SearchPopoverContainer SearchPopDisplayNone">
             {IsData ?

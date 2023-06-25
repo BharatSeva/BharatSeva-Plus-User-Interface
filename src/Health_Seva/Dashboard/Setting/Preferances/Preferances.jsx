@@ -7,7 +7,7 @@ export default function Preferances({ OnchangeData, SettingResponse }) {
 
     let Key
     if (SettingResponse) {
-        Key = `${SettingResponse.Data.Email}`
+        Key = `${SettingResponse.Email}`
     } else {
         Key = "Updating..."
     }
