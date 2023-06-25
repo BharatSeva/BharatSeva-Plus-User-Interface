@@ -30,11 +30,13 @@ export default function Dashboard() {
     const ShowAccountPop = () =>{
         let ShowAccountPop = document.querySelector(".Account_popover")
         ShowAccountPop.classList.toggle("Account_popoverDisplay")
+        document.querySelector(".Account_Nav").classList.toggle("backgroundcolorbar")
     }
 
     const ShowNotificaionPop = ()=>{
         let ShowNotificaionPop = document.querySelector(".Notification_popover")
         ShowNotificaionPop.classList.toggle("Notification_popoverDisplay")
+        document.querySelector(".NoticationBar").classList.toggle("backgroundcolorbar")
     }
 
 

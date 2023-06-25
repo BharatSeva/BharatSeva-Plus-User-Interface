@@ -38,8 +38,7 @@
     align-items: center;
 }
 .Account_Nav{
-    padding: 0vh 1.3vh;
-    width: 4.7vw;
+    width: 6vw;
     height: 6vh;
     display: flex;
     justify-content: space-between;
@@ -94,4 +93,20 @@
     color: black;
 }
 
-
+/* Navigation Bar Goes Here */
+.fa-bars{
+    border: 0.2vh solid rgb(77, 77, 77);
+}
+.NoticationBar{
+    border: 0.2vh solid rgb(77, 77, 77);
+    border-radius: 1vh;
+    padding: 2vh;
+}
+.Account_Nav{
+    border: 0.2vh solid rgb(77, 77, 77);
+    border-radius: 1vh;
+    padding: 2vh;
+}
+.backgroundcolorbar{
+    background-color: rgb(94, 94, 94);
+}
