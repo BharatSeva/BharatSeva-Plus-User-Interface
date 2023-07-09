@@ -5,6 +5,7 @@
     margin-top: 2vh;
     height: 75vh;
     border-radius: 1vh;
+    max-width: 33vw;
 }
 .logintextcontainer{
   letter-spacing: 0.1vh;
@@ -72,4 +73,12 @@ input::-webkit-inner-spin-button {
   background-color: rgb(34, 34, 34);
   padding: 1vh 0 1vh 1vh;
   margin: 1vh 0 0 0;
+}
+.Mustberegisteredforlogin{
+  font-size: 2vh;
+}
+
+/* Message Css goes here */
+.Message_Container{
+  max-width: 28vw;
 }

@@ -78,7 +78,7 @@ export default function LoginPage() {
                         <input type="password" className="UserInputSectionLoginPage" placeholder="Enter Your Password" name="password" onChange={Credential} onKeyUp={Credential} required ></input><br></br>
 
                         <input type="submit" value="Login*" className="Submitbtn"></input>
-                        <p>*You Must Be Registered Before You Log-In!</p>
+                        <p className="Mustberegisteredforlogin">*You Must Be Registered Before You Log-In!</p>
                     </form>
 
                     <div className="Login">
