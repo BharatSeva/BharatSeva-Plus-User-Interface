@@ -16,6 +16,9 @@ body {
   .App {
     display: none;
   }
+  .desktopview{
+    display: none;
+  }
 
   .MobileViewDisplay {
     display: block;

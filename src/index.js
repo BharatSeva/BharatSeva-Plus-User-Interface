@@ -6,10 +6,9 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <>
-  {/* <React.StrictMode> */}
+  <div className='desktopview'>
     <App />
-
-    {/* This one for Mobile View */}
+  </div>
     <div className='MobileViewDisplay'>
       <h2>Bharat Seva</h2>
       <strong>NOTE:</strong>
@@ -17,7 +16,6 @@ root.render(
       <p>View Desktop Version for Better Experience.</p>
       <p>Thank You 😊</p>
     </div>
-  {/* </React.StrictMode> */}
     </>
 );
 

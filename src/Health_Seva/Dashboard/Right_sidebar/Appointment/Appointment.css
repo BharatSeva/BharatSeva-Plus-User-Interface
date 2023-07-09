@@ -55,3 +55,8 @@
 .Completed{
     color: lime;
 }
+
+/* Fetching Appointment Logo Goes here */
+.Fetchingappointmentlogo{
+    text-align: center;
+}

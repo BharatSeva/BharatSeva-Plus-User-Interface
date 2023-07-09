@@ -6,19 +6,22 @@ import Home from './Health_Seva/Dashboard/Right_sidebar/Home/Home';
 import Right_sidebar from './Health_Seva/Dashboard/Right_sidebar/Right_sidebar';
 
 import { Route, createBrowserRouter, createRoutesFromElements, Outlet, RouterProvider } from 'react-router-dom';
+import NotFound from './Health_Seva/Dashboard/NotFound';
+import ErrorFound from './Health_Seva/Dashboard/Right_sidebar/ErrorFound';
+import IsAuthenticated from './Health_Seva/AfterAuthentication/IsAuthenticated';
 
 
 export default function App() {
 
 
   const route = createBrowserRouter(createRoutesFromElements(
-    <Route path='/bharatseva-user' errorElement={<h2>Something Got Wrong With Your Session Please Login Again</h2>}>
+    <Route path='/bharatseva-user' errorElement={<ErrorFound />}>
       <Route path='login' element={<LoginPage />} />
       <Route path='register' element={<RegisterPage />} />
-      <Route>
+      <Route element={<IsAuthenticated />}>
         <Route path='dashboard/*' element={<Dashboard />} />
       </Route>
-      <Route path='*' element={<h2>Page Not Found</h2>} />
+      <Route path='*' element={<NotFound />} />
     </Route>
   ))
   return (

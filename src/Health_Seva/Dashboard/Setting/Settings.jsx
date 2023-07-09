@@ -3,9 +3,11 @@ import Preferances from "./Preferances/Preferances";
 import LockAccount from "./LockAccount/LockAccount";
 import { useEffect, useState } from "react";
 import { FetchData, PostData } from "../../FetchData";
+import { Navigate } from "react-router-dom"
+
 
 export default function Settings() {
-
+    const [Isredirect, SetIsredirect] = useState(false)
     const [SettingResponse, SetSettingResponse] = useState(false)
     async function OnchangeData(e) {
         const { name, value } = e;
@@ -17,6 +19,7 @@ export default function Settings() {
                 alert("Updated Successfully")
             }
             // Redirect Goes Here!
+            else if (res.status === 405) { SetIsredirect(true) }
         } catch (err) {
             alert("Could Not Connect To Server...")
         }
@@ -29,7 +32,9 @@ export default function Settings() {
             const { data, res } = await FetchData(`http://localhost:5000/api/v1/userdetails/preferances`)
             if (res.ok) {
                 SetSettingResponse(data)
-            } else { SetSettingResponse(false) }
+            }
+            else if (res.status === 405) { SetIsredirect(true) }
+            else { SetSettingResponse(false) }
             // Redirect Goes Here...
         } catch (err) {
             // SetSettingResponse({})
@@ -41,6 +46,7 @@ export default function Settings() {
     }, [])
     return (
         <>
+            {Isredirect && <Navigate to='/bharatseva-user/login' />}
             <div className="SettingOuterContainer">
                 <div className="SettingContainer">
 

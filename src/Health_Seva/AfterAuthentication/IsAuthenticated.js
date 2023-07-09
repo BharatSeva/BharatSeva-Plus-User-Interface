@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import Dashboard from "../Dashboard/Dashboard";
-
 
 
 export default function IsAuthenticated() {
@@ -14,15 +12,20 @@ export default function IsAuthenticated() {
                     <Outlet />
                 </>
             )
-        } else {
-            alert("Something Got Wrong With Your Session, Please Login Again!")
+        } 
+        else if (!UserData.IsAuthenticated) {
+            alert("Request Limit Reached")
             return <Navigate to="/bharatseva-user/login" />
         }
+        //  else {
+        //     alert("Something Got Wrong With Your Session, Please Login Again!")
+        //     return <Navigate to="/bharatseva-user/login" />
+        // }
     } catch (err) {
         alert("Session Expired, Please Login!")
         return < Navigate to="/bharatseva-user/login" />
     }
 
 
-    return (<Outlet />)
+    return (<Navigate to="/bharatseva-user/login" />)
 }

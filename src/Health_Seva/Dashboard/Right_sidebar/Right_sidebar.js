@@ -9,6 +9,7 @@ import Appointment from "./Appointment/Appointment";
 import { Route, Routes } from "react-router-dom";
 import IsAuthenticated from "../../AfterAuthentication/IsAuthenticated";
 import About from "../About";
+import ActivityLog from "./ActivityLog/ActivityLog";
 
 
 
@@ -28,6 +29,7 @@ export default function Right_sidebar() {
                     <Route path="stats" element={<Stats />} />
                     <Route path="searchhealthcare" element={<ShowHealthInfo_PopOver />} />
                     <Route path="appointment" element={<Appointment />} />
+                    <Route path="activitylog" element={<ActivityLog />} />
                 </Route>
             </Routes>
         </div >

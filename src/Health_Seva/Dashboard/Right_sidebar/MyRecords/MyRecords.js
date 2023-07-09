@@ -3,7 +3,7 @@ import Select from "react-select"
 import "./MyRecords.css"
 import { FetchData } from "../../../FetchData"
 const { v4: uuidv4 } = require('uuid');
-
+import { Navigate } from "react-router-dom"
 
 export default function MyRecords() {
 
@@ -16,7 +16,9 @@ export default function MyRecords() {
         IsFetched: false,
         IsGood: false
     })
+    const [Isredirect, SetIsredirect] = useState(false)
 
+    
     let val
     function ClearSelect() {
         val = null
@@ -45,6 +47,7 @@ export default function MyRecords() {
                     SetIsFetched((p) => ({ ...p, IsGood: true }))
                 } 
                 // Redirect Url Will Go Here
+                else if (res.status === 405) { SetIsredirect(true) }
 
             } catch (err) {
                 alert("Could Not Connect to Server!")
@@ -118,6 +121,7 @@ export default function MyRecords() {
 
     return (
         <>
+        {Isredirect && <Navigate to='/bharatseva-user/login' />}
             <div className="MyRecordsOuterContainer">
 
                 {Fetched.IsFetched ? (Fetched.IsGood ? (

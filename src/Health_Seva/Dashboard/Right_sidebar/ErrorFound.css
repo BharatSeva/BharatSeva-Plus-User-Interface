@@ -1,0 +1,16 @@
+.WrongSession{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60vh;
+}
+.WrongSession h2{
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+}
+.WrongSession p > a {
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+}

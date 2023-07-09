@@ -1,34 +1,16 @@
 import { useEffect, useState } from "react"
 import "./stats.css"
 import { FetchData } from "../../../FetchData"
-
+import { Navigate } from "react-router-dom"
 
 export default function Stats() {
 
     const [response, Setresponse] = useState()
-    const [ActivityResponse, SetActivityResponse] = useState()
     const [IsFetched, SetIsFetched] = useState({
         IsFetched: false,
         IsGood: true
     })
-
-
-    async function GetActivity() {
-        try {
-            SetActivityResponse(false)
-            const { data, res } = await FetchData(`http://localhost:5000/api/v1/userdetails/accountactivitylog`)
-            if (res.ok) {
-                SetActivityResponse(data)
-            } else {
-                SetActivityResponse(false)
-            }
-        } catch (err) {
-            SetIsFetched((p) => ({ ...p, IsGood: true }))
-            alert("Could Not Fetch Account Activity Logs")
-        }
-        SetIsFetched((p) => ({ ...p, IsFetched: true }))
-    }
-
+    const [Isredirect, SetIsredirect] = useState(false)
     async function GetStats() {
         Setresponse(false)
         try {
@@ -36,7 +18,9 @@ export default function Stats() {
             const { data, res } = await FetchData(`http://localhost:5000/api/v1/userdetails/stats`)
             if (res.ok) {
                 Setresponse(data)
-            } else {
+            }
+            else if (res.status === 405) { SetIsredirect(true) }
+            else {
                 Setresponse(false)
             }
         } catch (err) {
@@ -47,42 +31,12 @@ export default function Stats() {
     }
 
     useEffect(() => {
-        GetActivity(),
-            GetStats()
+        GetStats()
     }, [])
-
-    let ModifiedResponse, ViewedResponse
-    if (ActivityResponse) {
-        ModifiedResponse = ActivityResponse.Modified_Length > 0 ? (
-            ActivityResponse.Modified_By.map((data) => (
-                <div className="LogContainer StatsContainer">
-                    <p><span>HealthCare:</span>{data.name}</p>
-                    <p><span>Location:</span>{data.location.city}, {data.location.state}, {data.location.country}</p>
-                    <p><span>Date:</span>{data.date}</p>
-                </div>
-            )
-            )
-        ) : (<p className="notavailabletext">No One Modified Your Records Till Now</p>)
-
-        ViewedResponse = ActivityResponse.Viewed_Length > 0 ? (
-            ActivityResponse.Viewed_By.map((data) => (
-                <div className="LogContainer StatsContainer">
-                    <p><span>HealthCare: </span>{data.name}</p>
-                    <p><span>Location: </span>{data.location.city}, {data.location.state}, {data.location.country}</p>
-                    <p><span>Date:</span>{data.date}</p>
-                </div>
-            )
-            )
-        ) : (<p className="notavailabletext">No One Viewed Your Records Till Now</p>)
-
-
-
-    }
-
-
 
     return (
         <div className="WholeStatscontainer">
+            {Isredirect && <Navigate to='/bharatseva-user/login' />}
             {IsFetched.IsGood ? (<div>
                 <div className="Account_Stats">
                     <h1 className="LockAccount_Header">Stats</h1>
@@ -101,16 +55,7 @@ export default function Stats() {
                         </div>
                     ) : (<p className="statuslogLoading">Loading...</p>)}
                 </div>
-                <div className="ListLogContainer">
-                    <h2 className="LogText">Modified Log</h2>
-                    <p className="LogText">This Section List Health Facilities Who Changed or Updated Your Health Data</p>
-                    {ActivityResponse ? ModifiedResponse : (<p className="statuslogLoading">Loading...</p>)}
-                </div>
-                <div className="ListLogContainer">
-                    <h2 className="LogText">Viewed Log</h2>
-                    <p className="LogText">This Section List Health Facilities Who Viewed Your Health Data</p>
-                    {ActivityResponse ? ViewedResponse : (<p className="statuslogLoading">Loading...</p>)}
-                </div>
+
             </div>) : (<p className="CouldNOConnectstatus">Could Not Connect To Server...🙄</p>)}
         </div>
     )

@@ -56,9 +56,9 @@ input::-webkit-inner-spin-button {
 }
 .loginabouttextcontainer{
   position: absolute;
-  top: 20vh;
+  top: 2vh;
   font-size: 2vh;
-  left: 1vw;
+  right: 1vw;
   background-color: rgb(54, 53, 53);
   border-radius: 0.4vh;
   padding: 1vh;

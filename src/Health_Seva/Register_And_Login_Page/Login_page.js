@@ -9,8 +9,6 @@ import "./Login_page.css"
 export default function LoginPage() {
     document.title = "Login | Bharat Seva";
 
-
-    // UseEffect Condition Goes Here
     const [IsAuthenticated, SetAuthenticated] = useState({
         IsAuthenticated: false,
         IsFetching: false,
@@ -18,7 +16,6 @@ export default function LoginPage() {
         Message: "😎"
     });
     const [Credentials, SetCredentials] = useState()
-
 
     function Credential(e) {
         const { name, value } = e.target
@@ -80,7 +77,8 @@ export default function LoginPage() {
                         <label>Enter Your Password</label><br></br>
                         <input type="password" className="UserInputSectionLoginPage" placeholder="Enter Your Password" name="password" onChange={Credential} onKeyUp={Credential} required ></input><br></br>
 
-                        <input type="submit" value="Login" className="Submitbtn"></input>
+                        <input type="submit" value="Login*" className="Submitbtn"></input>
+                        <p>*You Must Be Registered Before You Log-In!</p>
                     </form>
 
                     <div className="Login">
@@ -92,11 +90,12 @@ export default function LoginPage() {
 
             <div className="loginabouttextcontainer loginaboutwidht">
 
-                <p>Note :</p>
+                <p>Points to Note :</p>
                 <ul>
                     <li>This Project is Under-development, Some functionalities might not work as expected.</li>
-                    <li>We will add more features in updates, Feel Free to Share Your Thoughts about this project regarding Design and Feature.</li>
-                    <li>You Must Be Registered Before You Log-In!</li>
+                    <li>We will add more features in  updates, feel free to Share Your Thoughts about this project regarding Design and Feature.</li>
+                    <li>We may occasionally delete accounts in order to improve the platform.</li>
+                    <li>Remember, you can only perform 50 operations per account which includes viewing records, creating appointments etc..</li>
                     {/* <li className="triallogin">For The Trail Purpose You Can Login With ID : 2021071042 and Password : 12345.</li> */}
                 </ul>
             </div>

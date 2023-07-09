@@ -1,14 +1,14 @@
 import "./Searchbox.css"
 import { useEffect, useState } from "react"
 import { FetchData } from "../../FetchData"
-import { NavLink } from "react-router-dom"
+import { NavLink, Navigate } from "react-router-dom"
 const { v4: uuidv4 } = require('uuid');
 
 export default function SearchPopover({ Inputvalue }) {
 
     const [Name, SetName] = useState(false)
     const [IsData, SetIsData] = useState(true)
-
+    const [Isredirect, SetIsredirect] = useState(false)
     async function GetHealthFacilities() {
         SetName(false)
 
@@ -16,7 +16,9 @@ export default function SearchPopover({ Inputvalue }) {
             const { data, res } = await FetchData('http://localhost:5000/api/v1/user/gethealthcarename')
             if (res.ok) {
                 SetName(data.healthcares)
-            } else {
+            }
+            else if (res.status === 405) { SetIsredirect(true) }
+            else {
                 alert("Something Went Wrong!")
             }
         } catch (err) {
@@ -38,10 +40,11 @@ export default function SearchPopover({ Inputvalue }) {
     if (Inputvalue && Name) {
         NewName = Name.filter((data) => data.name.toLowerCase().includes(Inputvalue.toLowerCase()))
         NewName.length = NewName.length > 7 ? 7 : NewName.length // This will list maximum of Top 10 Search Result
-        SearchedData = NewName.length > 0 ? NewName.map((data) => (<NavLink to={`searchhealthcare?id=${data.id}&healthcarename=${data.name}`}><li key={uuidv4()} onClick={DisplayHealthPop} className="SearchResultli"><i className="fa-brands fa-searchengin fa-lg"></i>{data.name}, <span className="HealthCareCityName">{data.location.city}, {data.location.state}</span></li></NavLink>)) : (<p className="SearchListFailed">No Result Found...😔</p>)
+        SearchedData = NewName.length > 0 ? NewName.map((data) => (<NavLink key={uuidv4()} to={`searchhealthcare?id=${data.id}&healthcarename=${data.name}`}><li onClick={DisplayHealthPop} className="SearchResultli"><i className="fa-brands fa-searchengin fa-lg"></i>{data.name}, <span className="HealthCareCityName">{data.location.city}, {data.location.state}</span></li></NavLink>)) : (<p className="SearchListFailed">No Result Found...😔</p>)
     }
     return (
         <div className="SearchPopoverContainer SearchPopDisplayNone">
+            {Isredirect && <Navigate to='/bharatseva-user/login' />}
             {IsData ?
                 Name ?
                     (

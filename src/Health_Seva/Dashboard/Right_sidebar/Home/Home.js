@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import "./Home.css"
 import { FetchData } from "../../../FetchData"
+import { Navigate } from "react-router-dom"
 export default function Home() {
 
     const [GetData, SetGetData] = useState()
@@ -8,6 +9,11 @@ export default function Home() {
         IsFetched: false,
         IsGood: false
     })
+
+    const [Isredirect, SetIsredirect] = useState(false)
+
+
+
 
     useEffect(() => {
         const GetBioApi = async () => {
@@ -18,8 +24,7 @@ export default function Home() {
                     SetIsFetched((p) => ({ ...p, IsGood: true }))
                     SetGetData(data)
                 }
-                // Redirect To Login If Session Expired!
-
+                else if (res.status === 405) { SetIsredirect(true) }
                 else {
 
                     SetIsFetched((p) => ({ ...p, IsGood: false }))
@@ -34,6 +39,7 @@ export default function Home() {
 
     return (
         <>
+            {Isredirect && <Navigate to='/bharatseva-user/login' />}
             {IsFetched.IsFetched ? (IsFetched.IsGood ? (
                 <div className="HomeContainer">
 

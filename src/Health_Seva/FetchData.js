@@ -11,12 +11,16 @@ export async function FetchData(url) {
             }
         })
         let data = await res.json()
+        if (res.status === 405) {
+            sessionStorage.setItem("BharatSevaUser", JSON.stringify({ ...UserData, IsAuthenticated: false }))
+        }
         return { data, res }
 
     } catch (err) {
         return err
     }
 }
+
 
 // This One Is For Post Request!
 export async function PostData(url, values) {
@@ -31,7 +35,7 @@ export async function PostData(url, values) {
             body: JSON.stringify(values)
         })
         let data = await res.json()
-        console.log(data)
+        localStorage.setItem(`MessageFromVaibhav`, `Hello ${UserData.name}, Kya Haal hai Mujhe pta tha tum ek din yaaha ek din jarror aooge ab jab aa gye hoo Star De dena 🥰`)
         return { data, res }
     } catch (err) {
         return err

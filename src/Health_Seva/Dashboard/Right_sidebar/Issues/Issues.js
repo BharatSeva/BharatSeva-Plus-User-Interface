@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import "./Issues.css"
 import { FetchData } from "../../../FetchData"
 const { v4: uuidv4 } = require('uuid');
-
+import { Navigate } from "react-router-dom"
 function IssuesFormat(props) {
     return (
         <div key={uuidv4()} className="Health_Record_Containers">
@@ -21,7 +21,10 @@ export default function Issues() {
         IsGood: false
     })
     const [Fetched, SetFetched] = useState()
+    const [Isredirect, SetIsredirect] = useState(false)
 
+
+    
     useEffect(() => {
 
         async function Fetchdata() {
@@ -32,6 +35,7 @@ export default function Issues() {
                     SetIsFetched((p) => ({ ...p, IsGood: true }));
                     SetFetched(data)
                 }
+                else if (res.status === 405) { SetIsredirect(true) }
                 // Redirect Goes here
             } catch (err) {
                 alert("Connection to Server Could Not Established!")
@@ -49,7 +53,7 @@ export default function Issues() {
 
     return (
         <>
-
+            {Isredirect && <Navigate to='/bharatseva-user/login' />}
             {IsFetched.ISFetched
                 ? (IsFetched.IsGood ? (<div className="IssuesOuterCOntaainer">
                     <div className="IssueContainer">

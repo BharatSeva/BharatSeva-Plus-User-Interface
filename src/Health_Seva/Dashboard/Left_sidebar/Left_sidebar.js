@@ -18,7 +18,7 @@ export default function Left_sidebar({ toggle, toggleHiddenMessage }) {
                 <div className="column_container">
                     {/* <!-- Text COntainer Goes Here --> */}
                     <div className="column_textcontainer">
-                        <NavLink className={({ isActive }) => isActive ? "IsActive" : ""} to='home'><div className="col Home"><i className="fa-solid fa-house-user"></i> <div className="Home-innetxt">Home</div></div></NavLink>
+                        <NavLink className={({ isActive }) => isActive ? "IsActive" : ""} to='home' end><div className="col Home"><i className="fa-solid fa-house-user"></i> <div className="Home-innetxt">Home</div></div></NavLink>
                         <NavLink className={({ isActive }) => isActive ? "IsActive" : ""} to='myrecords'><div className="col Profile"><i className="fa-regular fa-id-badge"></i><div className="Profile-txt">My Records</div></div></NavLink>
                         <NavLink className={({ isActive }) => isActive ? "IsActive" : ""} to='issues'><div className="col Issues"><i className="fa-solid fa-file-medical"></i><div className="Profile-txt">Issues</div></div></NavLink>
                         <NavLink className={({ isActive }) => isActive ? "IsActive" : ""} to='settings'><div className="col Setting " ><i className="fa-solid fa-gear"></i>
@@ -36,7 +36,8 @@ export default function Left_sidebar({ toggle, toggleHiddenMessage }) {
                         </div>
 
                         <NavLink className={({ isActive }) => isActive ? "IsActive" : ""} to='appointment'><div className="col Home"><i className="fa-solid fa-calendar-check"></i> <div className="Home-innetxt">Appointments</div></div></NavLink>
-                        <NavLink className={({ isActive }) => isActive ? "IsActive" : ""} to='stats'><div className="col Home"><i className="fa-solid fa-scroll"></i> <div className="Home-innetxt">Stats</div></div></NavLink>
+                        <NavLink className={({ isActive }) => isActive ? "IsActive" : ""} to='stats'><div className="col Home"><i className="fa-solid fa-clock-rotate-left"></i> <div className="Home-innetxt">Stats</div></div></NavLink>
+                        <NavLink className={({ isActive }) => isActive ? "IsActive" : ""} to='activitylog'><div className="col Home"><i className="fa-solid fa-scroll"></i> <div className="Home-innetxt">Activity Log</div></div></NavLink>
 
 
 

@@ -2,12 +2,12 @@ import "./ShowHealthCareInfoPop.css"
 import Select from "react-select"
 import { useEffect, useState } from "react";
 import { FetchData, PostData } from "../../FetchData";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Navigate } from "react-router-dom";
 
 export default function ShowHealthInfo_PopOver() {
 
     const [ListData, SetListData] = useState()
-
+    const [Isredirect, SetIsredirect] = useState(false)
     const [IsFetched, SetIsFetched] = useState({
         IsFetched: false,
         IsGood: false
@@ -18,14 +18,16 @@ export default function ShowHealthInfo_PopOver() {
     const [Appointment, SetAppointment] = useState()
     // Post Appointment
     async function postAppointment(e) {
-        
+
         e.preventDefault()
         try {
             const { data, res } = await PostData(`http://localhost:5000/api/v1/userdetails/${params.get("id")}/createappointment`, Appointment)
             if (res.ok) {
                 alert("Appointment Successful")
 
-            } else {
+            } 
+            else if (res.status === 405) { SetIsredirect(true) }
+            else {
                 alert(data.message)
 
             }
@@ -43,7 +45,7 @@ export default function ShowHealthInfo_PopOver() {
             if (res.ok) {
                 SetListData(data.healthcare)
                 SetIsFetched((p) => ({ ...p, IsGood: true }))
-            }
+            }else if (res.status === 405) { SetIsredirect(true) }
         } catch (err) {
             alert("Please Check Your Internet Connection...")
             SetListData(false)
@@ -53,7 +55,7 @@ export default function ShowHealthInfo_PopOver() {
 
     useEffect(() => {
         GetHealthCareForAppointment()
-        SetAppointment((p) => ({ ...p, healthcare_name: `${params.get("healthcarename")}`}))
+        SetAppointment((p) => ({ ...p, healthcare_name: `${params.get("healthcarename")}` }))
     }, [params.get("id")])
 
     function dataselect(e) {
@@ -88,6 +90,7 @@ export default function ShowHealthInfo_PopOver() {
 
     return (
         <div className="HealthCareInformationPopOuterContainer">
+            {Isredirect && <Navigate to='/bharatseva-user/login' />}
             {IsFetched.IsFetched ? (IsFetched.IsGood ? (
                 <div className="HealthCareInfo_PopOverContainer">
                     <div className="HealthCareLabelContainer textname"> <p>Health Facility</p> <p>Rating : {ListData.rating}</p></div>

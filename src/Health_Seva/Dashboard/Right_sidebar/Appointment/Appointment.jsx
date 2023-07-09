@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import "./Appointment.css"
 import { FetchData } from "../../../FetchData"
 const { v4: uuidv4 } = require('uuid');
-
+import { Navigate } from "react-router-dom"
 export default function Appointment() {
     const DataSelected = document.getElementById("SelectDate")
-
+    const [Isredirect, SetIsredirect] = useState(false)
 
 
     const [Data, SetData] = useState()
@@ -27,6 +27,7 @@ export default function Appointment() {
                 SetIsData((p) => ({ ...p, IsGood: true }))
             }
             // Redirect Goes Here...
+            else if (res.status === 405) { SetIsredirect(true) }
         } catch (err) {
             alert("Could Not Connect to Server...")
             SetIsData((p) => ({ ...p, Iserr: true }))
@@ -42,7 +43,7 @@ export default function Appointment() {
     // This Function Will Create A Record
     function RecordsList(data) {
         return (<div key={uuidv4()} className="apppointment_log">
-            <p><span>Status :</span>{(data.appointment_date > (new Date().toISOString().split('T')[0]) )? <span className="Upcoming">Upcoming</span> : <span className="Completed">Completed</span>}</p>
+            <p><span>Status :</span>{(data.appointment_date > (new Date().toISOString().split('T')[0])) ? <span className="Upcoming">Upcoming</span> : <span className="Completed">Completed</span>}</p>
             <p><span>Health Care Name :</span> {data.healthcare_name}</p>
             <p><span>Department :</span> {data.department}</p>
             <p><span>Appointment Date :</span> {data.appointment_date}</p>
@@ -69,6 +70,7 @@ export default function Appointment() {
 
     return (
         <div className="AppointmentUserOuterContainer">
+            {Isredirect && <Navigate to='/bharatseva-user/login' />}
             <div className="appointmentContainer">
                 <h2 className="USerappointmentHeader">Appointments</h2>
                 <p className="UserAppointmentSectionpara">This Section List Your Appointments You Have Scheduled with HealthCares</p>
@@ -78,7 +80,7 @@ export default function Appointment() {
                 <button onClick={myvalue}>Clear Filter</button>
                 <>
                     {
-                        IsData.IsFetched ? (IsData.IsGood ? (Data3 ? Data3 : Appointment) : (IsData.Iserr ? (<p className="Couldnotconnect">Could Not Connect To Server...</p>): <p>No Any Appointment Log...</p>)) : ((<div className="FetchingDataLogo"> Fetching Appointment<i className="fa-solid fa-rotate"></i></div>))
+                        IsData.IsFetched ? (IsData.IsGood ? (Data3 ? Data3 : Appointment) : (IsData.Iserr ? (<p className="Couldnotconnect">Could Not Connect To Server...</p>) : <p>No Any Appointment Log...</p>)) : ((<div className="Fetchingappointmentlogo"> Fetching Appointment<i className="fa-solid fa-rotate"></i></div>))
                     }
                 </>
             </div>
