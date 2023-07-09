@@ -1,12 +1,20 @@
 .IssuesOuterCOntaainer{
     padding: 2vh;
 }
+.MedicalSeverityDangerous{
+    color: #ee6767;
+    text-shadow: 0px 2px 20px red, 0px 2px 20px red;
+}
+.Issue_Date{
+    font-style: italic;
+}
 
 .IssueContainer{
-    background-color: gray;
+    background-color: #5b5959;
     padding: 1vh;
     border-radius: 1vh;
     width: 75vw;
+    box-shadow: 6px 2px 20px black;
 }
 .Issues_Header_Container h3{
     text-align: center;

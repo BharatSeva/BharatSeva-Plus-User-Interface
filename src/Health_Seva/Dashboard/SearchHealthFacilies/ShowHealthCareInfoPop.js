@@ -1,62 +1,60 @@
 import "./ShowHealthCareInfoPop.css"
 import Select from "react-select"
-import DateTimePicker from 'react-datetime-picker';
 import { useEffect, useState } from "react";
-import Message from "../../Message";
-
+import { FetchData, PostData } from "../../FetchData";
+import { useSearchParams } from "react-router-dom";
 
 export default function ShowHealthInfo_PopOver() {
 
-    const [Appointment, SetAppointment] = useState({
-        healthcare_name: "Vaibhav Hospital"
-    })
-    const [ListData, SetListData] = useState(false)
+    const [ListData, SetListData] = useState()
 
+    const [IsFetched, SetIsFetched] = useState({
+        IsFetched: false,
+        IsGood: false
+    })
+
+    const [params, Setparams] = useSearchParams()
+
+    const [Appointment, SetAppointment] = useState()
     // Post Appointment
-    let healthIdc = "2021071042"
-    const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
     async function postAppointment(e) {
+        
         e.preventDefault()
         try {
-            let Response = await fetch(`http://localhost:5000/api/v1/user/${healthIdc}/createappointment/${UserData.healthId}`, {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                    "Authorization": `Bearer ${UserData.token}`
-                },
-                body: JSON.stringify(Appointment)
-            })
-            let Data = await Response.json()
-            if (Response.ok) {
+            const { data, res } = await PostData(`http://localhost:5000/api/v1/userdetails/${params.get("id")}/createappointment`, Appointment)
+            if (res.ok) {
                 alert("Appointment Successful")
+
             } else {
-                alert(Data.message)
+                alert(data.message)
+
             }
         } catch (err) {
             alert(err.message)
+            console.log(err)
         }
     }
 
     // Fetch HealthCareHEre
-    function GetHealthCareForAppointment() {
-        fetch(`http://localhost:5000/api/v1/user/gethealthcare/2021071042`, {
-            method: "GET",
-            headers: {
-                "content-type": "application/json",
-                "Authorization": `Bearer ${UserData.token}`
+    async function GetHealthCareForAppointment() {
+        SetIsFetched((p) => ({ ...p, IsFetched: false }))
+        try {
+            const { data, res } = await FetchData(`http://localhost:5000/api/v1/user/gethealthcare/${params.get("id")}`)
+            if (res.ok) {
+                SetListData(data.healthcare)
+                SetIsFetched((p) => ({ ...p, IsGood: true }))
             }
-        })
-            .then((data) => data.json())
-            .then((res) => SetListData(res.healthcare))
-            .catch(err => {
-                alert(err.message)
-                SetListData(false)
-            })
+        } catch (err) {
+            alert("Please Check Your Internet Connection...")
+            SetListData(false)
+        }
+        SetIsFetched((p) => ({ ...p, IsFetched: true }))
     }
 
     useEffect(() => {
         GetHealthCareForAppointment()
-    }, [])
+        SetAppointment((p) => ({ ...p, healthcare_name: `${params.get("healthcarename")}`}))
+    }, [params.get("id")])
 
     function dataselect(e) {
         const { name, value } = e
@@ -74,7 +72,6 @@ export default function ShowHealthInfo_PopOver() {
         }))
     }
 
-    let HealthCareName = "Vaibhav Hospital"
     const selecttime = [
         { "label": "10:00 AM To 12:00 AM", "name": "appointment_time", "value": "10:00 AM To 12:00 AM" },
         { "label": "1:00 PM To 3:00 PM", "name": "appointment_time", "value": "1:00 PM To 3:00 PM" },
@@ -89,17 +86,13 @@ export default function ShowHealthInfo_PopOver() {
         { "label": "Cardiology Department", "name": "department", "value": "Cardiology Department" }
     ]
 
-
-
-
-
     return (
         <div className="HealthCareInformationPopOuterContainer">
-            {ListData ? (
+            {IsFetched.IsFetched ? (IsFetched.IsGood ? (
                 <div className="HealthCareInfo_PopOverContainer">
                     <div className="HealthCareLabelContainer textname"> <p>Health Facility</p> <p>Rating : {ListData.rating}</p></div>
                     <h1 className="textname">{ListData.name}</h1>
-                    <p className="textname"><i className="fa-solid fa-location-dot"></i> {ListData.location.landmark},{ListData.location.street}, {ListData.location.city}, {ListData.location.state} </p>
+                    <p className="textname"><i className="fa-solid fa-location-dot"></i> {ListData.locate.landmark}, {ListData.locate.city}, {ListData.locate.state},{ListData.locate.country} </p>
                     <div className="HealthCareInformation">
                         <h3>About</h3>
                         <article>
@@ -126,7 +119,7 @@ export default function ShowHealthInfo_PopOver() {
                         </form>
                     </div>
                 </div>
-            ) : (<p>Loading...</p>)}
+            ) : <p className="Couldnotconnect">Could Not Connect To Server...🙄</p>) : (<div className="FetchingDataLogo"> Fetching Details <i className="fa-solid fa-rotate"></i></div>)}
         </div>
     )
 }

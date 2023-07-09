@@ -1,22 +1,26 @@
 /* Loading Screen Goes Here */
-.HomeLoadingScreen{
+.HomeLoadingScreen {
     display: flex;
     align-items: center;
     width: 12vw;
     justify-content: space-between;
 }
-.HomeLoadingScreenSWW{
+
+.HomeLoadingScreenSWW {
     width: 18vw;
 }
-.profilebanner{
+
+.profilebanner {
     height: 50vh;
     position: relative;
 }
-.profileImage, .profiledetails{
+
+.profileImage,
+.profiledetails {
     height: 15vh;
 }
 
-.profilePhoto{ 
+.profilePhoto {
     background-color: gray;
     height: 20vh;
     width: 10vw;
@@ -29,78 +33,93 @@
 
 
 
-.profileImage{
-    background:url("../../../Images_Assests/profileLogo.png") no-repeat center;
+.profileImage {
+    background: url("../../../Images_Assests/profileLogo.png") no-repeat center;
     background-size: cover;
 }
-.profilePhoto{
+
+.profilePhoto {
     background: url("../../../Images_Assests/profileLogo.png") no-repeat;
-    /* background-origin: content-box; */
     background-position: center;
     background-size: contain;
-    
+
 }
-.profiledetails, .profiledetails_Right{
+
+.profiledetails,
+.profiledetails_Right {
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-between;
 
 }
-.profiledetails{
+
+.profiledetails {
     background-color: rgb(166, 166, 168);
     height: 20vh;
     box-shadow: 0 3px 5px rgb(85, 85, 85);
     padding-top: 10vh;
     padding-left: 3.5vh;
 }
-.profiledetails p{
+
+.profiledetails p {
     text-align: center;
-    /* width: 11vw; */
 }
-.profiledetails_Left{
+
+.profiledetails_Left {
     padding: 1vh 0 0 1vh;
 }
-.profiledetails_Left p{
+
+.profiledetails_Left p {
     margin: 0;
 }
-.profiledetails_Right{
-    /* width: 67vw; */
-    /* background-color: red; */
+
+.profiledetails_Right {
     margin-right: 10vh;
 }
-.profiledetails_Right p{
+
+.profiledetails_Right p {
     height: 5vh;
 }
 
 /* Bio Data Starts From Here */
 
-.BioDataContainer{
+.BioDataContainer {
     display: flex;
     justify-content: center;
 }
-.BioDataHeader{
+
+.BioDataHeader {
     font-size: 4vh;
     text-align: center;
     text-decoration: underline;
     text-underline-offset: 1vh;
     margin: 0 0 2vh 0vh;
-}   
+}
 
 
-.BioDataAbout{
+.BioDataAbout {
     width: 50vw;
     box-shadow: 10px 10px 20px rgb(82, 81, 81);
     margin: 3vh 0 5vh 0vh;
     border-radius: 1vh;
     padding: 5vh;
 }
-.BioDataAbout div{
+
+.BioDataAbout div {
     display: flex;
 }
-.BioDataAbout div p:nth-child(odd){
+
+.BioDataAbout div p:nth-child(odd) {
     width: 20vw;
 }
-.BioDataAbout div:nth-child(even){
+
+.BioDataAbout div:nth-child(even) {
     background-color: rgb(129, 129, 129);
     border-radius: 1vh;
+}
+
+/* Could Not Connect To Server */
+.Couldnotconnect {
+    color: red;
+    text-align: center;
+    font-weight: bolder;
 }

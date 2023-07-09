@@ -1,9 +1,9 @@
 /* .Search Box Popover Goes Here */
 .SearchPopoverContainer {
-    background-color: rgb(107, 107, 107);
+    background-color: rgb(80 80 80);
     padding: 3vh 4.3vw;
     border-radius: 1vh;
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 4px 5px 17px 2px black;
     position: absolute;
     top: 8vh;
     right: 12vw;

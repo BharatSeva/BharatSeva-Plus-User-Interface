@@ -11,7 +11,12 @@ export default function LoginPage() {
 
 
     // UseEffect Condition Goes Here
-    const [IsAuthenticated, SetAuthenticated] = useState(false);
+    const [IsAuthenticated, SetAuthenticated] = useState({
+        IsAuthenticated: false,
+        IsFetching: false,
+        IsGood: false,
+        Message: "😎"
+    });
     const [Credentials, SetCredentials] = useState()
 
 
@@ -23,6 +28,7 @@ export default function LoginPage() {
         }))
     }
     const LoginAPI = async () => {
+        SetAuthenticated((p) => ({ ...p, IsFetching: true }))
         try {
             const Authorization = await fetch(`http://localhost:5000/api/v1/userauth/userlogin`, {
                 method: "POST",
@@ -33,14 +39,17 @@ export default function LoginPage() {
             })
             let Response = await Authorization.json()
             if (Authorization.ok) {
-                sessionStorage.setItem("BharatSevaUser", JSON.stringify(Response))
-                SetAuthenticated(true);
+                sessionStorage.setItem("BharatSevaUser", JSON.stringify({ ...Response, IsAuthenticated: true }))
+                SetAuthenticated((p) => ({ ...p, IsAuthenticated: true, IsGood: true }))
             } else {
+                SetAuthenticated((p) => ({ ...p, Message: Response.message }))
                 alert(Response.message)
             }
         } catch (err) {
-            alert(err.message)
+            alert("Could Not Connect to Server...")
+            SetAuthenticated((p) => ({ ...p, Message: "Could not Connect to Server..." }))
         }
+        SetAuthenticated((p) => ({ ...p, IsFetching: false }))
 
     }
 
@@ -51,19 +60,18 @@ export default function LoginPage() {
 
     return (
         <div>
-            {/* This Will Redirect you to Dashboard if Condition is true */}
-            {IsAuthenticated && (
+            {IsAuthenticated.IsFetching ? <Message message="Validating..." /> : (IsAuthenticated.IsGood ? <Message message="Validating..." /> : <Message message={`${IsAuthenticated.Message}`} />)}
+
+            {IsAuthenticated.IsAuthenticated && (
                 <div>
                     <Message message="Login Success..." />
-                    <Navigate to="/" replace={true} />
+                    <Navigate to="/bharatseva-user/dashboard" replace={true} />
                 </div>
             )}
-
-
             <div className="RegisterContainer">
                 <div className="LoginContainer">
-                    <p className="BharatSeva_Registration">Bharat Seva</p >
-                    <h2>Login Here</h2>
+                    <p className="BharatSeva_Registration BharatSevaLoginUser">BharatSeva+ User-InterFace</p >
+                    <h2 className="logintextcontainer">Login Here</h2>
 
                     <form className="EnterDetails" onSubmit={preventDefault}>
                         <label>Enter Your Health ID</label><br></br>
@@ -76,11 +84,26 @@ export default function LoginPage() {
                     </form>
 
                     <div className="Login">
-                        <p className="RegisterLoginPage">Don't Have A Account ? <Link to="/register" className="RegisterBtn">Register Here</Link></p>
+                        <p className="RegisterLoginPage">Don't Have A Account ? <Link to="/bharatseva-user/register" className="RegisterBtn">Register Here</Link></p>
                     </div>
 
                 </div>
             </div>
+
+            <div className="loginabouttextcontainer loginaboutwidht">
+
+                <p>Note :</p>
+                <ul>
+                    <li>This Project is Under-development, Some functionalities might not work as expected.</li>
+                    <li>We will add more features in updates, Feel Free to Share Your Thoughts about this project regarding Design and Feature.</li>
+                    <li>You Must Be Registered Before You Log-In!</li>
+                    {/* <li className="triallogin">For The Trail Purpose You Can Login With ID : 2021071042 and Password : 12345.</li> */}
+                </ul>
+            </div>
+
+
+
+
         </div>
     )
 }

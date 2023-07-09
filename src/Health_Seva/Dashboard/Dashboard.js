@@ -44,7 +44,7 @@ export default function Dashboard() {
         <div className="container">
             {/* This One for Nav bar */}
             <div className="ToggleBtn">
-                <div className="Hamburger"><i onClick={Change} className="fa-solid fa-bars"></i> <div className="Icontxt">Bharat सेवा</div> </div>
+                <div className="Hamburger"><i onClick={Change} className="fa-solid fa-bars"></i> <div className="Icontxt">Bharat सेवा+</div> </div>
 
 
                 {/* Right Side Navigation Bar */}

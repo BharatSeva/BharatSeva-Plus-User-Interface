@@ -1,57 +1,40 @@
 import { useEffect, useState } from "react"
 import "./Home.css"
-
+import { FetchData } from "../../../FetchData"
 export default function Home() {
 
-    const [GetData, SetGetData] = useState(false)
-    const [SmWrong, SetSmwrong ] = useState(false)
-    const [IsBioData, SetIsBioData] = useState(false)
+    const [GetData, SetGetData] = useState()
+    const [IsFetched, SetIsFetched] = useState({
+        IsFetched: false,
+        IsGood: false
+    })
 
     useEffect(() => {
         const GetBioApi = async () => {
-            const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
-            let GetHealthID = UserData.healthId
-            if (GetHealthID) {
-                fetch(`http://localhost:5000/api/v1/userdetails/user/${GetHealthID}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': "application/json",
-                        'Authorization': `Bearer ${UserData.token}`,
-                    }
-                })
-                    .then((data) => data.json())
-                    .then((result) => {
-                        SetIsBioData(true)
-                        SetGetData(result)
-                        if(result.BioData === null){
-                            console.log("Null DataDetected")
-                            alert("Can't Find Your Data")
-                            SetGetData(false)
-                        }
-                    })
-                    .catch((err) => {
-                        alert('Server is not Responding Please try after some time')
-                        console.log(err.message)
-                    })
-                    
-            }else{
-                SetSmwrong(true);
+            SetIsFetched((p) => ({ ...p, IsFetched: false }))
+            try {
+                let { data, res, err } = await FetchData(`http://localhost:5000/api/v1/userdetails/user`)
+                if (res.ok) {
+                    SetIsFetched((p) => ({ ...p, IsGood: true }))
+                    SetGetData(data)
+                }
+                // Redirect To Login If Session Expired!
+
+                else {
+
+                    SetIsFetched((p) => ({ ...p, IsGood: false }))
+                }
+            } catch (err) {
+                alert('Server is not Responding... Please try after some time')
             }
-
+            SetIsFetched((p) => ({ ...p, IsFetched: true }))
         }
-
         GetBioApi()
-
     }, [])
 
-
     return (
-        <>  
-            {SmWrong && !GetData && (<div className="HomeLoadingScreen HomeLoadingScreenSWW ">Something Went Wrong ! 🙄</div>)}
-
-            {!IsBioData && !SmWrong && (<div className="HomeLoadingScreen"><p>Fetching Data</p> <i className="fa-solid fa-rotate"></i></div>)}
-
-            {IsBioData && !SmWrong && GetData && (
+        <>
+            {IsFetched.IsFetched ? (IsFetched.IsGood ? (
                 <div className="HomeContainer">
 
                     <div className="profilebanner">
@@ -107,7 +90,7 @@ export default function Home() {
 
 
                 </div>
-            )}
+            ) : <p className="Couldnotconnect">Could Not Connect to Server...🙄</p>) : (<div className="HomeLoadingScreen"><p>Fetching Data</p> <i className="fa-solid fa-rotate"></i></div>)}
 
         </>
     )

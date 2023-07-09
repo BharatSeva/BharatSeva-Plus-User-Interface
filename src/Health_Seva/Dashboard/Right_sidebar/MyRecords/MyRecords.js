@@ -1,16 +1,24 @@
 import { ReactDOM, useEffect, useRef, useState } from "react"
 import Select from "react-select"
 import "./MyRecords.css"
+import { FetchData } from "../../../FetchData"
+const { v4: uuidv4 } = require('uuid');
+
 
 export default function MyRecords() {
+
     const [UserData, SetUserData] = useState()
     const [FilterM, SetFilterM] = useState(false)
     const [FilterS, SetFilterS] = useState(false)
-    const [Fetched, IsFetched] = useState(false)
     const [Searched, IsSearched] = useState(false)
+
+    const [Fetched, SetIsFetched] = useState({
+        IsFetched: false,
+        IsGood: false
+    })
+
     let val
     function ClearSelect() {
-        // Month.label == "Select" 
         val = null
         SetFilterM(false)
         SetFilterS(false)
@@ -18,36 +26,33 @@ export default function MyRecords() {
     }
 
     function DisplayRecords(data) {
-        return (<div className="Health_Record_Containers">
+        return (<div key={uuidv4()} className="Health_Record_Containers">
             <div className="Health_Issue"> <div className="Issue_Statement">Issue :</div> <div className="Issues">{data.p_problem}</div>  </div>
             <div className="Description"> <div className="Issue_Statement">Description  :</div> <div className="Issues">{data.description}</div> </div>
-            <div className="HIP_name"> <div className="Issue_Statement">HIP :</div> <div className="Issues">{data.HIP_name}</div></div>
+            <div className="HIP_name"> <div className="Issue_Statement">HealthCare Name :</div> <div className="Issues">{data.healthcareName}</div></div>
             <div className="Issue_Date"> <div className="Issue_Statement">Issue Date :</div> <div className="Issues">{data.Created_At}</div></div>
             <div className="Medical_Severity"><div className="Issue_Statement">Medical Severity :</div><div className="Issues">{data.medical_severity}</div></div>
         </div>)
     }
 
     useEffect(() => {
+        async function GetData() {
+            SetIsFetched((p) => ({ ...p, IsFetched: false }));
+            try {
+                let { data, res } = await FetchData(`http://localhost:5000/api/v1/userdetails/records`)
+                if (res.ok) {
+                    SetUserData(data)
+                    SetIsFetched((p) => ({ ...p, IsGood: true }))
+                } 
+                // Redirect Url Will Go Here
 
-        const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
-        fetch(`http://localhost:5000/api/v1/userdetails/records/${UserData.healthId}`, {
-            method: "GET",
-            headers: {
-                'Content-Type': "application/json",
-                'Authorization': `Bearer ${UserData.token}`,
-            },
-            mode: "cors",
-        })
-            .then((result) => result.json())
-            .then((data) => {
-                SetUserData(data)
-                IsFetched(true);
-            })
-            .catch((err) => {
-                console.log(err.message)
-                alert(err.message)
-            })
-        // console.log("Records API has been Fetched")
+            } catch (err) {
+                alert("Could Not Connect to Server!")
+                console.log(err)
+            }
+            SetIsFetched((p) => ({ ...p, IsFetched: true }))
+        }
+        GetData()
     }, [])
 
 
@@ -84,7 +89,7 @@ export default function MyRecords() {
         FilterRecord = FilterS.map((data) => DisplayRecords(data))
     }
     let HealthRecords
-    if (Fetched) {
+    if (Fetched.IsGood) {
         HealthRecords = UserData.records_length ? UserData.records.map((data) => DisplayRecords(data)) : (<p className="MyRecordsEmpty">You Don't Have Any medical Records Yet</p>)
     }
 
@@ -115,8 +120,7 @@ export default function MyRecords() {
         <>
             <div className="MyRecordsOuterContainer">
 
-                {!Fetched && (<div className="FetchingDataLogo"> Fetching Records <i className="fa-solid fa-rotate"></i></div>)}
-                {Fetched && (
+                {Fetched.IsFetched ? (Fetched.IsGood ? (
                     <div className="MyRecordsContainer">
                         <div className="MyRecordHeader">
                             <h3>My Records</h3>
@@ -136,7 +140,7 @@ export default function MyRecords() {
                             {Searched ? (FilterRecord ? FilterRecord : (<p>No Result Found !</p>)) : HealthRecords}
                         </div>
                     </div>
-                )}
+                ) : <p className="Couldnotconnect">Could Not Connect to Server...🙄</p>) : (<div className="FetchingDataLogo"> Fetching Records <i className="fa-solid fa-rotate"></i></div>)}
             </div>
 
         </>

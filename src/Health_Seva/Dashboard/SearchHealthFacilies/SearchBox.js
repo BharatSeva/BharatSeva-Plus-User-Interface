@@ -1,10 +1,16 @@
 import { useState } from "react"
+import { useSearchParams } from "react-router-dom"
 import "./Searchbox.css"
 import SearchPopover from "./SearchBoxPopOver"
 
 
 
 export default function SearchBox() {
+    const [Params, SetParams] = useSearchParams()
+    // if (Params) {
+    //     document.getElementById("SearchboxInput").value = Params.get("healthcarename")
+    // }
+    // console.log(document.getElementById("SearchboxInput").value = Params.get("healthcarename"))
     const [SearchValue, SetSearchValue] = useState()
     const SearchBoxListHere = document.querySelector(".SearchPopoverContainer")
     const InputSearchBox = document.getElementById("SearchboxInput")

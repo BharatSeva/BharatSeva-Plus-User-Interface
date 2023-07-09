@@ -21,9 +21,9 @@ export default function LockAccount({ OnchangeData, SettingResponse }) {
 
                 <p className="LockAccount_NoticeRR">You can Reactivate Your Account Any Time You Want !</p>
             </div>
-            <p className="LockAccount_Notice">If You Lock Your Account HealthCare Can See still see Your Data but <br></br>they can't update your records !</p>
-            <p className="LockAccount_Notice">Account Can Also be Auto Locked If We Didn't notice any Activity <br></br>Within 9-12 months,
-                this usually happens when the account holder died.
+            <p className="LockAccount_Notice">If You Lock Your Account, HealthCare Can See still see Your Data but they can't make any changes to your records !</p>
+            <p className="LockAccount_Notice">Account Can Also be Auto Locked If We Didn't notice any Activity Within 9-12 months,
+                this usually happens when the account holder left.
             </p>
         </>
     )

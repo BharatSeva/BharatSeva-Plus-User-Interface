@@ -1,12 +1,23 @@
 .LoginContainer {
     text-align: center;
     box-shadow: 2px 2px 10px black;
-    padding: 0 8vh 8vh 8vh;
+    padding: 2vh 8vh 8vh 8vh;
     margin-top: 2vh;
     height: 75vh;
+    border-radius: 1vh;
 }
+.logintextcontainer{
+  letter-spacing: 0.1vh;
+  text-decoration: underline;
+  text-underline-offset: 2vh;
+  font-size: 2.5vh;
+}
+
+
 .RegisterBtn, .LoginBtn{
-    color: red;
+    color: rgb(238, 107, 107);
+    font-weight: bolder;
+
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -34,4 +45,31 @@ input::-webkit-inner-spin-button {
   font-size: 2vh;
   text-decoration: underline;
   text-underline-offset: 1vh;
+}
+.BharatSevaLoginUser::after{
+  left: 2.2vw;
+}
+
+/* Login text container Goes Here */
+.loginaboutwidht{
+  max-width: 27vw;
+}
+.loginabouttextcontainer{
+  position: absolute;
+  top: 20vh;
+  font-size: 2vh;
+  left: 1vw;
+  background-color: rgb(54, 53, 53);
+  border-radius: 0.4vh;
+  padding: 1vh;
+}
+.loginabouttextcontainer p:nth-child(1){
+  text-decoration: underline;
+  text-align: center;
+  text-underline-offset: 1vh;
+}
+.triallogin{
+  background-color: rgb(34, 34, 34);
+  padding: 1vh 0 1vh 1vh;
+  margin: 1vh 0 0 0;
 }

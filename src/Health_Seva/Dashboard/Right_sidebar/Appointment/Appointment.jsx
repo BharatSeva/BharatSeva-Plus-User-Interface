@@ -1,50 +1,48 @@
 import { useEffect, useState } from "react"
 import "./Appointment.css"
-import Select from "react-select"
+import { FetchData } from "../../../FetchData"
+const { v4: uuidv4 } = require('uuid');
 
 export default function Appointment() {
-
     const DataSelected = document.getElementById("SelectDate")
+
 
 
     const [Data, SetData] = useState()
     const [Data3, SetData3] = useState()
-    const [IsData, SetIsData] = useState(true)
+    const [IsData, SetIsData] = useState({
+        IsFetched: false,
+        IsGood: false,
+        Iserr: false
 
-    function GetApppointment() {
-        SetIsData(true)
+    })
+
+    async function GetApppointment() {
         SetData(false)
 
-        const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
-        fetch(`http://localhost:5000/api/v1/userdetails/appointment/${UserData.healthId}`, {
-            method: "GET",
-            headers: {
-                'content-type': 'application/json',
-                "Authorization": `Bearer ${UserData.token}`
+        try {
+            const { data, res } = await FetchData(`http://localhost:5000/api/v1/userdetails/appointment`)
+            if (res.ok) {
+                SetData(data.data)
+                SetIsData((p) => ({ ...p, IsGood: true }))
             }
-        })
-            .then(data => data.json())
-            .then((res) => {
-                if (res.message) {
-                    SetIsData(false)
-                    return
-                }
-                SetData(res.data)
-            })
-            .catch(err => alert(err.message))
+            // Redirect Goes Here...
+        } catch (err) {
+            alert("Could Not Connect to Server...")
+            SetIsData((p) => ({ ...p, Iserr: true }))
+        }
+        SetIsData((p) => ({ ...p, IsFetched: true }))
     }
-
     useEffect(() => {
         GetApppointment()
-        // console.log("UPdated")
     }, [])
     let Dataapp = Data
-    var Appointment, mymeet
+    var Appointment
 
     // This Function Will Create A Record
     function RecordsList(data) {
-        return (<div className="apppointment_log">
-            <p><span>Status :</span>{data.appointment_date > (new Date().toISOString().split('T')[0]) ? <span className="Upcoming">Upcoming</span> : <span className="Completed">Completed</span>}</p>
+        return (<div key={uuidv4()} className="apppointment_log">
+            <p><span>Status :</span>{(data.appointment_date > (new Date().toISOString().split('T')[0]) )? <span className="Upcoming">Upcoming</span> : <span className="Completed">Completed</span>}</p>
             <p><span>Health Care Name :</span> {data.healthcare_name}</p>
             <p><span>Department :</span> {data.department}</p>
             <p><span>Appointment Date :</span> {data.appointment_date}</p>
@@ -76,12 +74,13 @@ export default function Appointment() {
                 <p className="UserAppointmentSectionpara">This Section List Your Appointments You Have Scheduled with HealthCares</p>
                 <hr></hr>
                 <p>Filter By Date :</p>
-                {/* <Select options={Option} className="LockAccount_Select" onChange={ONChangevalue}/> */}
                 <input id="SelectDate" type="date" onChange={myvalue} />
                 <button onClick={myvalue}>Clear Filter</button>
-                {IsData ? (Data ? (
-                    <div>{Data3 ? Data3 : Appointment}</div>
-                ) : (<p>Loading...</p>)) : (<p className="AppointmentLogtext">You Have No Any Appointment Log Yet...</p>)}
+                <>
+                    {
+                        IsData.IsFetched ? (IsData.IsGood ? (Data3 ? Data3 : Appointment) : (IsData.Iserr ? (<p className="Couldnotconnect">Could Not Connect To Server...</p>): <p>No Any Appointment Log...</p>)) : ((<div className="FetchingDataLogo"> Fetching Appointment<i className="fa-solid fa-rotate"></i></div>))
+                    }
+                </>
             </div>
         </div>
     )

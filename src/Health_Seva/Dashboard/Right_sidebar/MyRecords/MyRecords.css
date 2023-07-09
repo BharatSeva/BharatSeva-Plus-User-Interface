@@ -23,9 +23,11 @@
 
 .MyRecordsContainer{
     width: 78vw;
-    background-color: gray;
+    background-color: #424242;
     border-radius: 1vh;
     padding: 1vh;
+    box-shadow: 2px 3px 18px 3px #515050;
+
 }
 .MyRecordHeader ,h3, p{
     margin: 1vh;
@@ -69,8 +71,8 @@
     padding: 1vh;
     margin: 2vh;
     border-radius: 1vh;
-    background-color: rgb(100, 103, 104);
-    box-shadow: 7px 7px 5px rgb(78, 78, 78);
+    background-color: rgb(54 56 57);
+    box-shadow: 7px 7px 5px rgb(28 27 27);
 }
 
 .Health_Record_Containers div {
@@ -78,6 +80,7 @@
     display: flex;
     align-items: center;
 }
+
 .Issues{
     width: 70vw;
 }

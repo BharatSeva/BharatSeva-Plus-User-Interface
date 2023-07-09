@@ -12,7 +12,18 @@ body{
     font-size: 2.5vh;
     
 }
-
+.IsActive{
+    width: 17vw;
+    box-sizing: border-box;
+    margin: 0.7vh 0 0 0vh;
+    padding: 0vh;
+    display: flex;
+    justify-content:start;
+    align-items: center;
+    color: black;
+    background-color: #9e9494;
+    display: inline-block;
+}
 
 
 /* it will contain all the left and right containers */
@@ -114,7 +125,6 @@ body{
     padding: 0.5vh;
     transition: background-color 0.5s, color 1s;
     cursor: pointer;
-    
     display: flex;
     justify-content:start;
     align-items: center;

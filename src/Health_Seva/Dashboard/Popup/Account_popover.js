@@ -21,7 +21,7 @@ export default function AccountPopover() {
                 <li>Preferances</li>
                 <li>Help</li>
                 <li><a href="https://github.com/CaptainTron/BharatSeva_ReactJS/discussions/2" target="_blank">Community</a></li>
-                <li onClick={ClearTokenAndName}><Link to="login" style={{ color: "white", textDecoration: "none" }}>Sign Out</Link></li>
+                <li onClick={ClearTokenAndName}><Link to="/bharatseva-user/login" style={{ color: "white", textDecoration: "none" }}>Sign Out</Link></li>
 
             </ul>
         </div>

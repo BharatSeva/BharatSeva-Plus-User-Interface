@@ -1,51 +1,35 @@
+import "./Right_sidebar.css"
 import Home from "./Home/Home"
 import MyRecords from "./MyRecords/MyRecords"
-import "./Right_sidebar.css"
-import { Outlet, Link, Router } from "react-router-dom"
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import RegisterPage from "../../Register_And_Login_Page/Register_Page";
 import Issues from "./Issues/Issues";
-
-
-import LockAccount from "../Setting/LockAccount/LockAccount";
-import Preferances from "../Setting/Preferances/Preferances";
-import Permission from "../Setting/Permission/Permission";
 import Settings from "../Setting/Settings";
 import Stats from "./Stats/Stats";
-
-
 import ShowHealthInfo_PopOver from "../SearchHealthFacilies/ShowHealthCareInfoPop";
 import Appointment from "./Appointment/Appointment";
+import { Route, Routes } from "react-router-dom";
+import IsAuthenticated from "../../AfterAuthentication/IsAuthenticated";
+import About from "../About";
 
 
 
 
 
-export default function Right_sidebar({ toggle }) {
-
+export default function Right_sidebar() {
 
     return (
         <div className="RightSideContainerGoesHere">
-
-            {/* <Routes> */}
-            {/* <Route path=""> */}
-
-            {/* <Route path="Home" element={<Home />} />
-            </Routes> */}
-
-            {/* </Route> */}
-
-            {/* <Home /> */}
-            {/* <MyRecords/> */}
-            {/* <Issues/> */}
-            {/* <Settings/> */}
-            {/* <Stats/> */}
-
-            {/* <ShowHealthInfo_PopOver/> */}
-            {/* <Appointment/> */}
-
-
-            <Outlet />
+            <Routes>
+                <Route element={<IsAuthenticated />}>
+                    <Route index element={<About />} />
+                    <Route path="home" element={<Home />} />
+                    <Route path="myrecords" element={<MyRecords />} />
+                    <Route path="issues" element={<Issues />} />
+                    <Route path="settings" element={<Settings />} />
+                    <Route path="stats" element={<Stats />} />
+                    <Route path="searchhealthcare" element={<ShowHealthInfo_PopOver />} />
+                    <Route path="appointment" element={<Appointment />} />
+                </Route>
+            </Routes>
         </div >
     )
 }

@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react"
 import "./Searchbox.css"
-
+import { useEffect, useState } from "react"
+import { FetchData } from "../../FetchData"
+import { NavLink } from "react-router-dom"
+const { v4: uuidv4 } = require('uuid');
 
 export default function SearchPopover({ Inputvalue }) {
 
@@ -9,17 +11,14 @@ export default function SearchPopover({ Inputvalue }) {
 
     async function GetHealthFacilities() {
         SetName(false)
-        const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
+
         try {
-            let response = await fetch('http://localhost:5000/api/v1/user/gethealthcarename', {
-                method: "GET",
-                headers: {
-                    'content-type': 'application/json',
-                    'Authorization': `Bearer ${UserData.token}`
-                }
-            })
-            let data = await response.json()
-            response.ok ? SetName(data.healthcares) : alert("Something Went Wrong!")
+            const { data, res } = await FetchData('http://localhost:5000/api/v1/user/gethealthcarename')
+            if (res.ok) {
+                SetName(data.healthcares)
+            } else {
+                alert("Something Went Wrong!")
+            }
         } catch (err) {
             SetIsData(false)
         }
@@ -32,23 +31,21 @@ export default function SearchPopover({ Inputvalue }) {
     function DisplayHealthPop(id) {
         const hide = document.querySelector(".SearchPopoverContainer")
         hide.classList.add("SearchPopDisplayNone")
-        // const PopInfo = document.querySelector(".HealthCareInformationPopOuterContainer")
-        // PopInfo.classList.remove("DisplaymeOne")
     }
 
-    let NewName = [], i = 0
-    let SearchedData = (<p className="SearchList">HealthCares Names Will List Here...⌨</p>)
+    let NewName = []
+    let SearchedData
     if (Inputvalue && Name) {
         NewName = Name.filter((data) => data.name.toLowerCase().includes(Inputvalue.toLowerCase()))
-        NewName.length = NewName.length > 10 ? 10 : NewName.length // This will list maximum of Top 10 Search Result
-        SearchedData = NewName.length > 0 ? NewName.map((data) => (<li onClick={DisplayHealthPop} className="SearchResultli" key={data.id}><i className="fa-brands fa-searchengin fa-lg"></i>{data.name}, <span className="HealthCareCityName">{data.location.city}, {data.location.state}</span></li>)) : (<p className="SearchListFailed">No Result Found...😔</p>)
+        NewName.length = NewName.length > 7 ? 7 : NewName.length // This will list maximum of Top 10 Search Result
+        SearchedData = NewName.length > 0 ? NewName.map((data) => (<NavLink to={`searchhealthcare?id=${data.id}&healthcarename=${data.name}`}><li key={uuidv4()} onClick={DisplayHealthPop} className="SearchResultli"><i className="fa-brands fa-searchengin fa-lg"></i>{data.name}, <span className="HealthCareCityName">{data.location.city}, {data.location.state}</span></li></NavLink>)) : (<p className="SearchListFailed">No Result Found...😔</p>)
     }
     return (
         <div className="SearchPopoverContainer SearchPopDisplayNone">
             {IsData ?
                 Name ?
                     (
-                        <ul id="SearchUILI" >
+                        <ul id="SearchUILI" key={uuidv4()}>
                             {SearchedData}
                         </ul>
                     ) :
