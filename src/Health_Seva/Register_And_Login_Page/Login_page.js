@@ -77,7 +77,7 @@ export default function LoginPage() {
                         <label>Enter Your Password</label><br></br>
                         <input type="password" className="UserInputSectionLoginPage" placeholder="Enter Your Password" name="password" onChange={Credential} onKeyUp={Credential} required ></input><br></br>
 
-                        <input type="submit" value="Login*" className="Submitbtn"></input>
+                        <input type="submit" value={`${IsAuthenticated.IsFetching ? "Validating..." : "Login*"}`} disabled={IsAuthenticated.IsFetching} className="Submitbtn"></input>
                         <p className="Mustberegisteredforlogin">*You Must Be Registered Before You Log-In!</p>
                     </form>
 

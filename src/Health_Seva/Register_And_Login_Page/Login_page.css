@@ -41,6 +41,7 @@ input::-webkit-inner-spin-button {
   border-radius: 0.5vh;
   font-size: 2vh;
   width: 10vw;
+  font-weight: bolder;
 }
 .RegisterLoginPage{
   font-size: 2vh;

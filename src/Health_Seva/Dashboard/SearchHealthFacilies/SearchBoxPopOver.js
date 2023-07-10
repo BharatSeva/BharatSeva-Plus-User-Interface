@@ -9,6 +9,8 @@ export default function SearchPopover({ Inputvalue }) {
     const [Name, SetName] = useState(false)
     const [IsData, SetIsData] = useState(true)
     const [Isredirect, SetIsredirect] = useState(false)
+
+
     async function GetHealthFacilities() {
         SetName(false)
 
@@ -36,14 +38,14 @@ export default function SearchPopover({ Inputvalue }) {
     }
 
     let NewName = []
-    let SearchedData
+    let SearchedData = (<p>Type Something to search for...</p>)
     if (Inputvalue && Name) {
         NewName = Name.filter((data) => data.name.toLowerCase().includes(Inputvalue.toLowerCase()))
-        NewName.length = NewName.length > 7 ? 7 : NewName.length // This will list maximum of Top 10 Search Result
+        NewName.length = NewName.length > 7 ? 7 : NewName.length // This will list maximum of Top 7 Search Result
         SearchedData = NewName.length > 0 ? NewName.map((data) => (<NavLink key={uuidv4()} to={`searchhealthcare?id=${data.id}&healthcarename=${data.name}`}><li onClick={DisplayHealthPop} className="SearchResultli"><i className="fa-brands fa-searchengin fa-lg"></i>{data.name}, <span className="HealthCareCityName">{data.location.city}, {data.location.state}</span></li></NavLink>)) : (<p className="SearchListFailed">No Result Found...😔</p>)
     }
     return (
-        <div className="SearchPopoverContainer SearchPopDisplayNone">
+        <div className={`SearchPopoverContainer SearchPopDisplayNone`}>
             {Isredirect && <Navigate to='/bharatseva-user/login' />}
             {IsData ?
                 Name ?
