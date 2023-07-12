@@ -27,7 +27,7 @@ export default function LoginPage() {
     const LoginAPI = async () => {
         SetAuthenticated((p) => ({ ...p, IsFetching: true }))
         try {
-            const Authorization = await fetch(`http://localhost:5000/api/v1/userauth/userlogin`, {
+            const Authorization = await fetch(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userauth/userlogin`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

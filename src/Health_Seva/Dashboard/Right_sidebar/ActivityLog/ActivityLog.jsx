@@ -15,7 +15,7 @@ export default function ActivityLog() {
     async function GetActivity() {
         try {
             SetActivityResponse(false)
-            const { data, res } = await FetchData(`http://localhost:5000/api/v1/userdetails/accountactivitylog`)
+            const { data, res } = await FetchData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/accountactivitylog`)
             if (res.ok) {
                 SetActivityResponse(data)
             }

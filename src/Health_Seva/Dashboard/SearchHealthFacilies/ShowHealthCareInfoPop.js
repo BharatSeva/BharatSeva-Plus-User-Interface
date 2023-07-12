@@ -21,7 +21,7 @@ export default function ShowHealthInfo_PopOver() {
 
         e.preventDefault()
         try {
-            const { data, res } = await PostData(`http://localhost:5000/api/v1/userdetails/${params.get("id")}/createappointment`, Appointment)
+            const { data, res } = await PostData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/${params.get("id")}/createappointment`, Appointment)
             if (res.ok) {
                 alert("Appointment Successful")
 

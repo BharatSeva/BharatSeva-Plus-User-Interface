@@ -41,7 +41,7 @@ export default function MyRecords() {
         async function GetData() {
             SetIsFetched((p) => ({ ...p, IsFetched: false }));
             try {
-                let { data, res } = await FetchData(`http://localhost:5000/api/v1/userdetails/records`)
+                let { data, res } = await FetchData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/records`)
                 if (res.ok) {
                     SetUserData(data)
                     SetIsFetched((p) => ({ ...p, IsGood: true }))

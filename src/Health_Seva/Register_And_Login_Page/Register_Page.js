@@ -20,7 +20,7 @@ export default function RegisterPage() {
     // Register API Goes here
     const RegisterPatient = async () => {
         try {
-            const Response = await fetch(`http://localhost:5000/api/v1/userauth/userregister`, {
+            const Response = await fetch(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userauth/userregister`, {
                 method: "POST",
                 headers: {
                     'Content-Type': "application/json"

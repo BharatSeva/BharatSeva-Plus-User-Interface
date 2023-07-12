@@ -19,7 +19,7 @@ export default function Home() {
         const GetBioApi = async () => {
             SetIsFetched((p) => ({ ...p, IsFetched: false }))
             try {
-                let { data, res, err } = await FetchData(`http://localhost:5000/api/v1/userdetails/user`)
+                let { data, res, err } = await FetchData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/user`)
                 if (res.ok) {
                     SetIsFetched((p) => ({ ...p, IsGood: true }))
                     SetGetData(data)

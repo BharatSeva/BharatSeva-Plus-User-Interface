@@ -14,7 +14,7 @@ export default function Settings() {
         SetSettingResponse(false)
         try {
 
-            const { data, res } = await PostData(`http://localhost:5000/api/v1/userdetails/preferances`, { [name]: value })
+            const { data, res } = await PostData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/preferances`, { [name]: value })
             if (res.ok) {
                 alert("Updated Successfully")
             }
