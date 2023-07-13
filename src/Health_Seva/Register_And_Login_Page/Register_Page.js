@@ -23,7 +23,7 @@ export default function RegisterPage() {
             const Response = await fetch(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userauth/userregister`, {
                 method: "POST",
                 headers: {
-                    'Content-Type': "application/json"
+                    'content-type': "application/json"
                 },
                 body: JSON.stringify(Credentials)
             })
@@ -35,8 +35,8 @@ export default function RegisterPage() {
                 SetIsregistered(data.status)
             }
         } catch (err) {
-            console.log(err.message)
-            alert(err.message)
+            console.log(err)
+            alert(err)
             SetIsregistered(false)
         }
 
@@ -90,9 +90,10 @@ export default function RegisterPage() {
             </div>
 
             <div className="Registertextcontaine loginabouttextcontainer">
-                <p>Note</p>
+                <p>Points to Note</p>
                 <ul>
                     <li>Before Registration, Healthcare Need to create a account with your HealthId.</li>
+                    <li>Password should be 5 characters long.</li>
                     <li>Enter the same Email with which your account registered with. </li>
                 </ul>
             </div>

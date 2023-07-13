@@ -29,7 +29,7 @@ export default function Settings() {
     async function GetSettingData() {
         try {
             SetSettingResponse(false)
-            const { data, res } = await FetchData(`http://localhost:5000/api/v1/userdetails/preferances`)
+            const { data, res } = await FetchData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/preferances`)
             if (res.ok) {
                 SetSettingResponse(data)
             }
