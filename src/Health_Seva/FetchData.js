@@ -3,7 +3,7 @@
 export async function FetchData(url) {
     const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
     try {
-        let res = await fetch(url, {
+        let res = await fetch(`http://bharatsevaplus.ap-south-1.elasticbeanstalk.com${url}`, {
             method: "GET",
             headers: {
                 'content-type': "application/json",
@@ -26,7 +26,7 @@ export async function FetchData(url) {
 export async function PostData(url, values) {
     const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
     try {
-        let res = await fetch(url, {
+        let res = await fetch(`http://bharatsevaplus.ap-south-1.elasticbeanstalk.com${url}`, {
             method: "POST",
             headers: {
                 'content-type': "application/json",

@@ -15,7 +15,7 @@ export default function Stats() {
         Setresponse(false)
         try {
 
-            const { data, res } = await FetchData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/stats`)
+            const { data, res } = await FetchData(`/api/v1/userdetails/stats`)
             if (res.ok) {
                 Setresponse(data)
             }

@@ -21,7 +21,7 @@ export default function ShowHealthInfo_PopOver() {
 
         e.preventDefault()
         try {
-            const { data, res } = await PostData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/${params.get("id")}/createappointment`, Appointment)
+            const { data, res } = await PostData(`/api/v1/userdetails/${params.get("id")}/createappointment`, Appointment)
             if (res.ok) {
                 alert("Appointment Successful")
 
@@ -41,7 +41,7 @@ export default function ShowHealthInfo_PopOver() {
     async function GetHealthCareForAppointment() {
         SetIsFetched((p) => ({ ...p, IsFetched: false }))
         try {
-            const { data, res } = await FetchData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/user/gethealthcare/${params.get("id")}`)
+            const { data, res } = await FetchData(`/api/v1/user/gethealthcare/${params.get("id")}`)
             if (res.ok) {
                 SetListData(data.healthcare)
                 SetIsFetched((p) => ({ ...p, IsGood: true }))

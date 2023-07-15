@@ -30,7 +30,7 @@ export default function Issues() {
         async function Fetchdata() {
             SetIsFetched((p) => ({ ...p, ISFetched: false }));
             try {
-                const { data, res } = await FetchData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/records`)
+                const { data, res } = await FetchData(`/api/v1/userdetails/records`)
                 if (res.ok) {
                     SetIsFetched((p) => ({ ...p, IsGood: true }));
                     SetFetched(data)

@@ -21,7 +21,7 @@ export default function Appointment() {
         SetData(false)
 
         try {
-            const { data, res } = await FetchData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/appointment`)
+            const { data, res } = await FetchData(`/api/v1/userdetails/appointment`)
             if (res.ok) {
                 SetData(data.data)
                 SetIsData((p) => ({ ...p, IsGood: true }))

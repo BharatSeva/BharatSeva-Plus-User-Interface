@@ -14,7 +14,7 @@ export default function Settings() {
         SetSettingResponse(false)
         try {
 
-            const { data, res } = await PostData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/preferances`, { [name]: value })
+            const { data, res } = await PostData(`/api/v1/userdetails/preferances`, { [name]: value })
             if (res.ok) {
                 alert("Updated Successfully")
             }
@@ -29,7 +29,7 @@ export default function Settings() {
     async function GetSettingData() {
         try {
             SetSettingResponse(false)
-            const { data, res } = await FetchData(`http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/userdetails/preferances`)
+            const { data, res } = await FetchData(`/api/v1/userdetails/preferances`)
             if (res.ok) {
                 SetSettingResponse(data)
             }

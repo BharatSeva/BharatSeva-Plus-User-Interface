@@ -15,7 +15,7 @@ export default function SearchPopover({ Inputvalue }) {
         SetName(false)
 
         try {
-            const { data, res } = await FetchData('http://bharatsevaplus-env.eba-buh5payn.ap-south-1.elasticbeanstalk.com/api/v1/user/gethealthcarename')
+            const { data, res } = await FetchData('/api/v1/user/gethealthcarename')
             if (res.ok) {
                 SetName(data.healthcares)
             }
