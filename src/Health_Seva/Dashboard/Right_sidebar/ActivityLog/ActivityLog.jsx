@@ -64,7 +64,7 @@ export default function ActivityLog() {
 
     return (
         <>
-            {Isredirect && <Navigate to='/bharatseva-user/login' />}
+            {Isredirect && <Navigate to='/user/login' />}
             {IsFetched.IsFetched ? (IsFetched.IsGood ? (<><div className="ListLogContainer">
                 <h2 className="LogText">Modified Log</h2>
                 <p className="LogText">This Section List Health Facilities Who Changed or Updated Your Health Data</p>

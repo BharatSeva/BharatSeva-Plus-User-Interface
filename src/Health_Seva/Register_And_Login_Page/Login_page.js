@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Message from "../Message";
+import InsecureContent from "./InsecureContent/InsecureContent";
 import "./Login_page.css"
 
 
@@ -100,8 +101,8 @@ export default function LoginPage() {
                 </ul>
             </div>
 
-
-
+            {/* This One IS For Insecure Alert!! */}
+            <InsecureContent />
 
         </div>
     )

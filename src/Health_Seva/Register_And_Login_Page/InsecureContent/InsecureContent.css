@@ -1,0 +1,71 @@
+.InsecureContent {
+    position: absolute;
+    top: 0vh;
+    left: 0vw;
+    z-index: 100;
+    height: 99vh;
+    width: 100vw;
+}
+
+.Displayblur {
+    backdrop-filter: blur(10px);
+    /* backdrop-filter: opacity(0.2); */
+}
+.displaynoalert{
+    display: none;
+}
+
+.insecurecontainertxt {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    flex-direction: column;
+    margin-top: 15vh;
+}
+
+.alerttextboxinsecure{
+    box-shadow: 0 0 20px black;
+    width: 70vw;
+    background-color: rgb(68, 68, 68);
+    text-align: center;
+    padding: 3vh 0.6vw;
+    border-radius: 0.5vh;
+}
+.WarntxtboxInsecure2{
+    text-align: center;
+    font-size: 2.5vh;
+}
+
+.WarntextInscuerecontent{
+    text-align: center;
+    color: rgb(243, 77, 77);
+    font-weight: bolder;
+    font-size: 2.5vh;
+}
+
+.insecurecontainertxt button {
+    margin-top: 2vh;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 1vh 2vw;
+    color: lime;
+    border: 2px solid lime;
+    box-shadow: 0 0 30px lime;
+    font-size: 2vh;
+    font-weight: bolder;
+    border-radius: 0.5vh;
+
+}
+.insecurecontainertxt button:hover{
+    background-color: lime;
+    color: black;
+    box-shadow: 0 0 10px lime;
+}
+
+
+
+.Insecuretxtans{
+    font-size: 2.1vh;
+}

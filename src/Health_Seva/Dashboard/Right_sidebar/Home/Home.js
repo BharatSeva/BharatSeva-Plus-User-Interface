@@ -39,7 +39,7 @@ export default function Home() {
 
     return (
         <>
-            {Isredirect && <Navigate to='/bharatseva-user/login' />}
+            {Isredirect && <Navigate to='/user/login' />}
             {IsFetched.IsFetched ? (IsFetched.IsGood ? (
                 <div className="HomeContainer">
 

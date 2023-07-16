@@ -121,7 +121,7 @@ export default function MyRecords() {
 
     return (
         <>
-        {Isredirect && <Navigate to='/bharatseva-user/login' />}
+        {Isredirect && <Navigate to='/user/login' />}
             <div className="MyRecordsOuterContainer">
 
                 {Fetched.IsFetched ? (Fetched.IsGood ? (

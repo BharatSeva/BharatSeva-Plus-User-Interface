@@ -2,6 +2,7 @@ import { getDefaultNormalizer } from "@testing-library/react";
 import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import Message from "../Message";
+import InsecureContent from "./InsecureContent/InsecureContent";
 import "./Register_Page.css";
 
 export default function RegisterPage() {
@@ -97,6 +98,8 @@ export default function RegisterPage() {
                     <li>Enter the same Email with which your account registered with. </li>
                 </ul>
             </div>
+
+            <InsecureContent/>
         </>
     )
 }

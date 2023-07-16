@@ -53,7 +53,7 @@ export default function Issues() {
 
     return (
         <>
-            {Isredirect && <Navigate to='/bharatseva-user/login' />}
+            {Isredirect && <Navigate to='/user/login' />}
             {IsFetched.ISFetched
                 ? (IsFetched.IsGood ? (<div className="IssuesOuterCOntaainer">
                     <div className="IssueContainer">
