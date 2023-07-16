@@ -15,7 +15,7 @@ export default function IsAuthenticated() {
         } 
         else if (!UserData.IsAuthenticated) {
             alert("Request Limit Reached")
-            return <Navigate to="/bharatseva-user/login" />
+            return <Navigate to="/user/login" />
         }
         //  else {
         //     alert("Something Got Wrong With Your Session, Please Login Again!")
@@ -23,9 +23,9 @@ export default function IsAuthenticated() {
         // }
     } catch (err) {
         alert("Session Expired, Please Login!")
-        return < Navigate to="/bharatseva-user/login" />
+        return < Navigate to="/user/login" />
     }
 
 
-    return (<Navigate to="/bharatseva-user/login" />)
+    return (<Navigate to="/user/login" />)
 }
