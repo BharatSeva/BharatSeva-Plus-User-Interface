@@ -1,0 +1,82 @@
+.DisplayFlexX {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.IndexPageContainer h2 {
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+}
+
+.IndexNameContainer {
+    margin: 0;
+    padding: 2vh;
+}
+
+.IndexNameContainer p,
+h1 {
+    margin: 0;
+}
+
+.IndexNameContainer::after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    background-color: yellow;
+    width: 50vw;
+    margin: 1vh 0 4vh 0;
+    height: 0.4vh;
+}
+.IndexNameContainer img{
+    width: 20vw;
+}
+
+.width80vw {
+    width: 80vw;
+}
+
+.IndexAboutContainer {
+    width: 80vw;
+}
+
+.SpecialTaglineIndex {
+    text-decoration: underline;
+    text-underline-offset: 0.5vh;
+    padding: 0 2vh 0 0;
+}
+
+.IndexPageAboutApp {
+    width: 80vw;
+}
+
+.infomessage {
+    text-align: right;
+    width: 97vw;
+    font-size: 1.5vh;
+}
+
+/* Go To Login Page Goes Here */
+.gotologinpageIndex {
+    position: absolute;
+    top: 2vh;
+    left: 2vw;  
+    box-shadow: 0 0 10px black;
+    padding: 0.6vh;    
+    cursor: pointer;
+}
+
+.gotologinpageIndex p {
+    /* background-color: rgb(48, 48, 48); */
+    /* padding: 1vh; */
+    border-radius: 0.6vh;
+}
+.GoToSitePage{
+    font-size: 1.7vh;
+    color: lime;
+}
+.GoToSitePageMailMe{
+    font-size: 2.5vh;
+    color: lime;
+}

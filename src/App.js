@@ -6,14 +6,15 @@ import { Route, createBrowserRouter, createRoutesFromElements, Outlet, RouterPro
 import NotFound from './Health_Seva/Dashboard/NotFound';
 import ErrorFound from './Health_Seva/Dashboard/Right_sidebar/ErrorFound';
 import IsAuthenticated from './Health_Seva/AfterAuthentication/IsAuthenticated';
-
+import IndexPage from './Health_Seva/Dashboard/IndexPage';
 
 export default function App() {
 
 
   const route = createBrowserRouter(createRoutesFromElements(
     <>
-      <Route path='/bharatseva-user' errorElement={<ErrorFound />}>
+      <Route path="/" element={<IndexPage />} />
+      <Route path='/user' errorElement={<ErrorFound />}>
         <Route path='login' element={<LoginPage />} />
         <Route path='register' element={<RegisterPage />} />
         <Route element={<IsAuthenticated />}>

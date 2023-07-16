@@ -62,7 +62,7 @@ export default function LoginPage() {
             {IsAuthenticated.IsAuthenticated && (
                 <div>
                     <Message message="Login Success..." />
-                    <Navigate to="/bharatseva-user/dashboard" replace={true} />
+                    <Navigate to="/user/dashboard" replace={true} />
                 </div>
             )}
             <div className="RegisterContainer">
@@ -82,7 +82,7 @@ export default function LoginPage() {
                     </form>
 
                     <div className="Login">
-                        <p className="RegisterLoginPage">Don't Have A Account ? <Link to="/bharatseva-user/register" className="RegisterBtn">Register Here</Link></p>
+                        <p className="RegisterLoginPage">Don't Have A Account ? <Link to="/user/register" className="RegisterBtn">Register Here</Link></p>
                     </div>
 
                 </div>

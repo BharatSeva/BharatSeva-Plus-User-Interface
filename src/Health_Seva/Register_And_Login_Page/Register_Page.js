@@ -84,7 +84,7 @@ export default function RegisterPage() {
                         <div className="Submitbtncontainer"><input type="submit" value="Register" className="Submitbtn"></input></div>
                     </form>
                     <div className="Login">
-                        <p className="RegisterLoginPage">Registered ?  <Link to="/bharatseva-user/login" className="LoginBtn">Login Here </Link> </p>
+                        <p className="RegisterLoginPage">Registered ?  <Link to="/user/login" className="LoginBtn">Login Here </Link> </p>
                     </div>
                 </div>
             </div>
