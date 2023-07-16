@@ -32,7 +32,7 @@ export default function IndexPage() {
                     <div className="IndexPageAboutApp">
                         <p>This Project Consists of two WebApps : </p>
                         <ul>
-                            <a href="https://bharatsevaplus.netlify.app/healthcare/login" target="_blank">
+                            <a href="https://bharatsevaplus-healthcare.netlify.app/healthcare/login" target="_blank">
                                 <li>HealthCare InterFace <span className="GoToSitePage">Go to Site</span></li>
                             </a>
                             <a href="https://bharatsevaplus-user.netlify.app/user/login" target="_blank">
@@ -65,7 +65,7 @@ export default function IndexPage() {
                 <p className="infomessage">*Upcoming in Future updates</p>
 
                 <NavLink to="/user/login"><div className="gotologinpageIndex" >
-                    <p>Go to Login Page</p>
+                    <p>Proceed to User Login Page</p>
                 </div></NavLink>
             </div>
         </>
