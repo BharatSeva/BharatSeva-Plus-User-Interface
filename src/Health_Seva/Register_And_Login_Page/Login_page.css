@@ -3,7 +3,7 @@
     box-shadow: 2px 2px 10px black;
     padding: 2vh 8vh 8vh 8vh;
     margin-top: 2vh;
-    height: 75vh;
+    height: 80vh;
     border-radius: 1vh;
     max-width: 33vw;
 }
@@ -82,4 +82,18 @@ input::-webkit-inner-spin-button {
 /* Message Css goes here */
 .Message_Container{
   max-width: 28vw;
+}
+
+
+/* Google OAuth Button */
+.GoogleOAuthButton{
+  background-color: rgb(49, 49, 49);
+  box-shadow: 4px 4px 6px 1px black;
+  margin: 2vh 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.GoogleOAuthButton p{
+  font-size: 2vh;
 }

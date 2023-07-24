@@ -46,7 +46,7 @@ export default function SearchPopover({ Inputvalue }) {
     }
     return (
         <div className={`SearchPopoverContainer SearchPopDisplayNone`}>
-            {Isredirect && <Navigate to='/bharatseva-user/login' />}
+            {Isredirect && <Navigate to='/user/login' />}
             {IsData ?
                 Name ?
                     (

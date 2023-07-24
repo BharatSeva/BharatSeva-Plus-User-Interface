@@ -90,7 +90,7 @@ export default function ShowHealthInfo_PopOver() {
 
     return (
         <div className="HealthCareInformationPopOuterContainer">
-            {Isredirect && <Navigate to='/bharatseva-user/login' />}
+            {Isredirect && <Navigate to='/user/login' />}
             {IsFetched.IsFetched ? (IsFetched.IsGood ? (
                 <div className="HealthCareInfo_PopOverContainer">
                     <div className="HealthCareLabelContainer textname"> <p>Health Facility</p> <p>Rating : {ListData.rating}</p></div>

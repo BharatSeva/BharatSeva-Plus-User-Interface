@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import Message from "../Message";
 import InsecureContent from "./InsecureContent/InsecureContent";
 import "./Login_page.css"
-
+import GoogleOAuth from "./GoogleAuth/GoogleOAuth"
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
 export default function LoginPage() {
@@ -82,10 +83,12 @@ export default function LoginPage() {
                         <p className="Mustberegisteredforlogin">*You Must Be Registered Before You Log-In!</p>
                     </form>
 
+
                     <div className="Login">
                         <p className="RegisterLoginPage">Don't Have A Account ? <Link to="/user/register" className="RegisterBtn">Register Here</Link></p>
                     </div>
-
+                        {/* Sign Up With Google */}
+                        <div className="GoogleOAuthButton"><p>Or</p><GoogleOAuthProvider clientId="476285565826-8smpt7q2bh9o1ace0iqn8lcmn52maele.apps.googleusercontent.com"><GoogleOAuth /></GoogleOAuthProvider></div>
                 </div>
             </div>
 
