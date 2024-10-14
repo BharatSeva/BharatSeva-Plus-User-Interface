@@ -22,8 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "lint": "eslint .",
-    "eject": "react-scripts eject"
+    "lint:strict": "eslint . --max-warnings 0"
   },
   "eslintConfig": {
     "extends": [

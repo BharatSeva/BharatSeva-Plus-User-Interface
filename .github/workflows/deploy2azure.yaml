@@ -1,4 +1,4 @@
-name: Deploy UserInterface React build to AzureVM
+name: Deploy React build to AzureVM
 on:
   push:
     branches:
