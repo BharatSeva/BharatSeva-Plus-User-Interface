@@ -2,8 +2,7 @@
 
 Thank you for considering contributing to **Bharat Seva+**! Your contributions help improve the project and make it better for everyone. Whether you’re reporting an issue, suggesting a feature, submitting code changes, or updating documentation, this guide will help ensure a smooth contribution process.  
 > [!IMPORTANT]  
-> Please sync your local files with ``` git pull ``` command frequently inorder to avoid conflicts.  
-> We constantly change codebase.
+> Please sync your local files with ``` git pull ``` inorder to avoid conflicts.
 ---
 
 ## How to Contribute

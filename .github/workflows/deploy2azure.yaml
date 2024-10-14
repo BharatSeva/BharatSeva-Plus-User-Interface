@@ -1,4 +1,4 @@
-name: Deploy React build to AzureVM
+name: Deploy build to production
 on:
   push:
     branches:
