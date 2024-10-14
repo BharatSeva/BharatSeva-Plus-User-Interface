@@ -6,8 +6,7 @@ on:
   push:
     branches:
       - main
-
-# give permission to reject PR
+      
 permissions:
   pull-requests: write
 
