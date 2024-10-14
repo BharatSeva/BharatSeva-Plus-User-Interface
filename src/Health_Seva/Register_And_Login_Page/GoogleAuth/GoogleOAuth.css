@@ -1,0 +1,72 @@
+.GoogleDesign p {
+    color: black;
+    display: flex;
+    cursor: pointer;
+    box-shadow: 4px 4px 6px 1px black;
+    font-family: poppins;
+    background-color: white;
+    padding: 1vh;
+    width: 9vw;
+    border-radius: 0.6vh;
+    font-weight: bolder;
+    font-size: 2vh;
+}
+
+.GoogleDesign img {
+    width: 1.5vw;
+    height: 3vh;
+    border-radius: 0.6vh;
+}
+
+/* GoogleAuth */
+.HealthuserGoogleOAuth {
+    position: absolute;
+    top: 13vh;
+    left: 1.5vw;
+    background-color: rgb(44, 44, 44);
+    box-shadow: 4px 4px 6px 1px black;
+    border-radius: 0.5vh;
+}
+
+.HealthuserGoogleOAuth p {
+    font-size: 2.2vh;
+    padding: 1vh;
+}
+
+.DisplayNone {
+    display: none;
+}
+
+/* Greet FirstTimeUser */
+.GreetNewGuestUser{
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    z-index: 50;
+    width: 100vw;
+    box-shadow: 4px 4px 6px 1px black;
+    backdrop-filter: blur(10px);
+}
+.GreetNewGuestUser p{
+    width: 40vw;
+    background-color: rgb(46, 42, 42);
+    position: relative;
+    top: 25vh;
+    left: 30vw;
+    padding: 1.5vh 2vw;
+    text-align: center;
+    box-shadow: 4px 4px 6px 1px black;
+    border-radius: 0.5vh;
+    font-size: 2.5vh;
+}
+
+/* Button to PRoce */
+.Proceedbtnguestuser{
+    cursor: pointer;
+    transition: 0.3s linear;
+}
+.Proceedbtnguestuser:hover{
+    background-color: rgba(255, 255, 0, 0.281);
+    box-shadow: 4px 4px 6px 1px rgba(80, 80, 79, 0.281);
+    color: black;
+}

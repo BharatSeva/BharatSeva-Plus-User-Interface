@@ -1,0 +1,49 @@
+.IssuesOuterCOntaainer{
+    padding: 2vh;
+}
+.MedicalSeverityDangerous{
+    color: #ee6767;
+    text-shadow: 0px 2px 20px red, 0px 2px 20px red;
+}
+.Issue_Date{
+    font-style: italic;
+}
+
+.IssueContainer{
+    background-color: #5b5959;
+    padding: 1vh;
+    border-radius: 1vh;
+    width: 75vw;
+    box-shadow: 6px 2px 20px black;
+}
+.Issues_Header_Container h3{
+    text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+}
+.Issues_Header_Container p{
+    margin-bottom: -2vh;
+    text-align: center;
+}
+.Issues_Header_Container h3{
+    font-size: 5vh;
+}
+.Issues_Header_Container::after{
+    content: '';
+    background-color: red;
+    position: relative;
+    display: inline-block;
+    width: 36vw;
+    height: 0.3vh;
+    left: 19vw;
+}
+
+/* Container For Medical Issues Goes Here */
+.MedicalIssues_Container{
+    margin-top: 3vh;
+}
+.NoAnyIssues{
+    text-align: center;
+    color: lime;
+    font-style: italic;
+}

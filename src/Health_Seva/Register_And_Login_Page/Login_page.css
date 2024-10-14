@@ -1,0 +1,99 @@
+.LoginContainer {
+    text-align: center;
+    box-shadow: 2px 2px 10px black;
+    padding: 2vh 8vh 8vh 8vh;
+    margin-top: 2vh;
+    height: 80vh;
+    border-radius: 1vh;
+    max-width: 33vw;
+}
+.logintextcontainer{
+  letter-spacing: 0.1vh;
+  text-decoration: underline;
+  text-underline-offset: 2vh;
+  font-size: 2.5vh;
+}
+
+
+.RegisterBtn, .LoginBtn{
+    color: rgb(238, 107, 107);
+    font-weight: bolder;
+
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.UserInputSectionLoginPage{
+  width: 23vw;
+  height: 5vh;
+  padding: 1vh;
+  border-radius: 0.5vh;
+  font-weight: bolder;
+  border: none;
+  outline: none;
+  font-size: 2vh;
+}
+.Submitbtn{
+  margin: 2vh 6vw;
+  border: none;
+  border-radius: 0.5vh;
+  font-size: 2vh;
+  width: 10vw;
+  font-weight: bolder;
+}
+.RegisterLoginPage{
+  font-size: 2vh;
+  text-decoration: underline;
+  text-underline-offset: 1vh;
+}
+.BharatSevaLoginUser::after{
+  left: 2.2vw;
+}
+
+/* Login text container Goes Here */
+.loginaboutwidht{
+  max-width: 27vw;
+}
+.loginabouttextcontainer{
+  position: absolute;
+  top: 2vh;
+  font-size: 2vh;
+  right: 1vw;
+  background-color: rgb(54, 53, 53);
+  border-radius: 0.4vh;
+  padding: 1vh;
+}
+.loginabouttextcontainer p:nth-child(1){
+  text-decoration: underline;
+  text-align: center;
+  text-underline-offset: 1vh;
+}
+.triallogin{
+  background-color: rgb(34, 34, 34);
+  padding: 1vh 0 1vh 1vh;
+  margin: 1vh 0 0 0;
+}
+.Mustberegisteredforlogin{
+  font-size: 2vh;
+}
+
+/* Message Css goes here */
+.Message_Container{
+  max-width: 28vw;
+}
+
+
+/* Google OAuth Button */
+.GoogleOAuthButton{
+  background-color: rgb(49, 49, 49);
+  box-shadow: 4px 4px 6px 1px black;
+  margin: 2vh 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.GoogleOAuthButton p{
+  font-size: 2vh;
+}

@@ -1,0 +1,139 @@
+/* This one For Spinner */
+.MyRecordsOuterContainer{
+    padding: 2vh;
+}
+
+.FetchingDataLogo{
+    font-size: 2.5vh;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 13vw;
+    height: 80vh;
+}
+.fa-solid.fa-rotate{
+    animation: RotateLogo 2s linear  infinite;
+}
+@keyframes RotateLogo {
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.MyRecordsContainer{
+    width: 78vw;
+    background-color: #424242;
+    border-radius: 1vh;
+    padding: 1vh;
+    box-shadow: 2px 3px 18px 3px #515050;
+
+}
+.MyRecordHeader ,h3, p{
+    margin: 1vh;
+    padding: 0%;
+    text-align: left;
+}
+.MyRecordHeader h3{
+    color: white;
+    font-weight: bolder;
+}
+
+.MyRecordHeader p::before{
+    content: '';    
+    position: relative;
+    background-color: green;
+    height: 2vh;
+    width: 1vw;
+    display: inline-block;
+    border-radius: 1vh;
+    margin-right: 1vh;
+
+    animation: pulse 2s  infinite both;
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(25, 105, 25, 0.301);
+      }
+      70% {
+          box-shadow: 0 0 0 5px rgb(25, 105, 25, 0.301);
+      }
+      100% {
+          box-shadow: 0 0 0 0 rgb(25, 105, 25, 0.301);
+      }
+    
+}
+
+
+
+/* Health Record Container Goes here */
+.Health_Record_Containers {
+    padding: 1vh;
+    margin: 2vh;
+    border-radius: 1vh;
+    background-color: rgb(54 56 57);
+    box-shadow: 7px 7px 5px rgb(28 27 27);
+}
+
+.Health_Record_Containers div {
+    margin: 0.6vh;
+    display: flex;
+    align-items: center;
+}
+
+.Issues{
+    width: 70vw;
+}
+.Issue_Statement {
+    width: 15vw;
+}
+
+.MyRecordHeader::after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    width: 50vw;
+    height: 0.5vh;
+    background-color: rgb(95 95 95);
+    margin: 1vh;
+}
+
+.MyRecordHeader{
+    text-align: center;
+}
+.MyRecordHeader h3 {
+    font-size: 5vh;
+    letter-spacing: 0.2vh;
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+}
+
+/* FOr Null Records  */
+.MyRecordsEmpty{
+    text-align: center;
+    font-style: italic;
+}
+.MyRecordsFilter{
+    width: 30vw;
+}
+.MyRecordsFilteContainer{
+    margin-left: 2vw;
+}
+#myrecordsFilterbtn{
+    font-size: 2vh;
+    border: none;
+    width: 14vw;
+    height: 5vh;
+    margin: 2vh;
+    border-radius: 1vh;
+    font-weight: bolder;
+    cursor: pointer;
+    /* background-color: white; */
+}
+.myrecordsClearbtn{
+    background-color: lime;
+    box-shadow: 0 0 5vh lime;
+}
+.btnnoseleceted{
+  color: red;
+}

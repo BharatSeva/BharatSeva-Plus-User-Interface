@@ -1,0 +1,125 @@
+/* Loading Screen Goes Here */
+.HomeLoadingScreen {
+    display: flex;
+    align-items: center;
+    width: 12vw;
+    justify-content: space-between;
+}
+
+.HomeLoadingScreenSWW {
+    width: 18vw;
+}
+
+.profilebanner {
+    height: 50vh;
+    position: relative;
+}
+
+.profileImage,
+.profiledetails {
+    height: 15vh;
+}
+
+.profilePhoto {
+    background-color: gray;
+    height: 20vh;
+    width: 10vw;
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    top: 5vh;
+    left: 2vw;
+}
+
+
+
+.profileImage {
+    background: url("../../../Images_Assests/profileLogo.png") no-repeat center;
+    background-size: cover;
+}
+
+.profilePhoto {
+    background: url("../../../Images_Assests/profileLogo.png") no-repeat;
+    background-position: center;
+    background-size: contain;
+
+}
+
+.profiledetails,
+.profiledetails_Right {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.profiledetails {
+    background-color: rgb(166, 166, 168);
+    height: 20vh;
+    box-shadow: 0 3px 5px rgb(85, 85, 85);
+    padding-top: 10vh;
+    padding-left: 3.5vh;
+}
+
+.profiledetails p {
+    text-align: center;
+}
+
+.profiledetails_Left {
+    padding: 1vh 0 0 1vh;
+}
+
+.profiledetails_Left p {
+    margin: 0;
+}
+
+.profiledetails_Right {
+    margin-right: 10vh;
+}
+
+.profiledetails_Right p {
+    height: 5vh;
+}
+
+/* Bio Data Starts From Here */
+
+.BioDataContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.BioDataHeader {
+    font-size: 4vh;
+    text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+    margin: 0 0 2vh 0vh;
+}
+
+
+.BioDataAbout {
+    width: 50vw;
+    box-shadow: 10px 10px 20px rgb(82, 81, 81);
+    margin: 3vh 0 5vh 0vh;
+    border-radius: 1vh;
+    padding: 5vh;
+}
+
+.BioDataAbout div {
+    display: flex;
+}
+
+.BioDataAbout div p:nth-child(odd) {
+    width: 20vw;
+}
+
+.BioDataAbout div:nth-child(even) {
+    background-color: rgb(129, 129, 129);
+    border-radius: 1vh;
+}
+
+/* Could Not Connect To Server */
+.Couldnotconnect {
+    color: red;
+    text-align: center;
+    font-weight: bolder;
+}

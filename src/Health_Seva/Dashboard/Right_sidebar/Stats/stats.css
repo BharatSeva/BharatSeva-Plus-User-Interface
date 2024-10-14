@@ -1,0 +1,71 @@
+
+.WholeStatscontainer{
+    margin: 2vh;
+    padding-bottom: 2vh;
+    width: 70vw;
+}
+.CouldNOConnectstatus{
+    text-align: center;
+    font-style: italic;
+    color: rgb(112, 0, 0);
+}
+.Account_Stats{
+    background-color: #504c4c;
+    border-radius: 1vh;
+    box-shadow: 2px 2px 10px black;
+    width: 69vw;
+    padding: 1vh 1vw;
+    margin: 1vh;
+}
+
+
+.StatsContainer span:nth-child(n){
+    display: inline-block;
+    width: 15vw;
+}
+.StatsContainer p:nth-child(odd){
+    background-color: rgb(53 47 47);
+    padding: 1.5vh;
+    border-radius: 1vh;
+}
+.StatsContainer p:nth-child(even){
+    background-color: rgb(67 67 67);;
+    padding: 1.5vh;
+    border-radius: 1vh;
+}
+
+/* Log Container Goes Here */
+.ListLogContainer{
+    box-shadow: 2px 2px 10px black;
+    background-color: #504c4c;
+    padding: 2vh 2vw;
+    margin: 1vh;
+    border-radius: 1vh;
+}
+.LogText{
+    margin: 0;
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+}
+
+/* This One is for individuals Log Records */
+.LogContainer{
+    background-color: rgb(40 39 39);
+    padding: 1vh;
+    margin-bottom: 1vh;
+    margin-top: 2vh;
+    box-shadow: 4px 7px 20px #201f1f;
+    border-radius: 1vh;
+}
+
+/* Not available Text available Here Now */
+.notavailabletext{
+    color: yellow;
+}
+.statuslogLoading{
+    color: lime;
+}
+.StatsuFetchUser{
+    color: rgb(117, 0, 0);
+    font-weight: bolder;
+}

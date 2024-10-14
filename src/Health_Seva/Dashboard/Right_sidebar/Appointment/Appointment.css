@@ -1,0 +1,62 @@
+.AppointmentUserOuterContainer{
+    padding: 1vh;
+}
+
+.appointmentContainer {
+    background-color: #525252;
+    padding: 1vh 2vw;
+    width: 75vw;
+    border-radius: 1vh;
+    margin: 1vh;
+    box-shadow: 5px 5px 10px black;
+}
+.USerappointmentHeader{
+    text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 1vh;
+    margin-bottom: 0;
+}
+.UserAppointmentSectionpara{
+    text-align: center;
+}
+
+.apppointment_log{
+    margin: 1vh 0 1vh 0;
+    padding: 1vh;
+    border-radius: 1vh;
+    background-color: rgb(55 51 51);
+    box-shadow: 4px 1px 10px #110b0b;
+    margin-top: 2vh;
+}
+
+.apppointment_log span {
+    display: inline-block;
+    width: 14vw;
+}
+
+/* This One for Note Section */
+#AppointmentNoteSection {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 40vw;
+    display: inline-block;
+}
+
+.AppointmentLogtext{
+    color: yellow;
+}
+
+/* Upcoming */
+.Upcoming{
+    display: inline-block;
+    color: yellow;
+}
+.Completed{
+    color: lime;
+}
+
+/* Fetching Appointment Logo Goes here */
+.Fetchingappointmentlogo{
+    text-align: center;
+}
