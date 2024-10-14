@@ -7,6 +7,7 @@ on:
     branches:
       - main
 
+# give permission to reject PR
 permissions:
   pull-requests: write
 
@@ -36,7 +37,8 @@ jobs:
         run: |
           echo "ESLint found issues. Failing the workflow."
           exit 1
-
+    
+      # This will reject the PR
       - name: Block PR if ESLint fails
         if: failure() && github.event_name == 'pull_request'
         uses: actions/github-script@v6
