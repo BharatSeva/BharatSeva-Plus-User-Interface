@@ -3,10 +3,21 @@ import { NavLink } from "react-router-dom"
 import BharatSevaLogo1 from "../Images_Assests/BharatSevaLogo1.png"
 export default function IndexPage() {
 
-
+function scrollUp(){
+    window.scrollTo({top:0,behavior:"smooth"});
+}
     return (
         <>
             <div className="IndexPageContainer DisplayFlexX">
+                <div
+                onClick={scrollUp}
+                className="scrollUpButton">
+                    <button >
+                        <img
+                        className="goTopImage" 
+                        src="../goTop.png" alt="go Top" />
+                    </button>
+                </div>
                 <h2>Welcome to </h2>
                 <div className="IndexNameContainer DisplayFlexX">
                     <img src={BharatSevaLogo1}/>
