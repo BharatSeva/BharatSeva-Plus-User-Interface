@@ -8,6 +8,36 @@
 .IndexPageContainer h2 {
     text-decoration: underline;
     text-underline-offset: 1vh;
+    position: relative;
+}
+
+.scrollUpButton{
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    /* color: red; */
+    background: #dce4e8;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.scrollUpButton:hover{
+    background: #89a1b1;
+    color: white;
+}
+.scrollUpButton > button{
+    background: transparent;    
+    border: none;
+    border-radius: 20px;
+}
+
+.goTopImage{
+    color: white;
+    height: 20px;
+    width: 20px;
 }
 
 .IndexNameContainer {
