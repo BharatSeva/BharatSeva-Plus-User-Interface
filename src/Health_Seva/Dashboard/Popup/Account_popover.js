@@ -20,7 +20,7 @@ export default function AccountPopover() {
                 <div className="horizontalRule"></div>
                 <li>Preferances</li>
                 <li>Help</li>
-                <li><a href="https://github.com/CaptainTron/BharatSeva_ReactJS/discussions/2" target="_blank">Community</a></li>
+                <li><a href="https://github.com/CaptainTron/BharatSeva_ReactJS/discussions/2" target="_blank" rel="noreferrer">Community</a></li>
                 <li onClick={ClearTokenAndName}><Link to="/user/login" style={{ color: "white", textDecoration: "none" }}>Sign Out</Link></li>
 
             </ul>
