@@ -1,4 +1,4 @@
-name: Deploy build to production
+name: Deploy build to AzureVM
 on:
   push:
     branches:
@@ -36,11 +36,11 @@ jobs:
           echo "Host ${{ secrets.HOST }}" > /home/runner/.ssh/config
           echo "  StrictHostKeyChecking no" >> /home/runner/.ssh/config
 
-      - name: Copy build files to EC2
+      - name: Copy build files to AzureVM
         run: |
           scp -i /home/runner/.ssh/id_rsa -r build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/azureuser/server/patient_static_build/build/
        
-      - name: Deploy to VM
+      - name: Deploy to AzureVM
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
