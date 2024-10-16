@@ -5,7 +5,7 @@ Refer to [Official Organisation](https://github.com/BharatSeva) to get better id
 
 ---
 > [!TIP]
-> Hi everyone! Hope you're doing well, this is to let you know that you can access webapps hosted on public links using these credentials:
+> Hi everyone! hope you're doing well, this is to let you know that you can access webapps hosted on public links using these credentials:
 > ### [User Interface 🔗](http://4.236.178.190:5000/user/login)  
 > **HealthID** :    2021071042  
 > **Password** :  12345  
