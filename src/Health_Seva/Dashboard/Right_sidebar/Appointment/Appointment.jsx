@@ -55,7 +55,7 @@ export default function Appointment() {
     function myvalue(e) {
         const { value } = e.target
         if (Data) {
-            Dataapp = value ? (Data.filter((data) => (data.appointment_date == value))) : Data
+            Dataapp = value ? (Data.filter((data) => (data.appointment_date === value))) : Data
             Dataapp.length ? SetData3(Dataapp.map((data) => RecordsList(data))) : SetData3(<p>No Records Found For the Selected Date</p>)
         }
         if (!value) {
