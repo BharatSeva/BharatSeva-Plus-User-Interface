@@ -1,8 +1,6 @@
-import { getDefaultNormalizer } from "@testing-library/react";
-import { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Message from "../Message";
-import InsecureContent from "./InsecureContent/InsecureContent";
 import "./Register_Page.css";
 
 export default function RegisterPage() {
