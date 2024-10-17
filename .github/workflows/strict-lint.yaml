@@ -41,14 +41,14 @@ jobs:
         if: steps.eslint.outcome == 'failure'
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.VAI }}
           script: |
             github.rest.pulls.createReview({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.issue.number,
               event: 'REQUEST_CHANGES',
-              body: 'ESLint check failed. Please fix all linting issues (including warnings) before merging.'
+              body: 'WORKFLOW BOT: ESLint check failed. Please fix all linting issues (including warnings) before merging.'
             })
 
       - name: setup NodeJS for Build
@@ -70,6 +70,7 @@ jobs:
 
       - name: deploy to Netlify Preview page to check what change has been made by contributor
         id: netlify_deploy
+        continue-on-error: true
         run: |
           netlify deploy \
             --dir build \
@@ -97,13 +98,13 @@ jobs:
                 issue_number: issue_number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                body: `@${username} your preview URL has been generated : ${previewUrl}`
+                body: `WORKFLOW BOT: @${username} your preview URL has been generated : ${previewUrl}`
               });
             } else {
               await github.rest.issues.createComment({
                 issue_number: issue_number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                body: `Deployment failed or no preview URL available for ${username}.`
+                body: `WORKFLOW BOT : deployment failed ${username}`
               });
             }
