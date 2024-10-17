@@ -12,7 +12,7 @@ permissions:
 
 jobs: 
   lint-and-deploy:
-    name: Run ESLint and Deploy Preview for the request made by contributor
+    name: Run ESLint check and deploy preview for the request made by contributor
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -31,12 +31,6 @@ jobs:
         continue-on-error: true
         id: eslint
 
-      # - name: check for ESLint result
-      #   if: steps.eslint.outcome == 'failure'
-      #   run: |
-      #     echo "ESLint found issues. Failing the workflow."
-      #     exit 1
-          
       - name: block PR if ESLint fails
         continue-on-error: true
         if: steps.eslint.outcome == 'failure'
@@ -52,6 +46,12 @@ jobs:
               body: 'WORKFLOW BOT: ESLint check failed. Please fix all linting issues (including warnings) before merging.'
             })
 
+      - name: check for ESLint result
+        if: steps.eslint.outcome == 'failure'
+        run: |
+          echo "Strict ESLint Check found issues. Failing the workflow."
+          exit 1
+          
       - name: setup NodeJS for Build
         uses: actions/setup-node@v4
         with:
@@ -63,7 +63,6 @@ jobs:
 
       - name: build Project from React Files
         run: | 
-          CI=false
           npm run build
 
       - name: install Netlify CLI
