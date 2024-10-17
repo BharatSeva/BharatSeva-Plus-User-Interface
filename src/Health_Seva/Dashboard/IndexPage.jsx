@@ -9,7 +9,7 @@ export default function IndexPage() {
             <div className="IndexPageContainer DisplayFlexX">
                 <h2>Welcome to </h2>
                 <div className="IndexNameContainer DisplayFlexX">
-                    <img src={BharatSevaLogo1}/>
+                    <img src={BharatSevaLogo1} alt="Bharat Seva+ Logo" />
                     {/* <h1>Bharat Seva+</h1>
                     <p>Empowering Health, Transforming Lives</p> */}
                 </div>
@@ -32,10 +32,10 @@ export default function IndexPage() {
                     <div className="IndexPageAboutApp">
                         <p>This Project Consists of two WebApps : </p>
                         <ul>
-                            <a href="https://bharatsevaplus-healthcare.netlify.app" target="_blank">
+                            <a href="https://bharatsevaplus-healthcare.netlify.app" target="_blank" rel="noreferrer">
                                 <li>HealthCare InterFace <span className="GoToSitePage">Go to Site</span></li>
                             </a>
-                            <a href="https://bharatsevaplus-user.netlify.app" target="_blank">
+                            <a href="https://bharatsevaplus-user.netlify.app" target="_blank" rel="noreferrer">
                                 <li>User InterFace <span className="GoToSitePage">Go to Site</span></li>
                             </a>
                         </ul>
@@ -49,12 +49,12 @@ export default function IndexPage() {
                     <div className="projectdetails">
                         <p>Some More Details</p>
                         <ul>
-                            <li>Check My Blog To know More About this project <a href="https://statesinshorts.blogspot.com/2023/07/Bharatsevaplus.html" target="_blank"><span className="GoToSitePage">Go to My Blog</span></a> or Watch my Demo <a href="https://youtube.com/playlist?list=PLXRQ5AMta2AI_jZlGr0A5owICnGkDpElO" target="_blank"><span className="GoToSitePage">Open Playlist</span></a></li>
-                            <li>This is MERN + Firebase Stack project Developed and Managed by <a href="https://captaintron.github.io/MyPortfolio/" target="_blank">Vaibhav Yadav <span className="GoToSitePage">Portfolio Link</span></a>.</li>
+                            <li>Check My Blog To know More About this project <a href="https://statesinshorts.blogspot.com/2023/07/Bharatsevaplus.html" target="_blank" rel="noreferrer"><span className="GoToSitePage">Go to My Blog</span></a> or Watch my Demo <a href="https://youtube.com/playlist?list=PLXRQ5AMta2AI_jZlGr0A5owICnGkDpElO" target="_blank" rel="noreferrer"><span className="GoToSitePage">Open Playlist</span></a></li>
+                            <li>This is MERN + Firebase Stack project Developed and Managed by <a href="https://captaintron.github.io/MyPortfolio/" target="_blank" rel="noreferrer">Vaibhav Yadav <span className="GoToSitePage">Portfolio Link</span></a>.</li>
                             <li>This Project took almost 3 months to complete.</li>
                             <li>The Main Purpose behind this project is to test my Web-Development Skills and take it to Next Level like never before !</li>
-                            <li>Both these Websites Hosted On <a href="https://www.netlify.com/" target="_blank">Netlify <span className="GoToSitePage">Open</span></a></li>
-                            <li>REST API Hosted at <a href="https://aws.amazon.com/" target="_blank">AWS <span className="GoToSitePage">Open</span></a></li>
+                            <li>Both these Websites Hosted On <a href="https://www.netlify.com/" target="_blank" rel="noreferrer">Netlify <span className="GoToSitePage">Open</span></a></li>
+                            <li>REST API Hosted at <a href="https://aws.amazon.com/" target="_blank" rel="noreferrer">AWS <span className="GoToSitePage">Open</span></a></li>
                             <li>More Features Will Be Added in Future Updates. Some of them are : Video-Text Messages, Mobile View etc..</li>
                             <li>If You have any queries or feedback you can simply <a href="mailto:21vaibhav11@gmail.com"><span className="GoToSitePageMailMe">Mail</span></a> Me.</li>
                         </ul>

@@ -1,7 +1,5 @@
-import Home from "../Right_sidebar/Home/Home"
-import MyRecords from "../Right_sidebar/MyRecords/MyRecords"
 import "./Left_sidebar.css"
-import { Outlet, Link, Navigate, NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 export default function Left_sidebar({ toggle, toggleHiddenMessage }) {
     // This one for menu options

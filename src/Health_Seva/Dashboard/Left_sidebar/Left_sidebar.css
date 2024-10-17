@@ -18,7 +18,7 @@ body{
     margin: 0.7vh 0 0 0vh;
     padding: 0vh;
     display: flex;
-    justify-content:start;
+    justify-content:flex-start;
     align-items: center;
     color: black;
     background-color: #9e9494;
@@ -126,7 +126,7 @@ body{
     transition: background-color 0.5s, color 1s;
     cursor: pointer;
     display: flex;
-    justify-content:start;
+    justify-content:flex-start;
     align-items: center;
 }
 .col > i{

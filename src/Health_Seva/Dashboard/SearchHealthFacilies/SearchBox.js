@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useSearchParams } from "react-router-dom"
 import "./Searchbox.css"
 import SearchPopover from "./SearchBoxPopOver"
 

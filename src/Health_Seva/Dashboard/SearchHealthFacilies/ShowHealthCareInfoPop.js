@@ -13,7 +13,7 @@ export default function ShowHealthInfo_PopOver() {
         IsGood: false
     })
 
-    const [params, Setparams] = useSearchParams()
+    const [params] = useSearchParams()
 
     const [Appointment, SetAppointment] = useState()
     // Post Appointment
@@ -37,26 +37,25 @@ export default function ShowHealthInfo_PopOver() {
         }
     }
 
-    // Fetch HealthCareHEre
-    async function GetHealthCareForAppointment() {
-        SetIsFetched((p) => ({ ...p, IsFetched: false }))
-        try {
-            const { data, res } = await FetchData(`/api/v1/user/gethealthcare/${params.get("id")}`)
-            if (res.ok) {
-                SetListData(data.healthcare)
-                SetIsFetched((p) => ({ ...p, IsGood: true }))
-            }else if (res.status === 405) { SetIsredirect(true) }
-        } catch (err) {
-            alert("Please Check Your Internet Connection...")
-            SetListData(false)
-        }
-        SetIsFetched((p) => ({ ...p, IsFetched: true }))
-    }
-
     useEffect(() => {
+        // Fetch HealthCareHEre
+        async function GetHealthCareForAppointment() {
+            SetIsFetched((p) => ({ ...p, IsFetched: false }))
+            try {
+                const { data, res } = await FetchData(`/api/v1/user/gethealthcare/${params.get("id")}`)
+                if (res.ok) {
+                    SetListData(data.healthcare)
+                    SetIsFetched((p) => ({ ...p, IsGood: true }))
+                }else if (res.status === 405) { SetIsredirect(true) }
+            } catch (err) {
+                alert("Please Check Your Internet Connection...")
+                SetListData(false)
+            }
+            SetIsFetched((p) => ({ ...p, IsFetched: true }))
+        }
         GetHealthCareForAppointment()
         SetAppointment((p) => ({ ...p, healthcare_name: `${params.get("healthcarename")}` }))
-    }, [params.get("id")])
+    }, [params])
 
     function dataselect(e) {
         const { name, value } = e

@@ -1,10 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import "./Dashboard.css";
-import Left_sidebar from "./Left_sidebar/Left_sidebar";
-import AccountPopover from "./Popup/Account_popover";
-import NotificationPop from "./Popup/NotificationPop";
-import Right_sidebar from "./Right_sidebar/Right_sidebar";
-import SearchBox from "./SearchHealthFacilies/SearchBox";
+
 
 export default function Dashboard() {
     const [leftSidebarOpen, setLeftSidebarOpen] = useState(false);
@@ -58,17 +52,3 @@ export default function Dashboard() {
             </div>
 
             <div className="Left_Right_container">
-                <div className={`left_sidebar ${leftSidebarOpen ? "left_sidebarFlex" : ""}`}>
-                    <Left_sidebar toggle={toggleSidebar} toggleHiddenMessage={toggleMessage} />
-                </div>
-
-                <div className={`right_sidebar ${rightSidebarOpen ? "right_sidebarFlex" : ""}`}>
-                    <Right_sidebar toggle={toggleSidebar} />
-                    <div ref={innerMessageRef} className="InnerMessage DisplayInnerMessage">
-                        <p>Made By Vaibhav Yadav</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}

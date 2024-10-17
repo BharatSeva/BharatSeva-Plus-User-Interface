@@ -9,10 +9,6 @@ Refer to [Official Organisation](https://github.com/BharatSeva) to get better id
 > ### [User Interface 🔗](http://4.236.178.190:5000/user/login)  
 > **HealthID** :    2021071042  
 > **Password** :  12345  
-> ### [HealthCare Interface 🔗](http://4.236.178.190:5000/healthcare/login)  
-> **HealthCare Number** :  2021071042  
-> **License Number** :     2021071042  
-> **Password** : 00000
 
 
 > [!NOTE]

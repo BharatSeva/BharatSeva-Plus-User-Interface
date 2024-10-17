@@ -4,7 +4,7 @@ import MyRecords from "./MyRecords/MyRecords"
 import Issues from "./Issues/Issues";
 import Settings from "../Setting/Settings";
 import Stats from "./Stats/Stats";
-import ShowHealthInfo_PopOver from "../SearchHealthFacilies/ShowHealthCareInfoPop";
+import { default as ShowHealthInfoPopOver } from "../SearchHealthFacilies/ShowHealthCareInfoPop";
 import Appointment from "./Appointment/Appointment";
 import { Route, Routes } from "react-router-dom";
 import IsAuthenticated from "../../AfterAuthentication/IsAuthenticated";
@@ -27,7 +27,7 @@ export default function Right_sidebar() {
                     <Route path="issues" element={<Issues />} />
                     <Route path="settings" element={<Settings />} />
                     <Route path="stats" element={<Stats />} />
-                    <Route path="searchhealthcare" element={<ShowHealthInfo_PopOver />} />
+                    <Route path="searchhealthcare" element={<ShowHealthInfoPopOver />} />
                     <Route path="appointment" element={<Appointment />} />
                     <Route path="activitylog" element={<ActivityLog />} />
                 </Route>
