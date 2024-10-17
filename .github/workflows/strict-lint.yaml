@@ -2,7 +2,8 @@ name: ESLint Check
 
 on:
   workflow_dispatch:
-  branches: [main]
+  pull_request:
+    branches: [main]
     types: [opened, synchronize, reopened]
 
 permissions:
