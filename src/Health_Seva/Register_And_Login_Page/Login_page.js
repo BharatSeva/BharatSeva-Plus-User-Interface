@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Message from "../Message";
-import InsecureContent from "./InsecureContent/InsecureContent";
 import "./Login_page.css"
 import GoogleOAuth from "./GoogleAuth/GoogleOAuth"
 import { GoogleOAuthProvider } from '@react-oauth/google';
