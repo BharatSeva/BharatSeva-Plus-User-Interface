@@ -19,7 +19,7 @@ To make contributions:
 - Clone your forked repository to your local machine
 
 ### 3. Set Up Development Environment
-Follow the steps in the README.md to get the project running on your local machine. Ensure the project works before making changes.  
+Follow the steps in the [README](./README.md) to get the project running on your local machine. Ensure the project works before making changes.  
 
 ### 4. Create a New Branch
 Before making changes, create a new branch off the main branch:
