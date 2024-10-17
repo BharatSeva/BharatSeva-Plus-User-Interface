@@ -1,8 +1,8 @@
 import "./Dashboard.css"
-import Left_sidebar from "./Left_sidebar/Left_sidebar"
+import { default as LeftSidebar }  from "./Left_sidebar/Left_sidebar"
 import AccountPopover from "./Popup/Account_popover"
 import NotificationPop from "./Popup/NotificationPop"
-import Right_sidebar from "./Right_sidebar/Right_sidebar"
+import { default as RightSidebar } from "./Right_sidebar/Right_sidebar"
 import SearchBox from "./SearchHealthFacilies/SearchBox"
 
 export default function Dashboard() {
@@ -73,13 +73,13 @@ export default function Dashboard() {
 
                 {/* This One is for LeftSide View Goes Here */}
                 <div className="left_sidebar">
-                    <Left_sidebar toggle={Change} toggleHiddenMessage={HiddenMsg} />
+                    <LeftSidebar toggle={Change} toggleHiddenMessage={HiddenMsg} />
                 </div>
 
 
                 {/* This one is for Right Side View */}
                 <div className="right_sidebar">
-                    <Right_sidebar toggle={Change} />
+                    <RightSidebar toggle={Change} />
 
                     {/* Hidden Text goes Here */}
                     <div className="InnerMessage DisplayInnerMessage">
