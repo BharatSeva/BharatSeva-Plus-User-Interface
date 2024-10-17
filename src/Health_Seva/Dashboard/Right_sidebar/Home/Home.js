@@ -19,7 +19,7 @@ export default function Home() {
         const GetBioApi = async () => {
             SetIsFetched((p) => ({ ...p, IsFetched: false }))
             try {
-                let { data, res, err } = await FetchData(`/api/v1/userdetails/user`)
+                let { data, res } = await FetchData(`/api/v1/userdetails/user`)
                 if (res.ok) {
                     SetIsFetched((p) => ({ ...p, IsGood: true }))
                     SetGetData(data)

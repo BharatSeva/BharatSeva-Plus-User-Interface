@@ -1,14 +1,13 @@
-import { getDefaultNormalizer } from "@testing-library/react";
-import { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Message from "../Message";
-import InsecureContent from "./InsecureContent/InsecureContent";
 import "./Register_Page.css";
 
 export default function RegisterPage() {
     document.title = "Register | Bharat Seva";
 
     const [IsRegistered, SetIsregistered] = useState(false)
+    const [IsLoading, SetIsLoading] = useState(false)
     const [Credentials, SetCredentials] = useState()
     function SetCredential(e) {
         const { name, value } = e.target
@@ -20,6 +19,7 @@ export default function RegisterPage() {
 
     // Register API Goes here
     const RegisterPatient = async () => {
+        SetIsLoading(true);
         try {
             const Response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/userauth/userregister`, {
                 method: "POST",
@@ -39,6 +39,8 @@ export default function RegisterPage() {
             console.log(err)
             alert(err)
             SetIsregistered(false)
+        } finally { 
+            SetIsLoading(false)
         }
 
 
@@ -82,7 +84,7 @@ export default function RegisterPage() {
                         <input type="password" id="AgainPasswordUser" className="UserRegisterInput" placeholder="Enter Your Password Again" required></input><br></br>
                         <p className="PasswordDonotmatch">Password Do no Match</p>
 
-                        <div className="Submitbtncontainer"><input type="submit" value="Register" className="Submitbtn"></input></div>
+                        <div className="Submitbtncontainer"><input type="submit" value={`${IsLoading ? "Validating..." : "Register"}`} className="Submitbtn" disabled={IsLoading}></input></div>
                     </form>
                     <div className="Login">
                         <p className="RegisterLoginPage">Registered ?  <Link to="/user/login" className="LoginBtn">Login Here </Link> </p>

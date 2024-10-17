@@ -14,7 +14,7 @@ export default function Settings() {
         SetSettingResponse(false)
         try {
 
-            const { data, res } = await PostData(`/api/v1/userdetails/preferances`, { [name]: value })
+            const { res } = await PostData(`/api/v1/userdetails/preferances`, { [name]: value })
             if (res.ok) {
                 alert("Updated Successfully")
             }

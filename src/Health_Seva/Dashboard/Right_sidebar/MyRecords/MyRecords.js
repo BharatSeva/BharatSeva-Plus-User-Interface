@@ -1,4 +1,4 @@
-import { ReactDOM, useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import Select from "react-select"
 import "./MyRecords.css"
 import { FetchData } from "../../../FetchData"
@@ -61,7 +61,7 @@ export default function MyRecords() {
 
     function FilterRecordsMonths(e) {
         if (UserData.records) {
-            const { value, name } = e
+            const { value } = e
             SetFilterM((UserData.records.filter((data) => value.includes(data.Created_At.split(" ")[1]))))
             IsSearched(true)
         }
@@ -69,7 +69,7 @@ export default function MyRecords() {
     let FilterRecord
     function FilterRecords(e) {
         if (UserData.records) {
-            const { name, value } = e
+            const { value } = e
             SetFilterS(FilterM.length ? (FilterM.filter((data) => data.medical_severity.includes(value))) : (UserData.records.filter((data) => data.medical_severity.includes(value))))
             IsSearched(true)
         }
