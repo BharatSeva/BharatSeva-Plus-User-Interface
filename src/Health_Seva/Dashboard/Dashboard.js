@@ -1,95 +1,96 @@
-import "./Dashboard.css"
-import Left_sidebar from "./Left_sidebar/Left_sidebar"
-import AccountPopover from "./Popup/Account_popover"
-import NotificationPop from "./Popup/NotificationPop"
-import Right_sidebar from "./Right_sidebar/Right_sidebar"
-import SearchBox from "./SearchHealthFacilies/SearchBox"
+import React, { useState, useRef } from "react";
+import "./Dashboard.css";
+import Left_sidebar from "./Left_sidebar/Left_sidebar";
+import AccountPopover from "./Popup/Account_popover";
+import NotificationPop from "./Popup/NotificationPop";
+import Right_sidebar from "./Right_sidebar/Right_sidebar";
+import SearchBox from "./SearchHealthFacilies/SearchBox";
 
 export default function Dashboard() {
+    // State to manage toggling of left and right sidebars
+    const [leftSidebarOpen, setLeftSidebarOpen] = useState(false);
+    const [rightSidebarOpen, setRightSidebarOpen] = useState(false);
 
+    // State to manage the visibility of Account and Notification popovers
+    const [accountPopoverOpen, setAccountPopoverOpen] = useState(false);
+    const [notificationPopoverOpen, setNotificationPopoverOpen] = useState(false);
+
+    // useRef to store reference of the hidden message element
+    const innerMessageRef = useRef(null);
+
+    // Set document title
     document.title = "Dashboard | Bharat Seva";
 
-    // Toggle On or off goes here
-    const Change = (e) => {
-        // Left side goes here
-        let left_sidebar = document.querySelector(".left_sidebar")
-        left_sidebar.classList.toggle("left_sidebarFlex")
-        // Right One goes Here
-        let right_sidebar = document.querySelector(".right_sidebar")
-        right_sidebar.classList.toggle("right_sidebarFlex")
-    }
+    // Function to toggle the visibility of both sidebars
+    const toggleSidebar = () => {
+        setLeftSidebarOpen(!leftSidebarOpen);             // this will Toggle left sidebar
+        setRightSidebarOpen(!rightSidebarOpen);           // this will Toggle right sidebar
+    };
 
-    
+    // Function to toggle the display of the hidden message
+    const toggleMessage = () => {
+        if (innerMessageRef.current) {
+            innerMessageRef.current.classList.toggle("DisplayInnerMessage");
+        }
+    };
 
-    // Display My Message Herw
-    const HiddenMsg = () => {
-        let InnerMessage = document.querySelector(".InnerMessage")
-        InnerMessage.classList.toggle("DisplayInnerMessage")
-    }
+    // Function to toggle the Account popover
+    const toggleAccountPopover = () => {
+        setAccountPopoverOpen(!accountPopoverOpen);
+    };
 
-    const ShowAccountPop = () =>{
-        let ShowAccountPop = document.querySelector(".Account_popover")
-        ShowAccountPop.classList.toggle("Account_popoverDisplay")
-        document.querySelector(".Account_Nav").classList.toggle("backgroundcolorbar")
-    }
-
-    const ShowNotificaionPop = ()=>{
-        let ShowNotificaionPop = document.querySelector(".Notification_popover")
-        ShowNotificaionPop.classList.toggle("Notification_popoverDisplay")
-        document.querySelector(".NoticationBar").classList.toggle("backgroundcolorbar")
-    }
-
+    // Function to toggle the Notification popover
+    const toggleNotificationPopover = () => {
+        setNotificationPopoverOpen(!notificationPopoverOpen);
+    };
 
     return (
         <div className="container">
-            {/* This One for Nav bar */}
+            {/* Navbar Section */}
             <div className="ToggleBtn">
-                <div className="Hamburger"><i onClick={Change} className="fa-solid fa-bars"></i> <div className="Icontxt">Bharat सेवा+</div> </div>
+                {/* Hamburger Icon and App Name */}
+                <div className="Hamburger">
+                    <i onClick={toggleSidebar} className="fa-solid fa-bars"></i>
+                    <div className="Icontxt">Bharat सेवा+</div>
+                </div>
 
-
-                {/* Right Side Navigation Bar */}
+                {/* Right-side Navigation */}
                 <div className="RightSide_Nav">
+                    {/* SearchBox for exploring nearby facilities */}
+                    <SearchBox />
 
-                    {/* Explore Near By */}
-                    <SearchBox/>
-
-                    {/* Notificaionbar */}
-                    <div className="NoticationBar" onClick={ShowNotificaionPop}>
+                    {/* Notification Icon and Popover */}
+                    <div className={`NoticationBar ${notificationPopoverOpen ? "backgroundcolorbar" : ""}`} onClick={toggleNotificationPopover}>
                         <i className="fa-regular fa-bell fa-xlg"></i>
                     </div>
-                    <NotificationPop/>
+                    {notificationPopoverOpen && <NotificationPop />} {/* Conditionally render NotificationPop */}
 
-                    {/* Account_Navigatin bar goes here */}
-                    <div className="Account_Nav" onClick={ShowAccountPop}>
-                        <i className="fa-regular fa-circle-user fa-xl"></i> <i className="fa-solid fa-caret-down"></i> 
+                    {/* Account Icon and Popover */}
+                    <div className={`Account_Nav ${accountPopoverOpen ? "backgroundcolorbar" : ""}`} onClick={toggleAccountPopover}>
+                        <i className="fa-regular fa-circle-user fa-xl"></i>
+                        <i className="fa-solid fa-caret-down"></i>
                     </div>
-                    <AccountPopover/>
-            
+                    {accountPopoverOpen && <AccountPopover />} {/* Conditionally render AccountPopover */}
                 </div>
             </div>
 
-            {/* This one for Left Side and Right Side */}
+            {/* Container for Left and Right Sidebars */}
             <div className="Left_Right_container">
-
-                {/* This One is for LeftSide View Goes Here */}
-                <div className="left_sidebar">
-                    <Left_sidebar toggle={Change} toggleHiddenMessage={HiddenMsg} />
+                {/* Left Sidebar */}
+                <div className={`left_sidebar ${leftSidebarOpen ? "left_sidebarFlex" : ""}`}>
+                    <Left_sidebar toggle={toggleSidebar} toggleHiddenMessage={toggleMessage} />
                 </div>
 
+                {/* Right Sidebar */}
+                <div className={`right_sidebar ${rightSidebarOpen ? "right_sidebarFlex" : ""}`}>
+                    <Right_sidebar toggle={toggleSidebar} />
 
-                {/* This one is for Right Side View */}
-                <div className="right_sidebar">
-                    <Right_sidebar toggle={Change} />
-
-                    {/* Hidden Text goes Here */}
-                    <div className="InnerMessage DisplayInnerMessage">
+                    {/* Hidden Message Section */}
+                    <div ref={innerMessageRef} className="InnerMessage DisplayInnerMessage">
                         <p>Made By Vaibhav Yadav</p>
                     </div>
                 </div>
-
             </div>
-
         </div>
-    )
+    );
 }
-
