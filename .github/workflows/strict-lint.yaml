@@ -1,6 +1,7 @@
 name: ESLint Check
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
@@ -79,7 +80,6 @@ jobs:
 
       - name: Generate URL Preview
         id: url_preview
-        if: steps.eslint.outcome == 'success'
         run: |
           NETLIFY_PREVIEW_URL=$(jq -r '.deploy_url' deploy_output.json)
           echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_ENV"
