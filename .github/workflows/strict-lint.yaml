@@ -50,36 +50,31 @@ jobs:
             })
 
       - name: setup NodeJS for Build
-        if: steps.eslint.outcome == 'success'
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "npm"
 
       - name: install all Dependencies
-        if: steps.eslint.outcome == 'success'
         run: npm ci
 
       - name: build Project from React Files
-        if: steps.eslint.outcome == 'success'
-        run:| 
+        run: | 
           CI=false
           npm run build
 
       - name: install Netlify CLI
-        if: steps.eslint.outcome == 'success'
         run: npm install netlify-cli@17.10.1 -g
 
       - name: deploy to Netlify Preview page to check what change has been made by contributor
         id: netlify_deploy
-        if: steps.eslint.outcome == 'success'
         run: |
           netlify deploy \
             --dir build \
             --site ${{ secrets.NETLIFY_SITE_ID_USER }} \
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
             --json \
-            --alias "healthcare-${{ github.actor }}" \
+            --alias "userinterface-${{ github.actor }}" \
             > deploy_output.json
 
       - name: Generate URL Preview
@@ -90,13 +85,12 @@ jobs:
           echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_ENV"
           
       - name: Comment URL Preview on PR
-        if: steps.eslint.outcome == 'success'
         uses: actions/github-script@v7
         with:
           script: |
             const previewUrl = process.env.NETLIFY_PREVIEW_URL;
-            const issue_number = context.issue.number; // Directly get the PR number
-            const username = context.actor; // Get the username of the person who raised the PR
+            const issue_number = context.issue.number;
+            const username = context.actor;
             if (previewUrl) {
               await github.rest.issues.createComment({
                 issue_number: issue_number,
