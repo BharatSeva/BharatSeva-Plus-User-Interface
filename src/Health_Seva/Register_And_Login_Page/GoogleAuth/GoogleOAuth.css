@@ -2,11 +2,11 @@
     color: black;
     display: flex;
     cursor: pointer;
-    box-shadow: 4px 4px 6px 1px black;
     font-family: poppins;
     background-color: white;
     padding: 1vh;
-    width: 9vw;
+    padding: 1vh 100px;
+    width: 100%;
     border-radius: 0.6vh;
     font-weight: bolder;
     font-size: 2vh;
