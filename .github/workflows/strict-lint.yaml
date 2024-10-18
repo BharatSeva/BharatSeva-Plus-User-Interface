@@ -65,47 +65,46 @@ jobs:
         run: | 
           npm run build
 
-      - name: install Netlify CLI
-        run: npm install netlify-cli@17.10.1 -g
-
-      - name: deploy to Netlify Preview page to check what change has been made by contributor
-        id: netlify_deploy
+      - name: deploy to netlify
         continue-on-error: true
-        run: |
-          netlify deploy \
-            --dir build \
-            --site ${{ secrets.NETLIFY_SITE_ID_USER }} \
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            --json \
-            --alias "userinterface-${{ github.actor }}" \
-            > deploy_output.json
-
-      - name: Generate URL Preview
-        id: url_preview
-        run: |
-          NETLIFY_PREVIEW_URL=$(jq -r '.deploy_url' deploy_output.json)
-          echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_ENV"
-          
-      - name: Comment URL Preview on PR
-        continue-on-error: true
-        uses: actions/github-script@v7
+        id: netlify-deploy
+        uses: nwtgck/actions-netlify@v2.0
         with:
-          script: |
-            const previewUrl = process.env.NETLIFY_PREVIEW_URL;
-            const issue_number = context.issue.number;
-            const username = context.actor;
-            if (previewUrl) {
-              await github.rest.issues.createComment({
-                issue_number: issue_number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `WORKFLOW BOT: @${username} your preview URL has been generated : ${previewUrl}`
-              });
-            } else {
-              await github.rest.issues.createComment({
-                issue_number: issue_number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `WORKFLOW BOT : deployment failed ${username}`
-              });
-            }
+          publish-dir: './build'
+          production-branch: main
+          github-token: ${{ secrets.VAI }}  # GITHUB_TOKEN and VAI throwing resource-inaccessible error
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+          overwrites-pull-request-comment: true
+          enable-github-deployment: false
+          alias: deploy-preview-${{ github.event.number }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_SITE_ID_USER }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        timeout-minutes: 1
+          
+      # - name: Comment URL preview on PR
+      #   continue-on-error: true
+      #   uses: actions/github-script@v7
+      #   with:
+      #     script: |
+      #       const deployUrl = '${{ steps.netlify-deploy.outputs.deploy-url }}';
+      #       const issueNumber = context.issue.number;
+      #       const username = context.actor;
+            
+      #       if (deployUrl) {
+      #         github.rest.issues.createComment({
+      #           issue_number: issueNumber,
+      #           owner: context.repo.owner,
+      #           repo: context.repo.repo,
+      #           body: `WORKFLOW BOT: @${username} your preview URL has been generated: ${deployUrl}`
+      #         });
+      #       } else {
+      #          github.rest.issues.createComment({
+      #           issue_number: issueNumber,
+      #           owner: context.repo.owner,
+      #           repo: context.repo.repo,
+      #           body: `WORKFLOW BOT: @${username} your preview URL not deployed`
+      #         });
+      #       }
