@@ -12,19 +12,20 @@ permissions:
 
 jobs: 
   lint-and-deploy:
-    name: Run ESLint check and deploy preview for the request made by contributor
+    name: Run ESLint check and deploy preview
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: setup NodeJS for Build
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
+          cache: "npm"
 
-      - name: install all the dependencies
-        run: npm install
+      - name: install all Dependencies
+        run: npm ci
 
       - name: Run ESLint test
         run: npm run lint:strict
@@ -51,15 +52,6 @@ jobs:
         run: |
           echo "Strict ESLint Check found issues. Failing the workflow."
           exit 1
-          
-      - name: setup NodeJS for Build
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
-
-      - name: install all Dependencies
-        run: npm ci
 
       - name: build Project from React Files
         run: | 
@@ -68,7 +60,7 @@ jobs:
       - name: deploy to netlify
         continue-on-error: true
         id: netlify-deploy
-        uses: nwtgck/actions-netlify@v2.0
+        uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './build'
           production-branch: main
@@ -76,12 +68,11 @@ jobs:
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: true
           enable-commit-comment: false
-          overwrites-pull-request-comment: true
-          enable-github-deployment: false
+          overwrites-pull-request-comment: false
           alias: deploy-preview-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_USER }}
         timeout-minutes: 1
           
       # - name: Comment URL preview on PR
