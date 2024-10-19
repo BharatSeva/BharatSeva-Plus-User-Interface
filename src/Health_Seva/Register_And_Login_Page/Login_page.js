@@ -5,7 +5,6 @@ import Message from "../Message";
 import "./Login_page.css";
 import GoogleOAuth from "./GoogleAuth/GoogleOAuth";
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import loginImg from "../Images_Assests/loginImg.webp"
 
 export default function LoginPage() {
     document.title = "Login | Bharat Seva";
