@@ -1,22 +1,20 @@
-# Bharat Seva+ (User Interface) [![Strict ESLint Check](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml/badge.svg)](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml)  [![Deploy UserInterface React build to AzureVM](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/deploy2azure.yaml/badge.svg)](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/deploy2azure.yaml)
+# Bharat Seva+ (User Interface) [![ESLint Check](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml/badge.svg)](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml)  [![Deploy UserInterface React build to AzureVM](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/deploy2azure.yaml/badge.svg)](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/deploy2azure.yaml)
 
 Welcome to the **BharatSeva User Interface** project! This repository contains the frontend code for the Bharat Seva User platform, aimed at providing a smooth and user-friendly experience for accessing various services.  
 Refer to [Official Organisation](https://github.com/BharatSeva) to get better idea of this whole project.
 
 ---
 > [!TIP]
-> Hi everyone! Hope you're doing well, this is to let you know that you can access webapps hosted on public links using these credentials:
+> Hi everyone! hope you're doing well, this is to let you know that you can access webapps hosted on public links using these credentials:
 > ### [User Interface 🔗](http://4.236.178.190:5000/user/login)  
 > **HealthID** :    2021071042  
 > **Password** :  12345  
-> ### [HealthCare Interface 🔗](http://4.236.178.190:5000/healthcare/login)  
-> **HealthCare Number** :  2021071042  
-> **License Number** :     2021071042  
-> **Password** : 00000
 
 
-> [!NOTE]  
-> I've increased Request limits for above ID's, If exhausted let me know I'll increase it.
+> [!NOTE]
+> I've increased Request limits for above ID's, If exhausted let me know I'll increase it.  
+> We may occasionally delete accounts inorder to improve the platform, it is part of our development process.  
+> Platform is under going some major changes, if in case you are not able to access these webpages, please try again after 1 - 2 days.
 ---
 
 

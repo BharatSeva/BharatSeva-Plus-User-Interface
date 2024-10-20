@@ -1,18 +1,18 @@
-name: Strict ESLint Check
+name: ESLint Check
+
 on:
+  workflow_dispatch:
   pull_request:
-    branches:
-      - main
-  push:
-    branches:
-      - main
+    branches: [main]
+    types: [opened, synchronize, reopened]
 
 permissions:
   pull-requests: write
+  contents: write
 
-jobs:
-  lint:
-    name: Run ESLint
+jobs: 
+  lint-and-deploy:
+    name: Run ESLint check and deploy preview for the request made by contributor
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -21,32 +21,90 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
 
-      - name: Install dependencies
+      - name: install all the dependencies
         run: npm install
 
-      - name: Run ESLint
+      - name: Run ESLint test
         run: npm run lint:strict
         continue-on-error: true
         id: eslint
 
-      - name: Check ESLint result
+      - name: block PR if ESLint fails
+        continue-on-error: true
         if: steps.eslint.outcome == 'failure'
-        run: |
-          echo "ESLint found issues. Failing the workflow."
-          exit 1
-          
-      - name: Block PR if ESLint fails
-        if: failure() && github.event_name == 'pull_request'
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.VAI }}
           script: |
             github.rest.pulls.createReview({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.issue.number,
               event: 'REQUEST_CHANGES',
-              body: 'ESLint check failed. Please fix all linting issues (including warnings) before merging.'
+              body: 'WORKFLOW BOT: ESLint check failed. Please fix all linting issues (including warnings) before merging.'
             })
+
+      - name: check for ESLint result
+        if: steps.eslint.outcome == 'failure'
+        run: |
+          echo "Strict ESLint Check found issues. Failing the workflow."
+          exit 1
+          
+      - name: setup NodeJS for Build
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: install all Dependencies
+        run: npm ci
+
+      - name: build Project from React Files
+        run: | 
+          npm run build
+
+      - name: deploy to netlify
+        continue-on-error: true
+        id: netlify-deploy
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './build'
+          production-branch: main
+          github-token: ${{ secrets.VAI }}  # GITHUB_TOKEN and VAI throwing resource-inaccessible error
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+          overwrites-pull-request-comment: true
+          enable-github-deployment: false
+          alias: deploy-preview-${{ github.event.number }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_USER }}
+        timeout-minutes: 1
+          
+      # - name: Comment URL preview on PR
+      #   continue-on-error: true
+      #   uses: actions/github-script@v7
+      #   with:
+      #     script: |
+      #       const deployUrl = '${{ steps.netlify-deploy.outputs.deploy-url }}';
+      #       const issueNumber = context.issue.number;
+      #       const username = context.actor;
+            
+      #       if (deployUrl) {
+      #         github.rest.issues.createComment({
+      #           issue_number: issueNumber,
+      #           owner: context.repo.owner,
+      #           repo: context.repo.repo,
+      #           body: `WORKFLOW BOT: @${username} your preview URL has been generated: ${deployUrl}`
+      #         });
+      #       } else {
+      #          github.rest.issues.createComment({
+      #           issue_number: issueNumber,
+      #           owner: context.repo.owner,
+      #           repo: context.repo.repo,
+      #           body: `WORKFLOW BOT: @${username} your preview URL not deployed`
+      #         });
+      #       }

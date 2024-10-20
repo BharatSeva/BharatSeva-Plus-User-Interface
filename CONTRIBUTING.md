@@ -2,7 +2,7 @@
 
 Thank you for considering contributing to **Bharat Seva+**! Your contributions help improve the project and make it better for everyone. Whether you’re reporting an issue, suggesting a feature, submitting code changes, or updating documentation, this guide will help ensure a smooth contribution process.  
 > [!IMPORTANT]  
-> Please sync your local files with ``` git pull ``` inorder to avoid conflicts.
+> Please sync your local files with ``` git pull ``` frequently inorder to avoid conflicts.
 ---
 
 ## How to Contribute
@@ -19,7 +19,7 @@ To make contributions:
 - Clone your forked repository to your local machine
 
 ### 3. Set Up Development Environment
-Follow the steps in the README.md to get the project running on your local machine. Ensure the project works before making changes.  
+Follow the steps in the [README](./README.md) to get the project running on your local machine. Ensure the project works before making changes.  
 
 ### 4. Create a New Branch
 Before making changes, create a new branch off the main branch:
