@@ -165,7 +165,7 @@ input::-webkit-inner-spin-button {
 
 .LoginForm label {
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  padding-top: 1rem;
   display: block;
   color: #fff;
 }
