@@ -12,31 +12,37 @@ permissions:
 
 jobs: 
   lint-and-deploy:
-    name: Run ESLint and Deploy Preview for the request made by contributor
+    name: Run ESLint check and deploy preview
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: setup NodeJS for Build
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
+          cache: "npm"
 
-      - name: install all the dependencies
-        run: npm install
+      - name: install all Dependencies
+        run: npm ci
+
+      - name: Run security audit
+        run: npm audit
+        continue-on-error: true
+        id: security-audit
+
+      - name: Check for security vulnerabilities
+        if: steps.security-audit.outcome == 'failure'
+        run: |
+          echo "Security vulnerabilities found. Failing the workflow."
+          exit 1  
 
       - name: Run ESLint test
         run: npm run lint:strict
         continue-on-error: true
         id: eslint
 
-      # - name: check for ESLint result
-      #   if: steps.eslint.outcome == 'failure'
-      #   run: |
-      #     echo "ESLint found issues. Failing the workflow."
-      #     exit 1
-          
       - name: block PR if ESLint fails
         continue-on-error: true
         if: steps.eslint.outcome == 'failure'
@@ -52,61 +58,55 @@ jobs:
               body: 'WORKFLOW BOT: ESLint check failed. Please fix all linting issues (including warnings) before merging.'
             })
 
-      - name: setup NodeJS for Build
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
-
-      - name: install all Dependencies
-        run: npm ci
+      - name: check for ESLint result
+        if: steps.eslint.outcome == 'failure'
+        run: |
+          echo "Strict ESLint Check found issues. Failing the workflow."
+          exit 1
 
       - name: build Project from React Files
         run: | 
-          CI=false
           npm run build
 
-      - name: install Netlify CLI
-        run: npm install netlify-cli@17.10.1 -g
-
-      - name: deploy to Netlify Preview page to check what change has been made by contributor
-        id: netlify_deploy
+      - name: deploy to netlify
         continue-on-error: true
-        run: |
-          netlify deploy \
-            --dir build \
-            --site ${{ secrets.NETLIFY_SITE_ID_USER }} \
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            --json \
-            --alias "userinterface-${{ github.actor }}" \
-            > deploy_output.json
-
-      - name: Generate URL Preview
-        id: url_preview
-        run: |
-          NETLIFY_PREVIEW_URL=$(jq -r '.deploy_url' deploy_output.json)
-          echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_ENV"
-          
-      - name: Comment URL Preview on PR
-        continue-on-error: true
-        uses: actions/github-script@v7
+        id: netlify-deploy
+        uses: nwtgck/actions-netlify@v3.0
         with:
-          script: |
-            const previewUrl = process.env.NETLIFY_PREVIEW_URL;
-            const issue_number = context.issue.number;
-            const username = context.actor;
-            if (previewUrl) {
-              await github.rest.issues.createComment({
-                issue_number: issue_number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `WORKFLOW BOT: @${username} your preview URL has been generated : ${previewUrl}`
-              });
-            } else {
-              await github.rest.issues.createComment({
-                issue_number: issue_number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `WORKFLOW BOT : deployment failed ${username}`
-              });
-            }
+          publish-dir: './build'
+          production-branch: main
+          github-token: ${{ secrets.VAI }}  # GITHUB_TOKEN and VAI throwing resource-inaccessible error
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+          overwrites-pull-request-comment: false
+          alias: deploy-preview-${{ github.event.number }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_USER }}
+        timeout-minutes: 1
+          
+      # - name: Comment URL preview on PR
+      #   continue-on-error: true
+      #   uses: actions/github-script@v7
+      #   with:
+      #     script: |
+      #       const deployUrl = '${{ steps.netlify-deploy.outputs.deploy-url }}';
+      #       const issueNumber = context.issue.number;
+      #       const username = context.actor;
+            
+      #       if (deployUrl) {
+      #         github.rest.issues.createComment({
+      #           issue_number: issueNumber,
+      #           owner: context.repo.owner,
+      #           repo: context.repo.repo,
+      #           body: `WORKFLOW BOT: @${username} your preview URL has been generated: ${deployUrl}`
+      #         });
+      #       } else {
+      #          github.rest.issues.createComment({
+      #           issue_number: issueNumber,
+      #           owner: context.repo.owner,
+      #           repo: context.repo.repo,
+      #           body: `WORKFLOW BOT: @${username} your preview URL not deployed`
+      #         });
+      #       }

@@ -29,3 +29,7 @@ body {
     text-underline-offset: 0.5vh;
   }
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
