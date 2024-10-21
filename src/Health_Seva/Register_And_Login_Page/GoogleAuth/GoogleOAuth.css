@@ -1,11 +1,12 @@
 .GoogleDesign p {
     color: black;
     display: flex;
+    justify-content: center;
+    text-align: center;
     cursor: pointer;
     font-family: poppins;
     background-color: white;
     padding: 1vh;
-    padding: 1vh 100px;
     width: 100%;
     border-radius: 0.6vh;
     font-weight: bolder;
@@ -15,6 +16,7 @@
 .GoogleDesign img {
     width: 1.5vw;
     height: 3vh;
+    margin-left: 10px;
     border-radius: 0.6vh;
 }
 
