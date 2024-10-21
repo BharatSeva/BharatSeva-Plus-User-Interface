@@ -18,13 +18,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: setup NodeJS for Build
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
+          cache: "npm"
 
-      - name: install all the dependencies
-        run: npm install
+      - name: Run security audit
+        run: npm audit
+        continue-on-error: true
+        id: security-audit
+
+      - name: Check for security vulnerabilities
+        if: steps.security-audit.outcome == 'failure'
+        run: |
+          echo "Security vulnerabilities found. Failing the workflow."
+          exit 1
+
+      - name: install all Dependencies
+        run: npm ci
 
       - name: Run ESLint test
         run: npm run lint:strict
@@ -36,7 +48,7 @@ jobs:
         if: steps.eslint.outcome == 'failure'
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.VAI }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.pulls.createReview({
               owner: context.repo.owner,
@@ -51,15 +63,6 @@ jobs:
         run: |
           echo "Strict ESLint Check found issues. Failing the workflow."
           exit 1
-          
-      - name: setup NodeJS for Build
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
-
-      - name: install all Dependencies
-        run: npm ci
 
       - name: build Project from React Files
         run: | 
