@@ -150,6 +150,16 @@ input::-webkit-inner-spin-button {
   justify-content: center;
 }
 
+.FormSection img {
+  display: block;  /* Makes the image behave like a block-level element */
+  margin: 0 auto;  /* Centers the image horizontally */
+  max-width: 40%;  /* Adjust the size of the image as per your needs, here it's set to 50% of its original size */
+  height: auto;    /* Keeps the aspect ratio of the image intact */
+  position: relative;    /* Allows you to use left/right properties */
+  left: 10px;            /* Adjust this value to move the image more to the right */
+}
+
+
 .BrandName {
   font-size: 2.5rem;
   color: #fff;
