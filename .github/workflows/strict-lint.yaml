@@ -12,7 +12,7 @@ permissions:
 
 jobs: 
   lint-and-deploy:
-    name: Run ESLint check and deploy preview for the request made by contributor
+    name: Run ESLint check and deploy preview
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -24,15 +24,28 @@ jobs:
           node-version: 20
           cache: "npm"
 
+      - name: install all Dependencies
+        run: npm ci
+
       - name: Run security audit
         run: npm audit
         continue-on-error: true
         id: security-audit
 
+
+      - name: Run security audit
+        run: npm audit
+        continue-on-error: true
+        id: security-audit
+
+
       - name: Check for security vulnerabilities
         if: steps.security-audit.outcome == 'failure'
         run: |
           echo "Security vulnerabilities found. Failing the workflow."
+
+          exit 1  
+
           exit 1
 
       - name: install all Dependencies
@@ -71,7 +84,7 @@ jobs:
       - name: deploy to netlify
         continue-on-error: true
         id: netlify-deploy
-        uses: nwtgck/actions-netlify@v2.0
+        uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './build'
           production-branch: main
@@ -79,8 +92,7 @@ jobs:
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: true
           enable-commit-comment: false
-          overwrites-pull-request-comment: true
-          enable-github-deployment: false
+          overwrites-pull-request-comment: false
           alias: deploy-preview-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

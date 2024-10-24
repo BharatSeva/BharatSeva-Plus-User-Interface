@@ -98,26 +98,33 @@ input::-webkit-inner-spin-button {
   font-size: 2vh;
 } */
 
+
 /* Main container for the entire login page */
 .MainContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100vh; /* Set minimum height */
   background-color: rgb(68, 68, 68);
   font-family: 'Poppins', sans-serif;
+  padding: 0 2rem; /* Add padding to prevent overflow */
+  overflow: hidden;
 }
 
 /* Wrapper for the form and illustration */
 .LoginWrapper {
   display: flex;
+  flex-wrap: wrap; /* Make it responsive for smaller screens */
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   background-color: #fff;
   box-shadow: 2px 2px 10px black;
   overflow: hidden;
-  width: 80vw;
+  width: 80vw; /* Make it responsive */
   max-width: 1100px;
+  height: 90vh;
+  max-height: 100vh;
+  box-sizing: border-box;
 }
 
 /* Section for doctor illustration */
@@ -130,6 +137,7 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   padding: 2rem;
   position: relative;
+  height: 100%;
 }
 
 .DoctorImage {
@@ -143,11 +151,26 @@ input::-webkit-inner-spin-button {
 /* Form section on the right */
 .FormSection {
   flex: 1;
-  padding: 3rem;
+  padding: 2rem; /* Adjusted padding for better responsiveness */
   background-color: rgb(68, 68, 68);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  min-width: 300px; /* Minimum width to maintain form readability */
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.FormSection img {
+  display: block;
+  margin: 0 auto;
+  max-width: 40%;
+  height: auto;
+  margin-bottom: 1rem;  /* Added margin-bottom for spacing */
+  padding-top: 1rem;    /* Added padding to prevent the image from being cut at the top */
+  position: relative;
+  left: 10px;
 }
 
 .BrandName {
@@ -196,18 +219,6 @@ input::-webkit-inner-spin-button {
   cursor: not-allowed;
 }
 
-/* Styling for Google sign-in button */
-.GoogleOAuthButton {
-  width: 100%;
-  text-align: center;
-  margin: 1rem 0;
-}
-.GoogleOAuthButton p {
- display: flex;
- justify-content: center;
- align-items: center;
-}
-
 .AccountPrompt {
   text-align: center;
   margin-top: 1rem;
@@ -222,10 +233,25 @@ input::-webkit-inner-spin-button {
 @media (max-width: 768px) {
   .LoginWrapper {
       flex-direction: column;
-      max-width: 100%;
+      width: 90vw; /* Adjust width */
   }
 
   .FormSection {
       padding: 1.5rem;
+      min-width: 100%; /* Full width on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .MainContainer {
+      padding: 1rem; /* Extra padding for very small screens */
+  }
+
+  .LoginWrapper {
+      width: 100%; /* Full screen on small devices */
+  }
+
+  .FormSection img {
+      max-width: 50%; /* Smaller logo */
   }
 }
