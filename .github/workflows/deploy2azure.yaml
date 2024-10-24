@@ -48,7 +48,14 @@ jobs:
           script: |
             cd /home/azureuser/server/
             
-            docker-compose down
-            docker-compose build
-            docker-compose up -d
-            docker image prune -f
+            echo "#!/bin/bash" > docker_commands.sh
+            echo "docker-compose down" >> docker_commands.sh
+            echo "docker-compose build" >> docker_commands.sh
+            echo "docker-compose up -d" >> docker_commands.sh
+            echo "docker image prune -f" >> docker_commands.sh
+            echo "docker volume prune -f" >> docker_commands.sh
+
+            chmod +x docker_commands.sh
+            # execute the script after invoking following command
+            # it will continue to run on server !!
+            ./docker_commands.sh &

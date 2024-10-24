@@ -12,7 +12,7 @@ permissions:
 
 jobs: 
   lint-and-deploy:
-    name: Run ESLint check and deploy preview for the request made by contributor
+    name: Run ESLint check and deploy preview
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -24,19 +24,28 @@ jobs:
           node-version: 20
           cache: "npm"
 
+      - name: install all Dependencies
+        run: npm ci
+
       - name: Run security audit
         run: npm audit
         continue-on-error: true
         id: security-audit
 
-      - name: Check for security vulnerabilities
+      - name: REQUEST CHANGES PR if security check fails
+        continue-on-error: true
         if: steps.security-audit.outcome == 'failure'
-        run: |
-          echo "Security vulnerabilities found. Failing the workflow."
-          exit 1
-
-      - name: install all Dependencies
-        run: npm ci
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              event: 'REQUEST_CHANGES',
+              body: 'WORKFLOW BOT: security-audit check failed. Please fix all security issues (including warnings) before merging.'
+            })
 
       - name: Run ESLint test
         run: npm run lint:strict
@@ -58,12 +67,6 @@ jobs:
               body: 'WORKFLOW BOT: ESLint check failed. Please fix all linting issues (including warnings) before merging.'
             })
 
-      - name: check for ESLint result
-        if: steps.eslint.outcome == 'failure'
-        run: |
-          echo "Strict ESLint Check found issues. Failing the workflow."
-          exit 1
-
       - name: build Project from React Files
         run: | 
           npm run build
@@ -75,7 +78,7 @@ jobs:
         with:
           publish-dir: './build'
           production-branch: main
-          github-token: ${{ secrets.VAI }}  # GITHUB_TOKEN and VAI throwing resource-inaccessible error
+          github-token: ${{ secrets.GITHUB_TOKEN }}  # GITHUB_TOKEN and VAI throwing resource-inaccessible error
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: true
           enable-commit-comment: false
@@ -86,28 +89,15 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_USER }}
         timeout-minutes: 1
-          
-      # - name: Comment URL preview on PR
-      #   continue-on-error: true
-      #   uses: actions/github-script@v7
-      #   with:
-      #     script: |
-      #       const deployUrl = '${{ steps.netlify-deploy.outputs.deploy-url }}';
-      #       const issueNumber = context.issue.number;
-      #       const username = context.actor;
-            
-      #       if (deployUrl) {
-      #         github.rest.issues.createComment({
-      #           issue_number: issueNumber,
-      #           owner: context.repo.owner,
-      #           repo: context.repo.repo,
-      #           body: `WORKFLOW BOT: @${username} your preview URL has been generated: ${deployUrl}`
-      #         });
-      #       } else {
-      #          github.rest.issues.createComment({
-      #           issue_number: issueNumber,
-      #           owner: context.repo.owner,
-      #           repo: context.repo.repo,
-      #           body: `WORKFLOW BOT: @${username} your preview URL not deployed`
-      #         });
-      #       }
+
+      - name: check for ESLint result
+        if: steps.eslint.outcome == 'failure'
+        run: |
+          echo "Strict ESLint Check found issues. Failing the workflow."
+          exit 1
+
+      - name: Check for security vulnerabilities
+        if: steps.security-audit.outcome == 'failure'
+        run: |
+          echo "Security vulnerabilities found. Failing the workflow."
+          exit 1
