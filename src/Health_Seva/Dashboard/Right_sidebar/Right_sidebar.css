@@ -14,17 +14,16 @@
 
 
 .right_sidebar{
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
     /* align-items: center; */
-    width: 83vw;
-    height: 93vh;
+    padding: 0 24px;
+    width: 93vw;
+    /* height: 93vh; */
     overflow-y: scroll;
     background-color: rgb(158, 154, 154);
     transition: 0.3s;
     /* flex-wrap: wrap; */
-
-
     /* background-color: red; */
 }
 .right_sidebarFlex{
