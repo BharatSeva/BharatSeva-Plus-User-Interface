@@ -19,7 +19,7 @@
 }
 
 
-.StatsContainer span:nth-child(n){
+/* .StatsContainer span:nth-child(n){
     display: inline-block;
     width: 15vw;
 }
@@ -32,25 +32,24 @@
     background-color: rgb(67 67 67);;
     padding: 1.5vh;
     border-radius: 1vh;
-}
+} */
 
 /* Log Container Goes Here */
-.ListLogContainer{
+/* .ListLogContainer{
     box-shadow: 2px 2px 10px black;
     background-color: #504c4c;
     padding: 2vh 2vw;
     margin: 1vh;
     border-radius: 1vh;
-}
+} */
 .LogText{
-    margin: 0;
-    text-decoration: underline;
-    text-underline-offset: 1vh;
+    font-family: "Poppins", sans-serif;
 }
 
 /* This One is for individuals Log Records */
 .LogContainer{
-    background-color: rgb(40 39 39);
+    /* background-color: rgb(40 39 39); */
+    background-color: red   ;
     padding: 1vh;
     margin-bottom: 1vh;
     margin-top: 2vh;
