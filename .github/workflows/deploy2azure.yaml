@@ -22,7 +22,6 @@ jobs:
 
       - name: Build the React app
         run: | 
-          CI=false # remove this after fixing warnings 
           npm run build
 
       - name: Create SSH key file
