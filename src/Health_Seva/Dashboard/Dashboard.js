@@ -1,4 +1,7 @@
-
+import { useEffect, useRef, useState } from 'react';
+import SearchBox from './SearchBox'; // Import the SearchBox component
+import NotificationPop from './NotificationPop'; // Import the NotificationPop component
+import AccountPopover from './AccountPopover'; // Import the AccountPopover component
 
 export default function Dashboard() {
     const [leftSidebarOpen, setLeftSidebarOpen] = useState(false);
@@ -12,8 +15,8 @@ export default function Dashboard() {
     }, []);
 
     const toggleSidebar = () => {
-        setLeftSidebarOpen(!leftSidebarOpen);
-        setRightSidebarOpen(!rightSidebarOpen);
+        setLeftSidebarOpen((prev) => !prev);
+        setRightSidebarOpen((prev) => !prev);
     };
 
     const toggleMessage = () => {
@@ -23,32 +26,49 @@ export default function Dashboard() {
     };
 
     const toggleAccountPopover = () => {
-        setAccountPopoverOpen(!accountPopoverOpen);
+        setAccountPopoverOpen((prev) => !prev);
     };
 
     const toggleNotificationPopover = () => {
-        setNotificationPopoverOpen(!notificationPopoverOpen);
+        setNotificationPopoverOpen((prev) => !prev);
     };
 
     return (
         <div className="container">
             <div className="ToggleBtn">
                 <div className="Hamburger">
-                    <i onClick={toggleSidebar} className="fa-solid fa-bars"></i>
+                    <button 
+                        onClick={toggleSidebar} 
+                        aria-label="Toggle Sidebar" 
+                        className="fa-solid fa-bars"
+                    />
                     <div className="Icontxt">Bharat सेवा+</div>
                 </div>
                 <div className="RightSide_Nav">
                     <SearchBox />
-                    <div className={`NotificationBar ${notificationPopoverOpen ? "backgroundcolorbar" : ""}`} onClick={toggleNotificationPopover}>
-                        <i className="fa-regular fa-bell fa-xlg"></i>
-                    </div>
+                    <button 
+                        onClick={toggleNotificationPopover} 
+                        aria-label="Notifications" 
+                        className={`NotificationBar ${notificationPopoverOpen ? "backgroundcolorbar" : ""}`}
+                    >
+                        <i className="fa-regular fa-bell fa-xl"></i>
+                    </button>
                     {notificationPopoverOpen && <NotificationPop />}
-                    <div className={`Account_Nav ${accountPopoverOpen ? "backgroundcolorbar" : ""}`} onClick={toggleAccountPopover}>
+                    <button 
+                        onClick={toggleAccountPopover} 
+                        aria-label="Account Options" 
+                        className={`Account_Nav ${accountPopoverOpen ? "backgroundcolorbar" : ""}`}
+                    >
                         <i className="fa-regular fa-circle-user fa-xl"></i>
                         <i className="fa-solid fa-caret-down"></i>
-                    </div>
+                    </button>
                     {accountPopoverOpen && <AccountPopover />}
                 </div>
             </div>
 
             <div className="Left_Right_container">
+                {/* Rest of your component content goes here */}
+            </div>
+        </div>
+    );
+}
