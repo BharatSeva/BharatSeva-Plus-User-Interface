@@ -1,0 +1,167 @@
+.bg-white {
+    background-color: white;
+}
+
+.text-black {
+    color: black;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+
+.border-black {
+    border: 2px solid black;
+}
+
+.mx-8 {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.px-8{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.px-4{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.my-4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.mx-4 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.mx-6 {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.mx-16{
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+.mt-4{
+    margin-top: 1rem;
+}
+.px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Font and Text Styles */
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-light {
+    font-weight: 300;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.text-base {
+    font-size: 1rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+/* Flex Styles */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.gap-0 {
+    gap: 0;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+/* Grid Styles */
+.grid {
+    display: grid;
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+/* Colors */
+.bg-black {
+    background-color: black;
+}
+
+.bg-gray {
+    background-color: #EEECEC;
+}
+
+.bg-light-gray {
+    background-color: #F5F5F5;
+}
+
+/* Cursor Styles */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Specific Classes */
+.statuslogLoading, .FetchingDataLogo {
+    text-align: center;
+    font-style: italic;
+}
+
+.notavailabletext {
+    color: #333;
+    font-style: italic;
+}
+
+.ListLogContainer {
+    margin-top: 1rem;
+}
+
+.h-0\.5{
+    height: 0.125rem;
+}
+.inline{
+    display: inline;
+}
+.w-full{
+    width: 100%;
+}
+.border-bottom{
+    border-bottom: 1px solid black;
+    width: 100%;
+}
