@@ -1,4 +1,4 @@
-import './App.css';
+
 import RegisterPage from './Health_Seva/Register_And_Login_Page/Register_Page';
 import Dashboard from './Health_Seva/Dashboard/Dashboard'
 import LoginPage from './Health_Seva/Register_And_Login_Page/Login_page';
