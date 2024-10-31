@@ -9,13 +9,7 @@ root.render(
   <div className='desktopview'>
     <App />
   </div>
-    <div className='MobileViewDisplay'>
-      <h2>Bharat Seva</h2>
-      <strong>NOTE:</strong>
-      <p>I'm feeling glad that you have showed interest in my project but our Website is currently for Desktop View, It will take time for Other Devices.</p>
-      <p>View Desktop Version for Better Experience.</p>
-      <p>Thank You 😊</p>
-    </div>
+    
     </>
 );
 

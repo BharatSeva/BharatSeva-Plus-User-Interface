@@ -1,5 +1,6 @@
 .NotFoundContainer {
     display: flex;
+    color:white;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -7,12 +8,14 @@
 }
 
 .NotFoundContainer h2:nth-child(1){
+    color:white;
     text-decoration: underline;
     text-underline-offset: 1vh;
     display: inline-block;
 }
 
 .NotFoundContainer p>a {
+    color:white;
     text-decoration: underline;
     text-underline-offset: 1vh;
     display: inline-block;

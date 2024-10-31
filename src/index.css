@@ -1,31 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-color: black;
-  color: white;
-}
-
-/* Message for Mobile Users */
-.MobileViewDisplay {
-  text-align: center;
-  display: none;
-  margin: 3vh;
-}
-
-@media only screen and (max-width: 800px) {
-  .App {
-    display: none;
-  }
-  .desktopview{
-    display: none;
-  }
-
-  .MobileViewDisplay {
-    display: block;
-  }
-
-  .MobileViewDisplay h2 {
-    text-decoration: underline;
-    text-underline-offset: 0.5vh;
-  }
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
