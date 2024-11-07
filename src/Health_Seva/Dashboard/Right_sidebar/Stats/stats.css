@@ -34,30 +34,6 @@
     border-radius: 1vh;
 }
 
-/* Log Container Goes Here */
-.ListLogContainer{
-    box-shadow: 2px 2px 10px black;
-    background-color: #504c4c;
-    padding: 2vh 2vw;
-    margin: 1vh;
-    border-radius: 1vh;
-}
-.LogText{
-    margin: 0;
-    text-decoration: underline;
-    text-underline-offset: 1vh;
-}
-
-/* This One is for individuals Log Records */
-.LogContainer{
-    background-color: rgb(40 39 39);
-    padding: 1vh;
-    margin-bottom: 1vh;
-    margin-top: 2vh;
-    box-shadow: 4px 7px 20px #201f1f;
-    border-radius: 1vh;
-}
-
 /* Not available Text available Here Now */
 .notavailabletext{
     color: yellow;
