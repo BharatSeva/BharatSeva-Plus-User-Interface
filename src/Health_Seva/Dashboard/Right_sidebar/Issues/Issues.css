@@ -1,34 +1,43 @@
-.IssuesOuterCOntaainer{
+/* Outer Container for Issues Section */
+.IssuesOuterContainer {
     padding: 2vh;
 }
-.MedicalSeverityDangerous{
+
+/* Dangerous Severity Styling */
+.MedicalSeverityDangerous {
     color: #ee6767;
     text-shadow: 0px 2px 20px red, 0px 2px 20px red;
 }
-.Issue_Date{
+
+/* Styling for Issue Date */
+.Issue_Date {
     font-style: italic;
 }
 
-.IssueContainer{
+/* Container for Issue Details */
+.IssueContainer {
     background-color: #5b5959;
     padding: 1vh;
     border-radius: 1vh;
     width: 75vw;
     box-shadow: 6px 2px 20px black;
 }
-.Issues_Header_Container h3{
+
+/* Header Section Styling */
+.Issues_Header_Container h3 {
     text-align: center;
+    font-size: 5vh;
     text-decoration: underline;
     text-underline-offset: 1vh;
 }
-.Issues_Header_Container p{
+
+.Issues_Header_Container p {
     margin-bottom: -2vh;
     text-align: center;
 }
-.Issues_Header_Container h3{
-    font-size: 5vh;
-}
-.Issues_Header_Container::after{
+
+/* Header Underline */
+.Issues_Header_Container::after {
     content: '';
     background-color: red;
     position: relative;
@@ -38,11 +47,13 @@
     left: 19vw;
 }
 
-/* Container For Medical Issues Goes Here */
-.MedicalIssues_Container{
+/* Container for Medical Issues */
+.MedicalIssues_Container {
     margin-top: 3vh;
 }
-.NoAnyIssues{
+
+/* Styling for "No Issues" Message */
+.NoAnyIssues {
     text-align: center;
     color: lime;
     font-style: italic;

@@ -15,9 +15,9 @@ export default function Stats() {
         Setresponse(false)
         try {
 
-            const { data, res } = await FetchData(`/api/v1/userdetails/stats`)
+            const { data, res } = await FetchData(`/api/v1/user/stats`)
             if (res.ok) {
-                Setresponse(data)
+                Setresponse(data.stats)
             }
             else if (res.status === 405) { SetIsredirect(true) }
             else {
@@ -46,11 +46,12 @@ export default function Stats() {
                             <hr></hr>
                             <div className="StatsContainer">
                                 <p><span>Account Status :</span> {response.account_status}</p>
-                                <p><span>Available Credit :</span> {response.Available_Money}</p>
-                                <p><span>Profile Viewed :</span> {response.Profile_Viewed}</p>
-                                <p><span>Profile Updated :</span> {response.Profile_Updated}</p>
-                                <p><span>Records Viewed :</span> {response.Records_Viewed}</p>
-                                <p><span>Records Created :</span> {response.Records_Created}</p>
+                                <p><span>Available Credit :</span> {response.available_money}</p>
+                                <p><span>Profile Viewed :</span> {response.profile_viewed}</p>
+                                <p><span>Profile Updated :</span> {response.profile_updated}</p>
+                                <p><span>Records Viewed :</span> {response.records_viewed}</p>
+                                <p><span>Records Created :</span> {response.records_created}</p>
+                                <p><span>Last Updated :</span> {response.updatedAt}</p>
                             </div>
                         </div>
                     ) : (<p className="statuslogLoading">Loading...</p>)}

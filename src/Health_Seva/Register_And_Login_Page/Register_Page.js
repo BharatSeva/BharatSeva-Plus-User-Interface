@@ -33,7 +33,7 @@ export default function RegistrationPage() {
     const RegisterAPI = async () => {
         SetAuthenticated((p) => ({ ...p, IsFetching: true }));
         try {
-            const Authorization = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/userauth/userregister`, {
+            const Authorization = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/user/auth/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -70,7 +70,7 @@ export default function RegistrationPage() {
                     <Navigate to="/user/dashboard" replace={true} />
                 </div>
             )}
-            
+
             <div className="LoginWrapper">
                 <div className="IllustrationSection">
                     <div className="DoctorImage"></div>
@@ -80,22 +80,19 @@ export default function RegistrationPage() {
                     <h1 className="BrandName">Bharat Seva+</h1>
                     <p className="Tagline">Serving country with love and dedication</p>
                     <form className="LoginForm" onSubmit={preventDefault}>
-                        
-                        <label>Enter Your Name</label>
-                        <input type="text" className="InputField" placeholder="Name" name="name" onChange={handleInput} required />
-                        
+
                         <label>Enter Your Email</label>
                         <input type="email" className="InputField" placeholder="Email" name="email" onChange={handleInput} required />
 
                         <label>Enter Your Health ID</label>
-                        <input type="number" className="InputField" placeholder="Health ID" name="health_id" onChange={handleInput} required />
-                        
+                        <input type="text" className="InputField" placeholder="Health ID" name="health_id" onChange={handleInput} required />
+
                         <label>Create a Password</label>
                         <input type="password" className="InputField" placeholder="Password" name="password" onChange={handleInput} required />
-                        
+
                         <label>Confirm Password</label>
                         <input type="password" className="InputField" placeholder="Confirm Password" name="confirmPassword" onChange={handleInput} required />
-                        
+
                         <input type="submit" value={`${IsAuthenticated.IsFetching ? "Registering..." : "Register"}`} disabled={IsAuthenticated.IsFetching} className="SubmitBtn" />
                     </form>
                     <p className="AccountPrompt">Already Have an Account? <Link to="/user/login" className="RegisterBtn">Login Here</Link></p>

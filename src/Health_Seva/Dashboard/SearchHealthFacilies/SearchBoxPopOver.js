@@ -15,9 +15,9 @@ export default function SearchPopover({ Inputvalue }) {
         SetName(false)
 
         try {
-            const { data, res } = await FetchData('/api/v1/user/gethealthcarename')
+            const { data, res } = await FetchData('/api/v1/user/appointment/healthcare')
             if (res.ok) {
-                SetName(data.healthcares)
+                SetName(data.healthcare)
             }
             else if (res.status === 405) { SetIsredirect(true) }
             else {

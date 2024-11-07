@@ -35,7 +35,27 @@ export async function PostData(url, values) {
             body: JSON.stringify(values)
         })
         let data = await res.json()
-        localStorage.setItem(`MessageFromVaibhav`, `Hello ${UserData.name}, Kya Haal hai Mujhe pta tha tum ek din yaaha ek din jarror aooge ab jab aa gye hoo Star De dena 🥰`)
+        localStorage.setItem(`MessageFromVaibhav`, `Hello ${UserData.fullname}, Kya Haal hai Mujhe pta tha tum ek din yaaha ek din jarror aooge ab jab aa gye hoo Star De dena 🥰`)
+        return { data, res }
+    } catch (err) {
+        return err
+    }
+}
+
+
+export async function PatchData(url, values) {
+    const UserData = JSON.parse(sessionStorage.getItem("BharatSevaUser"))
+    try {
+        let res = await fetch(`${process.env.REACT_APP_API_URL}${url}`, {
+            method: "PATCH",
+            headers: {
+                'content-type': "application/json",
+                "Authorization": `Bearer ${UserData.token}`
+            },
+            body: JSON.stringify(values)
+        })
+        let data = await res.json()
+        localStorage.setItem(`MessageFromVaibhav`, `Hello ${UserData.fullname}, Kya Haal hai Mujhe pta tha tum ek din yaaha ek din jarror aooge ab jab aa gye hoo Star De dena 🥰`)
         return { data, res }
     } catch (err) {
         return err

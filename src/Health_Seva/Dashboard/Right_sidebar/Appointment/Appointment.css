@@ -1,4 +1,4 @@
-.AppointmentUserOuterContainer{
+.AppointmentUserOuterContainer {
     padding: 1vh;
 }
 
@@ -10,17 +10,19 @@
     margin: 1vh;
     box-shadow: 5px 5px 10px black;
 }
-.USerappointmentHeader{
+
+.USerappointmentHeader {
     text-align: center;
     text-decoration: underline;
     text-underline-offset: 1vh;
     margin-bottom: 0;
 }
-.UserAppointmentSectionpara{
+
+.UserAppointmentSectionpara {
     text-align: center;
 }
 
-.apppointment_log{
+.apppointment_log {
     margin: 1vh 0 1vh 0;
     padding: 1vh;
     border-radius: 1vh;
@@ -31,7 +33,7 @@
 
 .apppointment_log span {
     display: inline-block;
-    width: 14vw;
+    width: 17vw;
 }
 
 /* This One for Note Section */
@@ -43,20 +45,30 @@
     display: inline-block;
 }
 
-.AppointmentLogtext{
+.AppointmentLogtext {
     color: yellow;
 }
 
 /* Upcoming */
-.Upcoming{
+.Confirmed {
     display: inline-block;
-    color: yellow;
-}
-.Completed{
     color: lime;
 }
 
+.Pending {
+    display: inline-block;
+    color: yellow;
+}
+
+.Rejected {
+    color: red;
+}
+
+.NotAvailable {
+    color: orange;
+}
+
 /* Fetching Appointment Logo Goes here */
-.Fetchingappointmentlogo{
+.Fetchingappointmentlogo {
     text-align: center;
 }

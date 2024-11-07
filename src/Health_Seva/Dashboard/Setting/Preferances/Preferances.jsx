@@ -6,7 +6,7 @@ export default function Preferances({ OnchangeData, SettingResponse }) {
 
     let Key
     if (SettingResponse) {
-        Key = `${SettingResponse.Email}`
+        Key = `${SettingResponse.email}`
     } else {
         Key = "Updating..."
     }
@@ -14,10 +14,10 @@ export default function Preferances({ OnchangeData, SettingResponse }) {
 
     const values = [{ label: Key }]
     const Options = [
-        { "label": "Weekly", "value": "Weekly", "name": "Email" },
-        { "label": "Monthly", "value": "Monthly", "name": "Email" },
-        { "label": "Every Events", "value": "Every Events", "name": "Email" },
-        { "label": "Opt Out", "value": "Opt Out", "name": "Email" }
+        { "label": "Weekly", "value": "Weekly", "name": "email" },
+        { "label": "Monthly", "value": "Monthly", "name": "email" },
+        { "label": "Every Event", "value": "Every Event", "name": "email" },
+        { "label": "Opt Out", "value": "Opt Out", "name": "email" }
     ]
     return (
         <>

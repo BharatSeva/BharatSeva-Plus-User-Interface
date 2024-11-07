@@ -21,9 +21,9 @@ export default function Appointment() {
         SetData(false)
 
         try {
-            const { data, res } = await FetchData(`/api/v1/userdetails/appointment`)
+            const { data, res } = await FetchData(`/api/v1/user/appointment/fetch`)
             if (res.ok) {
-                SetData(data.data)
+                SetData(data.appointments_details)
                 SetIsData((p) => ({ ...p, IsGood: true }))
             }
             // Redirect Goes Here...
@@ -40,16 +40,26 @@ export default function Appointment() {
     let Dataapp = Data
     var Appointment
 
+
+
     // This Function Will Create A Record
     function RecordsList(data) {
-        return (<div key={uuidv4()} className="apppointment_log">
-            <p><span>Status :</span>{(data.appointment_date > (new Date().toISOString().split('T')[0])) ? <span className="Upcoming">Upcoming</span> : <span className="Completed">Completed</span>}</p>
-            <p><span>Health Care Name :</span> {data.healthcare_name}</p>
-            <p><span>Department :</span> {data.department}</p>
-            <p><span>Appointment Date :</span> {data.appointment_date}</p>
-            <p><span>Appointment Time :</span> {data.appointment_time}</p>
-            <p><span>Note :</span> <span id="AppointmentNoteSection">{data.note}</span></p>
-        </div>)
+        let span = (<span className="Pending">Pending</span>)
+        let status = data.status
+        if (status === "Confirmed") span = (<span className="Confirmed">Confirmed</span>)
+        else if(status==="Rejected") span = (<span className="Rejected">Rejected</span>)
+        else if(status==="Not Available") span = (<span className="NotAvailable">Not Available</span>)
+
+
+            return (<div key={uuidv4()} className="apppointment_log">
+                <p><span>Status :</span>{span}</p>
+                <p><span>Department :</span> {data.department}</p>
+                <p><span>Appointment Date :</span> {data.appointment_date}</p>
+                <p><span>Appointment Time :</span> {data.appointment_time}</p>
+                <p><span>HealthCare :</span> {data.healthcare_name}</p>
+                <p><span>HealthCare_ID :</span> {data.healthcare_id}</p>
+                <p><span>Note :</span> <span id="AppointmentNoteSection">{data.note}</span></p>
+            </div>)
     }
 
     function myvalue(e) {

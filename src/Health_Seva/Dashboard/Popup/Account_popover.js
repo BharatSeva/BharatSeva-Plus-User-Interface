@@ -16,7 +16,7 @@ export default function AccountPopover() {
         <div className="Account_popover Account_popoverDisplay popups">
             <ul>
                 <li>Signed in as</li>
-                <li className="UserNameAccountSection">{User_Name ? User_Name.name : (<p>--/--</p>)}</li>
+                <li className="UserNameAccountSection">{User_Name ? User_Name.fullname : (<p>--/--</p>)}</li>
                 <div className="horizontalRule"></div>
                 <li>Preferances</li>
                 <li>Help</li>

@@ -4,12 +4,12 @@ export default function LockAccount({ OnchangeData, SettingResponse }) {
 
     let Key
     if (SettingResponse) {
-        Key = `${SettingResponse.LockedAccount}`
+        Key = `${SettingResponse.locked_account}`
     } else {
         Key = "Updating..."
     }
-    const values = [{ label: Key }]
-    const Options = [{ "label": "Yes", "value": "Yes", "name": "LockedAccount" }, { "label": "No", "value": "No", "name": "LockedAccount" }]
+    const values = [{ "label": Key === true ? "YES" : "NO" }]
+    const Options = [{ "label": "Yes", "value": true, "name": "locked_account" }, { "label": "No", "value": false, "name": "locked_account" }]
     // const Options = [{ "label": "Yes", "value": true, "name":"EmailOpt" }, { "label": "No", "value": false, "name":"EmailOpt" }]
     return (
         <>
