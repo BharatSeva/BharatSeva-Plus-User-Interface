@@ -61,7 +61,7 @@ export default function MyRecords() {
         async function GetData() {
             SetIsFetched((p) => ({ ...p, IsFetched: false }));
             try {
-                let { data, res } = await FetchData(`/api/v1/user/issue`);
+                let { data, res } = await FetchData(`/issue`);
                 if (res.ok) {
                     SetUserData(data);
                     SetIsFetched((p) => ({ ...p, IsGood: true }));

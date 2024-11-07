@@ -28,7 +28,7 @@ export default function Issues() {
         async function Fetchdata() {
             SetIsFetched((p) => ({ ...p, ISFetched: false }));
             try {
-                const { data, res } = await FetchData(`/api/v1/user/issue`);
+                const { data, res } = await FetchData(`/issue`);
                 if (res.ok) {
                     SetIsFetched((p) => ({ ...p, IsGood: true }));
                     SetFetched(data);

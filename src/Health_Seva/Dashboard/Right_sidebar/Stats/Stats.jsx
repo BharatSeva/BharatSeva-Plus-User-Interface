@@ -15,7 +15,7 @@ export default function Stats() {
         Setresponse(false)
         try {
 
-            const { data, res } = await FetchData(`/api/v1/user/stats`)
+            const { data, res } = await FetchData(`/stats`)
             if (res.ok) {
                 Setresponse(data.stats)
             }

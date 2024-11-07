@@ -1,140 +1,189 @@
-import "./ActivityLog.css"
-import { FetchData } from "../../../FetchData"
-import { useState, useEffect } from "react"
-import { Navigate } from "react-router-dom"
-import { RiArrowDropUpLine } from "@remixicon/react"
-import { RiArrowDropDownLine } from "@remixicon/react"
+import "./ActivityLog.css";
+import { FetchData } from "../../../FetchData";
+import { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import { RiArrowDropUpLine, RiArrowDropDownLine } from "@remixicon/react";
 
-const { v4: uuidv4 } = require('uuid');
 export default function ActivityLog() {
-    const [isOpenModified, setisOpenModified] = useState(false);
+    // Separate dropdown toggle for each log section
+    const [isOpenRecords, setIsOpenRecords] = useState(false);
+    const [isOpenBiodata, setIsOpenBiodata] = useState(false);
+    
+    const toggleDropdownRecords = () => setIsOpenRecords(!isOpenRecords);
+    const toggleDropdownBiodata = () => setIsOpenBiodata(!isOpenBiodata);
 
-    const toggleDropdownModified = () => {
-        setisOpenModified(!isOpenModified);
-    };
-    const [isOpenViewed, setisOpenViewed] = useState(false);
+    // Separate state for each type of data
+    const [recordsResponse, setRecordsResponse] = useState([]);
+    const [biodataResponse, setBiodataResponse] = useState([]);
+    
+    // Separate fetching states
+    const [isFetchedRecords, setIsFetchedRecords] = useState({ isFetched: false, isGood: true });
+    const [isFetchedBiodata, setIsFetchedBiodata] = useState({ isFetched: false, isGood: true });
 
-    const toggleDropdownViewed = () => {
-        setisOpenViewed(!isOpenViewed);
-    };
+    const [isRedirect, setIsRedirect] = useState(false);
 
-    const [ActivityResponse, SetActivityResponse] = useState()
-    const [IsFetched, SetIsFetched] = useState({
-        IsFetched: false,
-        IsGood: true
-    })
-    const [Isredirect, SetIsredirect] = useState(false)
-
-    async function GetActivity() {
+    // Fetch records data
+    async function getActivity() {
         try {
-            SetActivityResponse(false)
-            const { data, res } = await FetchData(`/api/v1/userdetails/accountactivitylog`)
+            setRecordsResponse([]);
+            const { data, res } = await FetchData(`/logs/records/viewed`);
             if (res.ok) {
-                SetActivityResponse(data)
-            }
-            else if (res.status === 405) { SetIsredirect(true) }
-            else {
-                SetActivityResponse(false)
+                setRecordsResponse(data.viewed_records || []);
+            } else if (res.status === 405) {
+                setIsRedirect(true);
+            } else {
+                setRecordsResponse([]);
             }
         } catch (err) {
-            SetIsFetched((p) => ({ ...p, IsGood: true }))
-            alert("Could Not Fetch Account Activity Logs")
+            setIsFetchedRecords({ isFetched: true, isGood: false });
+            alert("Could Not Fetch Account Activity Logs");
         }
-        SetIsFetched((p) => ({ ...p, IsFetched: true }))
+        setIsFetchedRecords({ isFetched: true, isGood: true });
+    }
+
+    // Fetch biodata data
+    async function getBiodata() {
+        try {
+            setBiodataResponse([]);
+            const { data, res } = await FetchData(`/logs/info/viewed`);
+            if (res.ok) {
+                setBiodataResponse(data.viewed_biodata || []);
+            } else if (res.status === 405) {
+                setIsRedirect(true);
+            } else {
+                setBiodataResponse([]);
+            }
+        } catch (err) {
+            setIsFetchedBiodata({ isFetched: true, isGood: false });
+            alert("Could Not Fetch Account Activity Logs");
+        }
+        setIsFetchedBiodata({ isFetched: true, isGood: true });
     }
 
     useEffect(() => {
-        GetActivity()
-    }, [])
-    let ModifiedResponse, ViewedResponse
-    if (ActivityResponse) {
-        ModifiedResponse = ActivityResponse.Modified_Length > 0 ? (
-            ActivityResponse.Modified_By
-                .sort((a, b) => new Date(b.date) - new Date(a.date))
-                .map((data) => (
-                    <div key={uuidv4()} className="text-black rounded-lg mx-8 my-4 border-black " style={{ backgroundColor: "#EEECEC" }}>
-                        <div className="flex flex-col gap-0">
-                            <div className="font-semibold text-base px-4 flex items-center border-bottom"><p>HealthCare: </p><p className="font-normal inline text-sm">{data.name}</p></div>
-                            <div className="font-semibold text-base w-full px-4 flex items-center border-bottom" style={{ backgroundColor: "#F5F5F5" }}><p>Location: </p><p className="font-normal inline text-sm">{data.location.city}, {data.location.state}, {data.location.country}</p></div>
-                            <div className="font-semibold text-base mx-4 flex items-center"><p>Date & Time: </p><p className="font-normal inline text-sm">{data.date.split(' ').slice(0, 5).join(' ')}</p></div>
+        getActivity();
+        getBiodata();
+    }, []);
+
+    const createdRecords = recordsResponse.length > 0
+        ? recordsResponse
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .map((data) => (
+                <div key={data.healthcare_id} className="text-black rounded-lg mx-8 my-4 border-black" style={{ backgroundColor: "#EEECEC" }}>
+                    <div className="flex flex-col gap-0">
+                        <div className="text-base px-17 flex items-center border-bottom">
+                            <p>Healthcare: </p>
+                            <p className="font-normal inline text-sm">{data.healthcare_name}</p>
+                        </div>
+                        <div className="text-base px-17 flex items-center border-bottom">
+                            <p>ID: </p>
+                            <p className="font-normal inline text-sm">{data.healthcare_id}</p>
+                        </div>
+                        <div className="text-base px-17 flex items-center border-bottom">
+                            <p>Category: </p>
+                            <p className="font-normal inline text-sm">{data.category}</p>
+                        </div>
+                        <div className="text-base mx-8 flex items-center">
+                            <p>Date & Time: </p>
+                            <p className="font-normal inline text-sm">{new Date(data.date).toLocaleString()}</p>
                         </div>
                     </div>
-                )
-                )
-        ) : (<p className="notavailabletext">No One Modified Your Records Till Now</p>)
+                </div>
+            ))
+        : (<p className="notavailabletext">No Records Created Yet</p>);
 
-        ViewedResponse = ActivityResponse.Viewed_Length > 0 ? (
-            ActivityResponse.Viewed_By
-                .sort((a, b) => new Date(b.date) - new Date(a.date))
-                .map((data) => (
-
-                    <div key={uuidv4()} className="text-black rounded-lg mx-6 my-4 border-black " style={{ backgroundColor: "#EEECEC" }}>
-                        <div className="flex flex-col ">
-                            <div className="font-semibold text-base px-4 flex items-center border-bottom"><p>HealthCare: </p><p className="font-normal inline text-sm">{data.name}</p></div>
-                            <div className="font-semibold text-base w-full px-4 flex items-center border-bottom" style={{ backgroundColor: "#F5F5F5" }}><p>Location: </p><p className="font-normal inline text-sm">{data.location.city}, {data.location.state}, {data.location.country}</p></div>
-                            <div className="font-semibold text-base mx-4 flex items-center "><p>Date & Time: </p><p className="font-normal inline text-sm">{data.date.split(' ').slice(0, 5).join(' ')}</p></div>
+    const viewedBiodataRecords = biodataResponse.length > 0
+        ? biodataResponse
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .map((data) => (
+                <div key={data.healthcare_id} className="text-black rounded-lg mx-8 my-4 border-black" style={{ backgroundColor: "#EEECEC" }}>
+                    <div className="flex flex-col gap-0">
+                        <div className="text-base px-10 flex items-center border-bottom">
+                            <p>Healthcare: </p>
+                            <p className="font-normal inline text-sm">{data.healthcare_name}</p>
+                        </div>
+                        <div className="text-base px-10 flex items-center border-bottom">
+                            <p>ID: </p>
+                            <p className="font-normal inline text-sm">{data.healthcare_id}</p>
+                        </div>
+                        <div className="text-base px-10 flex items-center border-bottom">
+                            <p>Category: </p>
+                            <p className="font-normal inline text-sm">{data.category}</p>
+                        </div>
+                        <div className="text-base px-10 flex items-center">
+                            <p>Date & Time: </p>
+                            <p className="font-normal inline text-sm">{new Date(data.date).toLocaleString()}</p>
                         </div>
                     </div>
-                )
-                )
-        ) : (<p className="notavailabletext">No One Viewed Your Records Till Now</p>)
-
-
-
-    }
-
+                </div>
+            ))
+        : (<p className="notavailabletext">No Biodata Records Viewed Yet</p>);
 
     return (
         <>
-            {Isredirect && <Navigate to='/user/login' />}
-            {IsFetched.IsFetched ? (IsFetched.IsGood ? (
-                <>
-                    <div className="bg-white rounded-lg  border-black mt-4 mx-16">
+            {isRedirect && <Navigate to="/user/login" />}
+            
+            {/* Display Records Log Section */}
+            {isFetchedRecords.isFetched ? (
+                isFetchedRecords.isGood ? (
+                    <div className="bg-white rounded-lg border-black mt-4 mx-16">
                         <div className="flex gap-2 items-center justify-between px-8">
                             <div className="flex items-center">
-                                <h2 className="text-black text-xl font-semibold px-6 py-4">Modified Log</h2>
-                                <p className="font-light text-black text-base">Health facilities who changed or updated your health data</p>
+                                <h2 className="text-black text-xl font-semibold px-6 py-4">Viewed Records Log</h2>
+                                <p className="font-light text-black text-base">Health facilities who viewed your health records</p>
                             </div>
-                            <div onClick={toggleDropdownModified} className="cursor-pointer">
-                                {isOpenModified ? (
-                                    <RiArrowDropUpLine size={30} color="black" />
+                            <div onClick={toggleDropdownRecords} className="cursor-pointer">
+                                {isOpenRecords ? (
+                                    <RiArrowDropUpLine size={50} color="black" />
                                 ) : (
-                                    <RiArrowDropDownLine size={30} color="black" />
+                                    <RiArrowDropDownLine size={50} color="black" />
                                 )}
                             </div>
                         </div>
                         <div className="h-0.5 w-full bg-black"></div>
-                        {isOpenModified && (
+                        {isOpenRecords && (
                             <div className="grid grid-cols-3 gap-2 mt-4">
-                                {ActivityResponse ? ModifiedResponse : (<p className="statuslogLoading">Loading...</p>)}
+                                {createdRecords}
                             </div>
                         )}
                     </div>
+                ) : (
+                    <p>Could Not Connect to Server...</p>
+                )
+            ) : (
+                <div className="FetchingDataLogo">Fetching Logs <i className="fa-solid fa-rotate"></i></div>
+            )}
 
-
-                    <div className="bg-white rounded-lg  border-black mt-4 mx-16">
+            {/* Display Biodata Log Section */}
+            {isFetchedBiodata.isFetched ? (
+                isFetchedBiodata.isGood ? (
+                    <div className="bg-white rounded-lg border-black mt-4 mx-16">
                         <div className="flex gap-2 items-center justify-between px-8">
                             <div className="flex items-center">
-                                <h2 className="text-black text-xl font-semibold px-6 py-4">Viewed Log</h2>
-                                <p className="font-light text-black text-base">Health facilities who viewed your health data</p>
+                                <h2 className="text-black text-xl font-semibold px-6 py-4">Viewed Biodata Log</h2>
+                                <p className="font-light text-black text-base">Health facilities who viewed your biodata</p>
                             </div>
-                            <div onClick={toggleDropdownViewed} className="cursor-pointer">
-                                {isOpenViewed ? (
-                                    <RiArrowDropUpLine size={30} color="black" />
+                            <div onClick={toggleDropdownBiodata} className="cursor-pointer">
+                                {isOpenBiodata ? (
+                                    <RiArrowDropUpLine size={50} color="black" />
                                 ) : (
-                                    <RiArrowDropDownLine size={30} color="black" />
+                                    <RiArrowDropDownLine size={50} color="black" />
                                 )}
                             </div>
                         </div>
                         <div className="h-0.5 w-full bg-black"></div>
-
-                        {isOpenViewed && (
+                        {isOpenBiodata && (
                             <div className="grid grid-cols-3 gap-2 mt-4">
-                                {ActivityResponse ? ViewedResponse : (<p className="statuslogLoading">Loading...</p>)}
+                                {viewedBiodataRecords}
                             </div>
                         )}
                     </div>
-                </>) : <p>Could Not Connect to Server...</p>) : (<div className="FetchingDataLogo"> Fetching Logs <i className="fa-solid fa-rotate"></i></div>)}
+                ) : (
+                    <p>Could Not Connect to Server...</p>
+                )
+            ) : (
+                <div className="FetchingDataLogo">Fetching Logs <i className="fa-solid fa-rotate"></i></div>
+            )}
         </>
-    )
+    );
 }

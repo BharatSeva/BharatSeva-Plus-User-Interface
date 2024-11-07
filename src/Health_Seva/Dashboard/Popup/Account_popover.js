@@ -18,9 +18,9 @@ export default function AccountPopover() {
                 <li>Signed in as</li>
                 <li className="UserNameAccountSection">{User_Name ? User_Name.fullname : (<p>--/--</p>)}</li>
                 <div className="horizontalRule"></div>
+                <li><a href="https://github.com/orgs/BharatSeva/discussions" target="_blank" rel="noreferrer">Help</a></li>
                 <li>Preferances</li>
-                <li>Help</li>
-                <li><a href="https://github.com/CaptainTron/BharatSeva_ReactJS/discussions/2" target="_blank" rel="noreferrer">Community</a></li>
+                <li><a href="https://github.com/BharatSeva" target="_blank" rel="noreferrer">Community</a></li>
                 <li onClick={ClearTokenAndName}><Link to="/user/login" style={{ color: "white", textDecoration: "none" }}>Sign Out</Link></li>
 
             </ul>

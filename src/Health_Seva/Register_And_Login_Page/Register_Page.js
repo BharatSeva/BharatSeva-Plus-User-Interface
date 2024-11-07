@@ -33,7 +33,7 @@ export default function RegistrationPage() {
     const RegisterAPI = async () => {
         SetAuthenticated((p) => ({ ...p, IsFetching: true }));
         try {
-            const Authorization = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/user/auth/register`, {
+            const Authorization = await fetch(`${process.env.REACT_APP_API_URL}/auth/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

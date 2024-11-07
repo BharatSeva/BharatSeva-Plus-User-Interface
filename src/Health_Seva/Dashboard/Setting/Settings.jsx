@@ -15,7 +15,7 @@ export default function Settings() {
         SetSettingResponse(false)
         try {
 
-            const { res } = await PatchData(`/api/v1/user/pref/update`, { [name]: value })
+            const { res } = await PatchData(`/pref/update`, { [name]: value })
             if (res.ok) {
                 alert("Updated Successfully")
             }
@@ -30,7 +30,7 @@ export default function Settings() {
     async function GetSettingData() {
         try {
             SetSettingResponse(false)
-            const { data, res } = await FetchData(`/api/v1/user/pref/get`)
+            const { data, res } = await FetchData(`/pref/get`)
             if (res.ok) {
                 SetSettingResponse(data.preferences)
             }

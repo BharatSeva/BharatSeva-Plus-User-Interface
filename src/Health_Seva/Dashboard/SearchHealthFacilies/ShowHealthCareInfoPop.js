@@ -1,127 +1,146 @@
-import "./ShowHealthCareInfoPop.css"
-import Select from "react-select"
+import "./ShowHealthCareInfoPop.css";
+import Select from "react-select";
 import { useEffect, useState } from "react";
 import { FetchData, PostData } from "../../FetchData";
 import { useSearchParams, Navigate } from "react-router-dom";
 
 export default function ShowHealthInfo_PopOver() {
+    const [listData, setListData] = useState(null);
+    const [isRedirect, setIsRedirect] = useState(false);
+    const [fetchStatus, setFetchStatus] = useState({ isFetched: false, isGood: false });
+    const [appointment, setAppointment] = useState({});
+    const [params] = useSearchParams();
 
-    const [ListData, SetListData] = useState()
-    const [Isredirect, SetIsredirect] = useState(false)
-    const [IsFetched, SetIsFetched] = useState({
-        IsFetched: false,
-        IsGood: false
-    })
-
-    const [params] = useSearchParams()
-
-    const [Appointment, SetAppointment] = useState()
-    // Post Appointment
-    async function postAppointment(e) {
-
-        e.preventDefault()
+    // Appointment POST handler
+    async function handlePostAppointment(e) {
+        e.preventDefault();
         try {
-            const { data, res } = await PostData(`/api/v1/userdetails/${params.get("id")}/createappointment`, Appointment)
+            const { data, res } = await PostData(`/appointment/create`, appointment);
             if (res.ok) {
-                alert("Appointment Successful")
-
-            } 
-            else if (res.status === 405) { SetIsredirect(true) }
-            else {
-                alert(data.message)
-
+                alert("Appointment Successful");
+            } else if (res.status === 405) {
+                setIsRedirect(true);
+            } else {
+                alert(data?.message || "Failed to create appointment.");
             }
-        } catch (err) {
-            alert(err.message)
-            console.log(err)
+            console.log("Data", data)
+        } catch (error) {
+            console.error("Error posting appointment:", error);
+            alert("Failed to create appointment. Please try again.");
         }
     }
 
+    // Fetch Healthcare Data
     useEffect(() => {
-        // Fetch HealthCareHEre
-        async function GetHealthCareForAppointment() {
-            SetIsFetched((p) => ({ ...p, IsFetched: false }))
+        async function fetchHealthcareData() {
+            setFetchStatus({ isFetched: false, isGood: false });
             try {
-                const { data, res } = await FetchData(`/api/v1/user/gethealthcare/${params.get("id")}`)
+                const { data, res } = await FetchData(`/appointment/healthcare/search?healthcare_id=${params.get("healthcare_id")}`);
                 if (res.ok) {
-                    SetListData(data.healthcare)
-                    SetIsFetched((p) => ({ ...p, IsGood: true }))
-                }else if (res.status === 405) { SetIsredirect(true) }
-            } catch (err) {
-                alert("Please Check Your Internet Connection...")
-                SetListData(false)
+                    setListData(data.healthcare);
+                    setFetchStatus({ isFetched: true, isGood: true });
+                } else if (res.status === 405) {
+                    setIsRedirect(true);
+                }
+            } catch (error) {
+                console.error("Error fetching healthcare data:", error);
+                alert("Please check your internet connection.");
+                setFetchStatus({ isFetched: true, isGood: false });
             }
-            SetIsFetched((p) => ({ ...p, IsFetched: true }))
         }
-        GetHealthCareForAppointment()
-        SetAppointment((p) => ({ ...p, healthcare_name: `${params.get("healthcarename")}` }))
-    }, [params])
+        fetchHealthcareData();
 
-    function dataselect(e) {
-        const { name, value } = e
-        SetAppointment((prev) => ({
+    }, [params]);
+
+    // Set default appointment healthcare name
+    useEffect(() => {
+        setAppointment(prev => ({ ...prev, healthcare_name: params.get("healthcarename") }));
+    }, [params]);
+
+    // Handle changes for Select components
+    function handleSelectChange(option) {
+        const { name, value } = option;
+        setAppointment(prev => ({
             ...prev,
             [name]: value
-        }))
+        }));
     }
 
-    function datainput(e) {
-        const { name, value } = e.target
-        SetAppointment((prev) => ({
+    // Handle input field changes
+    function handleInputChange(e) {
+        const { name, value } = e.target;
+        setAppointment(prev => ({
             ...prev,
-            [name]: value
-        }))
+            [name]: value,
+            "healthcare_id": params.get("healthcare_id")
+        }));
     }
 
-    const selecttime = [
-        { "label": "10:00 AM To 12:00 AM", "name": "appointment_time", "value": "10:00 AM To 12:00 AM" },
-        { "label": "1:00 PM To 3:00 PM", "name": "appointment_time", "value": "1:00 PM To 3:00 PM" },
-        { "label": "4:00 PM To 6:00 PM", "name": "appointment_time", "value": "4:00 PM To 6:00 PM" },
-        { "label": "7:00 PM To 9:00 PM", "name": "appointment_time", "value": "7:00 PM To 9:00 PM" }
-    ]
-    const option = [
-        { "label": "Medical/Surgical Department", "name": "department", "value": "Medical/Surgical Department" },
-        { "label": "Intensive Care Unit (ICU):", "name": "department", "value": "Intensive Care Unit (ICU):" },
-        { "label": "Pediatrics Department:", "name": "department", "value": "Pediatrics Department:" },
-        { "label": "Obstetrics and Gynecology Department", "name": "department", "value": "Obstetrics and Gynecology Department" },
-        { "label": "Cardiology Department", "name": "department", "value": "Cardiology Department" }
-    ]
+    // Appointment time and department options
+    const timeOptions = [
+        { label: "10:00 AM To 12:00 PM", name: "appointment_time", value: "10:00 AM To 12:00 PM" },
+        { label: "1:00 PM To 3:00 PM", name: "appointment_time", value: "1:00 PM To 3:00 PM" },
+        { label: "4:00 PM To 6:00 PM", name: "appointment_time", value: "4:00 PM To 6:00 PM" },
+        { label: "7:00 PM To 9:00 PM", name: "appointment_time", value: "7:00 PM To 9:00 PM" }
+    ];
+    const departmentOptions = [
+        { label: "Medical/Surgical Department", name: "department", value: "Medical/Surgical Department" },
+        { label: "Intensive Care Unit (ICU)", name: "department", value: "Intensive Care Unit (ICU)" },
+        { label: "Pediatrics Department", name: "department", value: "Pediatrics Department" },
+        { label: "Obstetrics and Gynecology Department", name: "department", value: "Obstetrics and Gynecology Department" },
+        { label: "Cardiology Department", name: "department", value: "Cardiology Department" }
+    ];
 
     return (
         <div className="HealthCareInformationPopOuterContainer">
-            {Isredirect && <Navigate to='/user/login' />}
-            {IsFetched.IsFetched ? (IsFetched.IsGood ? (
-                <div className="HealthCareInfo_PopOverContainer">
-                    <div className="HealthCareLabelContainer textname"> <p>Health Facility</p> <p>Rating : {ListData.rating}</p></div>
-                    <h1 className="textname">{ListData.name}</h1>
-                    <p className="textname"><i className="fa-solid fa-location-dot"></i> {ListData.locate.landmark}, {ListData.locate.city}, {ListData.locate.state},{ListData.locate.country} </p>
-                    <div className="HealthCareInformation">
-                        <h3>About</h3>
-                        <article>
-                            {ListData.about}
-                        </article>
+            {isRedirect && <Navigate to="/user/login" replace />}
+            {fetchStatus.isFetched ? (
+                fetchStatus.isGood ? (
+                    <div className="HealthCareInfo_PopOverContainer">
+                        <div className="HealthCareLabelContainer textname">
+                            <p>Health Facility</p>
+                            <p> Healthcare_ID : {listData?.healthcare_id}</p>
+                            {/* <p> Healthcare_license : {listData?.healthcare_license}</p> */}
+                        </div>
+                        <h1 className="textname">{listData?.healthcare_name}</h1>
+                        <p className="textname">
+                            <i className="fa-solid fa-location-dot"></i> {listData?.landmark}, {listData?.city}, {listData?.state}, {listData?.country}
+                        </p>
+                        <div className="HealthCareInformation">
+                            <h3>About</h3>
+                            <p>{listData?.about}</p>
+                            <p>Email: {listData?.email}</p>
+                            <p>Availability: {listData?.availability}</p>
+                            <p>Total Facilities: {listData?.total_facilities}</p>
+                            <p>Total MBBS Doctor: {listData?.total_mbbs_doc}</p>
+                            <p>No. of Beds: {listData?.no_of_beds}</p>
+                            <p> Date of Registration: {new Date(listData?.date_of_registration).toLocaleDateString()}</p>
+                        </div>
+                        <div className="HealthCareBookAppointMent">
+                            <form onSubmit={handlePostAppointment}>
+                                <h3>Book Appointment For This Health Facility?</h3>
+                                <p className="ChargeHealthCare">Fee: ₹{listData?.appointment_fee} Per Person</p>
+                                <p>Select Date</p>
+                                <input type="date" name="appointment_date" onChange={handleInputChange} required />
+                                <p>Select Time</p>
+                                <Select options={timeOptions} onChange={handleSelectChange} className="LockAccount_Select" required />
+                                <p>Select Department</p>
+                                <Select options={departmentOptions} onChange={handleSelectChange} className="LockAccount_Select" required />
+                                <p>Enter Note (optional)</p>
+                                <textarea name="note" onChange={handleInputChange} placeholder="Enter Your Note Here...." className="textAreaNoteHealthCare"></textarea>
+                                <p className="BookedText">
+                                    <strong>Note:</strong> Once booked, no refund will be available.
+                                </p>
+                                <button id="AppointmentButton" type="submit">Book Appointment</button>
+                            </form>
+                        </div>
                     </div>
-                    <div className="HealthCareBookAppointMent">
-                        <form onSubmit={postAppointment}>
-                            <h3>Book Appointment For This Health Facility ?</h3>
-                            <p className="ChargeHealthCare">Fee : <i className="fa-solid fa-indian-rupee-sign"></i> {ListData.appointment_fee} Per Person </p>
-                            <p>Select  Date</p>
-                            <input id="DateH" type="date" name="appointment_date" onChange={datainput} required />
-                            <p>Select  Time</p>
-                            <Select id="TimeH" options={selecttime} onChange={dataselect} className="LockAccount_Select" required />
-
-                            <p>Select  Department</p>
-                            <Select id="DepartmentH" options={option} onChange={dataselect} className="LockAccount_Select" required />
-                            <p>Enter Note (optional)</p>
-                            <textarea required name="note" onChange={datainput} placeholder="Enter Your Note Here...." id="textAreaNoteHealthCare">
-
-                            </textarea>
-                            <p className="BookedText"><strong>Note</strong> : Once Booked No Amount Will be Refunded In Any Case!</p>
-                            <button id="AppointmentButton">Book Appointment</button>
-                        </form>
-                    </div>
-                </div>
-            ) : <p className="Couldnotconnect">Could Not Connect To Server...🙄</p>) : (<div className="FetchingDataLogo"> Fetching Details <i className="fa-solid fa-rotate"></i></div>)}
+                ) : (
+                    <p className="Couldnotconnect">Could Not Connect To Server...🙄</p>
+                )
+            ) : (
+                <div className="FetchingDataLogo"> Fetching Details <i className="fa-solid fa-rotate"></i></div>
+            )}
         </div>
-    )
+    );
 }
