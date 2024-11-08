@@ -2,7 +2,7 @@
   "name": "Bharat Seva+ User Interface",
   "version": "0.1.0",
   "private": false,
-  "homepage": "/",
+  "homepage": "/client",
   "dependencies": {
     "@react-oauth/google": "^0.11.0",
     "@remixicon/react": "^4.4.0",

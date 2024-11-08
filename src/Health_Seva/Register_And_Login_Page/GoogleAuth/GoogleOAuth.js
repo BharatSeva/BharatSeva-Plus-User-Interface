@@ -52,7 +52,7 @@ function GoogleOAuth() {
 
     return (
         <>
-            {Isstatus.IsAuthorized && (<Navigate to="/user/dashboard" replace={true} />)}
+            {Isstatus.IsAuthorized && (<Navigate to="/client/dashboard" replace={true} />)}
             <div className='GoogleDesign'>
                 <p onClick={() => { login(); Setstatus((p) => ({ ...p, statustxt: "Authorization Flow Initiated !", message: true })) }}>Sign Up With <img alt='googlelogo' src={googleimg} /></p>
             </div>
@@ -67,7 +67,7 @@ function GoogleOAuth() {
                     I really appreciate
                     your Interest in my project. All the dummy data has been successfully generated, please explore this website and
                     let me know if there is any feedback or queries for me.</p>
-                <NavLink to="/user/dashboard"><p className='Proceedbtnguestuser'>Proceed to Dashboard! </p></NavLink>
+                <NavLink to="/client/dashboard"><p className='Proceedbtnguestuser'>Proceed to Dashboard! </p></NavLink>
             </div>
 
         </>

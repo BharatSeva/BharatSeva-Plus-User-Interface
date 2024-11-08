@@ -99,7 +99,7 @@ export default function LoginPage() {
         return (
             <>
                 <Message message="Login Success..." />
-                <Navigate to="/user/dashboard" replace={true} />
+                <Navigate to="/client/dashboard" replace={true} />
             </>
         );
     }
@@ -167,7 +167,7 @@ export default function LoginPage() {
                     </div>
 
                     <p className="AccountPrompt">
-                        Don't Have an Account? <Link to="/user/register" className="RegisterBtn">Register Here</Link>
+                        Don't Have an Account? <Link to="/client/register" className="RegisterBtn">Register Here</Link>
                     </p>
                 </div>
             </div>

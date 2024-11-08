@@ -14,7 +14,7 @@ export default function IsAuthenticated() {
         } 
         else if (!UserData.isAuthenticated) {
             alert("Request Limit Reached")
-            return <Navigate to="/user/login" />
+            return <Navigate to="/client/login" />
         }
         //  else {
         //     alert("Something Got Wrong With Your Session, Please Login Again!")
@@ -22,9 +22,9 @@ export default function IsAuthenticated() {
         // } 
     } catch (err) {
         alert("Session Expired, Please Login!")
-        return < Navigate to="/user/login" />
+        return < Navigate to="/client/login" />
     }
 
 
-    return (<Navigate to="/user/login" />)
+    return (<Navigate to="/client/login" />)
 }

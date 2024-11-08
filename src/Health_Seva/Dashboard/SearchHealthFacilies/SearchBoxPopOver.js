@@ -62,7 +62,7 @@ export default function SearchPopover({ Inputvalue }) {
 
     return (
         <div className="SearchPopoverContainer SearchPopDisplayNone">
-            {isRedirect && <Navigate to="/user/login" />}
+            {isRedirect && <Navigate to="/client/login" />}
             {isDataAvailable ? (
                 healthcareList.length > 0 ? (
                     <ul id="SearchUILI">

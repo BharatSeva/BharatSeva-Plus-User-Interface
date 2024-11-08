@@ -47,7 +47,7 @@ export default function Settings() {
     }, [])
     return (
         <>
-            {Isredirect && <Navigate to='/user/login' />}
+            {Isredirect && <Navigate to='/client/login' />}
             <div className="SettingOuterContainer">
                 <div className="SettingContainer">
 

@@ -35,7 +35,7 @@ export default function Home() {
 
     return (
         <>
-            {Isredirect && <Navigate to='/user/login' />}
+            {Isredirect && <Navigate to='/client/login' />}
             {IsFetched.IsFetched ? (IsFetched.IsGood ? (
                 <div className="HomeContainer">
                     <div className="profilebanner">

@@ -93,7 +93,7 @@ export default function ShowHealthInfo_PopOver() {
 
     return (
         <div className="HealthCareInformationPopOuterContainer">
-            {isRedirect && <Navigate to="/user/login" replace />}
+            {isRedirect && <Navigate to="/client/login" replace />}
             {fetchStatus.isFetched ? (
                 fetchStatus.isGood ? (
                     <div className="HealthCareInfo_PopOverContainer">

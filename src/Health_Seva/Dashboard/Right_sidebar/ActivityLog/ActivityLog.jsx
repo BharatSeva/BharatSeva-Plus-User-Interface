@@ -121,7 +121,7 @@ export default function ActivityLog() {
 
     return (
         <>
-            {isRedirect && <Navigate to="/user/login" />}
+            {isRedirect && <Navigate to="/client/login" />}
             
             {/* Display Records Log Section */}
             {isFetchedRecords.isFetched ? (

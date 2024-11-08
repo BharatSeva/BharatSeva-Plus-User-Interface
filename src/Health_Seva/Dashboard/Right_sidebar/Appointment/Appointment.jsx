@@ -80,7 +80,7 @@ export default function Appointment() {
 
     return (
         <div className="AppointmentUserOuterContainer">
-            {Isredirect && <Navigate to='/user/login' />}
+            {Isredirect && <Navigate to='/client/login' />}
             <div className="appointmentContainer">
                 <h2 className="USerappointmentHeader">Appointments</h2>
                 <p className="UserAppointmentSectionpara">This Section List Your Appointments You Have Scheduled with HealthCares</p>

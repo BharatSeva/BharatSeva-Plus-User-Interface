@@ -13,8 +13,8 @@ export default function App() {
 
   const route = createBrowserRouter(createRoutesFromElements(
     <>
-      <Route path="/" element={<IndexPage />} />
-      <Route path='/user' errorElement={<ErrorFound />}>
+      <Route path="/client" element={<IndexPage />} />
+      <Route path='/client' errorElement={<ErrorFound />}>
         <Route path='login' element={<LoginPage />} />
         <Route path='register' element={<RegisterPage />} />
         <Route element={<IsAuthenticated />}>

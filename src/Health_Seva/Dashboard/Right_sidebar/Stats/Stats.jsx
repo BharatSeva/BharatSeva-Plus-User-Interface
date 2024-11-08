@@ -36,7 +36,7 @@ export default function Stats() {
 
     return (
         <div className="WholeStatscontainer">
-            {Isredirect && <Navigate to='/user/login' />}
+            {Isredirect && <Navigate to='/client/login' />}
             {IsFetched.IsGood ? (<div>
                 <div className="Account_Stats">
                     <h1 className="LockAccount_Header">Stats</h1>

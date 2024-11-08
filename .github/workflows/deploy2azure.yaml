@@ -38,7 +38,7 @@ jobs:
 
       - name: Copy build files to AzureVM
         run: |
-          scp -i /home/runner/.ssh/id_rsa -r build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/azureuser/server/patient_static_build/build/
+          scp -i /home/runner/.ssh/id_rsa -r build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/azureuser/server/static_client/
        
       - name: Deploy to AzureVM
         uses: appleboy/ssh-action@master
@@ -48,15 +48,5 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             cd /home/azureuser/server/
-            
-            echo "#!/bin/bash" > docker_commands.sh
-            echo "docker-compose down" >> docker_commands.sh
-            echo "docker-compose build" >> docker_commands.sh
-            echo "docker-compose up -d" >> docker_commands.sh
-            echo "docker image prune -f" >> docker_commands.sh
-            echo "docker volume prune -f" >> docker_commands.sh
+            sudo docker exect -it nginx nginx -s reload
 
-            chmod +x docker_commands.sh
-            # execute the script after invoking following command
-            # it will continue to run on server !!
-            ./docker_commands.sh &

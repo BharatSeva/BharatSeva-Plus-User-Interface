@@ -45,7 +45,7 @@ export default function Left_sidebar({ toggle, toggleHiddenMessage }) {
                     <div className="LLside_downside">
                         <ul>
                             {/* <li>Contact Us</li> */}
-                            <NavLink to='/user/dashboard'><li>About Us</li></NavLink>
+                            <NavLink to='/client/dashboard'><li>About Us</li></NavLink>
                             {/* <li>Privacy Policy</li> */}
                             {/* <li>Security</li> */}
                             {/* <li> Our Data Centers</li> */}

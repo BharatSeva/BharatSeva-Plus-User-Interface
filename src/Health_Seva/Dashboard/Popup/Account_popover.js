@@ -21,7 +21,7 @@ export default function AccountPopover() {
                 <li><a href="https://github.com/orgs/BharatSeva/discussions" target="_blank" rel="noreferrer">Help</a></li>
                 <li>Preferances</li>
                 <li><a href="https://github.com/BharatSeva" target="_blank" rel="noreferrer">Community</a></li>
-                <li onClick={ClearTokenAndName}><Link to="/user/login" style={{ color: "white", textDecoration: "none" }}>Sign Out</Link></li>
+                <li onClick={ClearTokenAndName}><Link to="/client/login" style={{ color: "white", textDecoration: "none" }}>Sign Out</Link></li>
 
             </ul>
         </div>

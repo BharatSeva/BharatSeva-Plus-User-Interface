@@ -67,7 +67,7 @@ export default function RegistrationPage() {
             {IsAuthenticated.IsAuthenticated && (
                 <div>
                     <Message message="Registration Successful..." />
-                    <Navigate to="/user/dashboard" replace={true} />
+                    <Navigate to="/client/dashboard" replace={true} />
                 </div>
             )}
 
@@ -95,7 +95,7 @@ export default function RegistrationPage() {
 
                         <input type="submit" value={`${IsAuthenticated.IsFetching ? "Registering..." : "Register"}`} disabled={IsAuthenticated.IsFetching} className="SubmitBtn" />
                     </form>
-                    <p className="AccountPrompt">Already Have an Account? <Link to="/user/login" className="RegisterBtn">Login Here</Link></p>
+                    <p className="AccountPrompt">Already Have an Account? <Link to="/client/login" className="RegisterBtn">Login Here</Link></p>
                 </div>
             </div>
         </div>
