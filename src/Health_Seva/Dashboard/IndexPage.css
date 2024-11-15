@@ -29,7 +29,8 @@ h1 {
     margin: 1vh 0 4vh 0;
     height: 0.4vh;
 }
-.IndexNameContainer img{
+
+.IndexNameContainer img {
     width: 20vw;
 }
 
@@ -60,23 +61,81 @@ h1 {
 /* Go To Login Page Goes Here */
 .gotologinpageIndex {
     position: absolute;
-    top: 2vh;
-    left: 2vw;  
-    box-shadow: 0 0 10px black;
-    padding: 0.6vh;    
+    top: 3vh;
+    left: 2vw;
+    padding: 2vh 4vh 2vh 4vh;
+    border-radius: 1vh;
     cursor: pointer;
+    isolation: isolate;
+}
+
+.gotologinpageIndex::before,
+.gotologinpageIndex::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(90deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000);
+    background-size: 400% 400%;
+    z-index: -2;
+    animation: glowingBorder 4s ease infinite;
+}
+
+.gotologinpageIndex::after {
+    filter: blur(8px);
+    opacity: 0.7;
 }
 
 .gotologinpageIndex p {
-    /* background-color: rgb(48, 48, 48); */
-    /* padding: 1vh; */
-    border-radius: 0.6vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    /* color: #333; */
+    color: white;
+    position: relative;
+    z-index: 1;
 }
-.GoToSitePage{
-    font-size: 1.7vh;
+
+/* White background inside the button */
+.gotologinpageIndex::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgb(31, 26, 26);
+    border-radius: 1vh;
+    z-index: -1;
+}
+
+@keyframes glowingBorder {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.GoToSitePage {
+    font-size: 1.9vh;
+    /* font-size: 1.7vh; */
     color: lime;
 }
-.GoToSitePageMailMe{
-    font-size: 2.5vh;
+
+.GoToSitePageMailMe {
+    font-size: 1.9vh;
+    padding: 1vh;
     color: lime;
 }

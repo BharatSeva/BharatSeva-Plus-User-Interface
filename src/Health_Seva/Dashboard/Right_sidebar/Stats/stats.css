@@ -1,47 +1,57 @@
-
-.WholeStatscontainer{
+.WholeStatscontainer {
+    padding: 1vh;
     margin: 2vh;
     padding-bottom: 2vh;
     width: 70vw;
 }
-.CouldNOConnectstatus{
+
+.CouldNOConnectstatus {
     text-align: center;
     font-style: italic;
     color: rgb(112, 0, 0);
 }
-.Account_Stats{
+
+.Account_Stats {
     background-color: #504c4c;
     border-radius: 1vh;
-    box-shadow: 2px 2px 10px black;
+    box-shadow: 9px 9px 20px black;
     width: 69vw;
     padding: 1vh 1vw;
     margin: 1vh;
 }
 
 
-.StatsContainer span:nth-child(n){
+.StatsContainer span:nth-child(n) {
     display: inline-block;
     width: 15vw;
 }
-.StatsContainer p:nth-child(odd){
-    background-color: rgb(53 47 47);
+.StatsContainer p{
+    height: 4vh;
+}
+
+.StatsContainer p:nth-child(odd) {
+    background-color: rgb(72, 68, 68);
     padding: 1.5vh;
     border-radius: 1vh;
 }
-.StatsContainer p:nth-child(even){
-    background-color: rgb(67 67 67);;
+
+.StatsContainer p:nth-child(even) {
+    background-color: rgb(67 67 67);
+    ;
     padding: 1.5vh;
     border-radius: 1vh;
 }
 
 /* Not available Text available Here Now */
-.notavailabletext{
+.notavailabletext {
     color: yellow;
 }
-.statuslogLoading{
+
+.statuslogLoading {
     color: lime;
 }
-.StatsuFetchUser{
+
+.StatsuFetchUser {
     color: rgb(117, 0, 0);
     font-weight: bolder;
 }

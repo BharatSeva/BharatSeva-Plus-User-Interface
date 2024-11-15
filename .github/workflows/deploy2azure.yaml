@@ -48,7 +48,8 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             cd /home/azureuser/server/
-            sudo docker-compose down nginx
-            suod docker-compose up -d
+            # start nginx with new build files
+            sudo docker rm -f nginx
+            sudo docker-compose up -d
             sudo docker exec nginx nginx -s reload
 

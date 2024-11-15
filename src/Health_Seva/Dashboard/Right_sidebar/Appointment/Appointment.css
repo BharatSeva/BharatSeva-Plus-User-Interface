@@ -24,16 +24,19 @@
 
 .apppointment_log {
     margin: 1vh 0 1vh 0;
-    padding: 1vh;
+    padding: 2vh;
     border-radius: 1vh;
     background-color: rgb(55 51 51);
     box-shadow: 4px 1px 10px #110b0b;
     margin-top: 2vh;
 }
+.apppointment_log p{
+    height: 2vh;
+}
 
 .apppointment_log span {
     display: inline-block;
-    width: 17vw;
+    width: 18vw;
 }
 
 /* This One for Note Section */

@@ -3,10 +3,11 @@ import "./Appointment.css"
 import { FetchData } from "../../../FetchData"
 import { Navigate } from "react-router-dom"
 const { v4: uuidv4 } = require('uuid');
+
+
 export default function Appointment() {
     const DataSelected = document.getElementById("SelectDate")
     const [Isredirect, SetIsredirect] = useState(false)
-
 
     const [Data, SetData] = useState()
     const [Data3, SetData3] = useState()
@@ -14,7 +15,6 @@ export default function Appointment() {
         IsFetched: false,
         IsGood: false,
         Iserr: false
-
     })
 
     async function GetApppointment() {
@@ -47,19 +47,19 @@ export default function Appointment() {
         let span = (<span className="Pending">Pending</span>)
         let status = data.status
         if (status === "Confirmed") span = (<span className="Confirmed">Confirmed</span>)
-        else if(status==="Rejected") span = (<span className="Rejected">Rejected</span>)
-        else if(status==="Not Available") span = (<span className="NotAvailable">Not Available</span>)
+        else if (status === "Rejected") span = (<span className="Rejected">Rejected</span>)
+        else if (status === "Not Available") span = (<span className="NotAvailable">Not Available</span>)
 
 
-            return (<div key={uuidv4()} className="apppointment_log">
-                <p><span>Status :</span>{span}</p>
-                <p><span>Department :</span> {data.department}</p>
-                <p><span>Appointment Date :</span> {data.appointment_date}</p>
-                <p><span>Appointment Time :</span> {data.appointment_time}</p>
-                <p><span>HealthCare :</span> {data.healthcare_name}</p>
-                <p><span>HealthCare_ID :</span> {data.healthcare_id}</p>
-                <p><span>Note :</span> <span id="AppointmentNoteSection">{data.note}</span></p>
-            </div>)
+        return (<div key={uuidv4()} className="apppointment_log">
+            <p><span>Status :</span>{span}</p>
+            <p><span>Appointment Date :</span> {data.appointment_date}</p>
+            <p><span>Appointment Time :</span> {data.appointment_time}</p>
+            <p><span>Department :</span> {data.department}</p>
+            <p><span>HealthCare :</span> {data.healthcare_name}</p>
+            <p><span>HealthCare_ID :</span> {data.healthcare_id}</p>
+            <p><span>Note :</span> {data.note}</p>
+        </div>)
     }
 
     function myvalue(e) {
@@ -83,7 +83,7 @@ export default function Appointment() {
             {Isredirect && <Navigate to='/client/login' />}
             <div className="appointmentContainer">
                 <h2 className="USerappointmentHeader">Appointments</h2>
-                <p className="UserAppointmentSectionpara">This Section List Your Appointments You Have Scheduled with HealthCares</p>
+                <p className="UserAppointmentSectionpara">This Section List Your Appointments, you've Scheduled with your HealthCares</p>
                 <hr></hr>
                 <p>Filter By Date :</p>
                 <input id="SelectDate" type="date" onChange={myvalue} />

@@ -14,4 +14,12 @@
 
 .Myname {
     font-weight: bolder;
+    /* color: lime; */
+    font-weight: bolder;
+    
+}
+
+.vaibhavyadavmaintained a {
+    /* display: bo; */
+    padding: 1vh;
 }
