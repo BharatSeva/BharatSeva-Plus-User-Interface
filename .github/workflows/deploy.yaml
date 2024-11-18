@@ -51,11 +51,12 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             mkdir -p /home/azureuser/server/static_client
+            sudo chmod -R 755 /home/${{ secrets.USERNAME }}/server
 
       # copy build files from runner to production server
       - name: Copy build files to server
         run: |
-          scp -i /home/runner/.ssh/id_rsa -r build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/azureuser/server/static_client/
+          scp -i /home/runner/.ssh/id_rsa -r build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/${{ secrets.USERNAME }}/server/static_client/
        
       - name: Configure Nginx in server (remove and create nginx container)
         uses: appleboy/ssh-action@master
@@ -64,8 +65,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            cd /home/azureuser/server/
+            cd /home/${{ secrets.USERNAME }}/server/
             # start nginx with new build files
-            sudo docker rm -f nginx
+            sudo docker rm -f nginx || true
             sudo docker-compose up -d
-            sudo docker exec nginx nginx -s reload
+            sudo docker exec nginx nginx -s reload || true
