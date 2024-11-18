@@ -50,8 +50,8 @@ export default function Stats() {
                                 <p><span>Profile Viewed :</span> {response.profile_viewed}</p>
                                 <p><span>Profile Updated :</span> {response.profile_updated}</p>
                                 <p><span>Records Viewed :</span> {response.records_viewed}</p>
-                                <p><span>Records Created :</span> {response.records_created}</p>
-                                <p><span>Last Updated :</span> {response.updatedAt}</p>
+                                <p><span>Total Records :</span> {response.records_created}</p>
+                                {/* <p><span>Last Updated :</span> {response.updatedAt}</p> */}
                             </div>
                         </div>
                     ) : (<p className="statuslogLoading">Loading...</p>)}

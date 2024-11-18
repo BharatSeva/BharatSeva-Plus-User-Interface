@@ -79,7 +79,7 @@ export default function MyRecords() {
         const fetchRecords = async () => {
             setFetchStatus(prev => ({ ...prev, isFetched: false }));
             try {
-                const { data, res } = await FetchData("/issue");
+                const { data, res } = await FetchData("/records");
                 if (res.ok) {
                     setUserData(data);
                     setFetchStatus(prev => ({ ...prev, isSuccess: true }));

@@ -12,6 +12,7 @@ If you’ve found a bug or want to request a feature:
 - **Search existing issues**: Check to see if the issue or feature request already exists.
 - **Open a new issue**: If it doesn’t exist, create a new issue using a descriptive title.
 - **Provide details**: Include steps to reproduce the bug or describe the feature request in detail.
+- **Get Assigned**: Make sure to get the issue before you start working on any issue.  
 
 ### 2. Fork the Repository
 To make contributions:
@@ -60,5 +61,5 @@ Once your changes are ready:
 - Ensure your PR passes all tests and linting checks (if any).
 
 ### 10. Merging the PR
-Once your PR is approved, it will be merged into the main repository, and ```hacktoberfest-accepted``` label will be added.
+Once your PR is approved, it will be merged into the main repository.  
 Congratulations on your contribution! 🎉

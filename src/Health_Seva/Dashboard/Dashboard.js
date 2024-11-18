@@ -12,7 +12,7 @@ export default function Dashboard() {
     // Toggle On or off goes here
     const Change = (e) => {
         // Left side goes here
-        let left_sidebar = document.querySelector(".left_sidebar")
+        let left_sidebar = document.querySelector(".left_sidebarFlex")
         left_sidebar.classList.toggle("left_sidebarFlex")
         // Right One goes Here
         let right_sidebar = document.querySelector(".right_sidebar")

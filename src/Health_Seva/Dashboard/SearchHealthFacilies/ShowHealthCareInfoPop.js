@@ -15,7 +15,7 @@ export default function ShowHealthInfo_PopOver() {
     async function handlePostAppointment(e) {
         e.preventDefault();
         try {
-            const { data, res } = await PostData(`/appointment/create`, appointment);
+            const { data, res } = await PostData(`/appointment`, appointment);
             if (res.ok) {
                 alert("Appointment Successful");
             } else if (res.status === 405) {
@@ -35,9 +35,9 @@ export default function ShowHealthInfo_PopOver() {
         async function fetchHealthcareData() {
             setFetchStatus({ isFetched: false, isGood: false });
             try {
-                const { data, res } = await FetchData(`/appointment/healthcare/search?healthcare_id=${params.get("healthcare_id")}`);
+                const { data, res } = await FetchData(`/appointment/healthcare/profile?healthcare_id=${params.get("healthcare_id")}`);
                 if (res.ok) {
-                    setListData(data.healthcare);
+                    setListData(data.healthcare_profile);
                     setFetchStatus({ isFetched: true, isGood: true });
                 } else if (res.status === 405) {
                     setIsRedirect(true);

@@ -21,7 +21,7 @@ export default function Appointment() {
         SetData(false)
 
         try {
-            const { data, res } = await FetchData(`/appointment/fetch`)
+            const { data, res } = await FetchData(`/appointment`)
             if (res.ok) {
                 SetData(data.appointments_details)
                 SetIsData((p) => ({ ...p, IsGood: true }))

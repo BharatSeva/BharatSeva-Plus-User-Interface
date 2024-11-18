@@ -12,7 +12,7 @@ export default function SearchPopover({ Inputvalue }) {
     async function getHealthFacilities() {
         setHealthcareList([]);
         try {
-            const { data, res } = await FetchData('/appointment/healthcare');
+            const { data, res } = await FetchData('/appointment/healthcare/search');
             if (res.ok) {
                 setHealthcareList(data.healthcare || []);
             } else if (res.status === 405) {

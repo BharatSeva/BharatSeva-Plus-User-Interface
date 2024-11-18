@@ -1,90 +1,78 @@
-# Bharat Seva+ (User Interface) [![ESLint Check](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml/badge.svg)](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml)  [![Deploy UserInterface React build to AzureVM](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/deploy2azure.yaml/badge.svg)](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/deploy2azure.yaml)
+# Bharat Seva+ (Client Interface)  
+[![ESLint Check](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml/badge.svg)](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml)   [![Deploy UserInterface React build to AzureVM](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/deploy2azure.yaml/badge.svg)](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/deploy2azure.yaml)
 
-Welcome to the **BharatSeva User Interface** project! This repository contains the frontend code for the Bharat Seva User platform, aimed at providing a smooth and user-friendly experience for accessing various services.  
-Refer to [Official Organisation](https://github.com/BharatSeva) to get better idea of this whole project.
+Welcome to the **Bharat Seva+ Client Interface**! This repository hosts the frontend code for the Bharat Seva+ platform, focused on delivering a seamless user experience for accessing various services.  
+Visit the [Official Organisation](https://github.com/BharatSeva) for a comprehensive understanding of the project.
 
 ---
-> [!TIP]
-> Hi everyone! hope you're doing well, this is to let you know that you can access webapps hosted on public links using these credentials:
-> ### [User Interface 🔗](http://4.236.178.190:5000/user/login)  
-> **HealthID** :    2021071042  
-> **Password** :  12345  
 
+> **Note**  
+> - Request limits for IDs have been increased. If exhausted, please inform us for further adjustments.  
+> - Accounts may occasionally be deleted as part of platform enhancements.  
+> - The platform is undergoing major changes. If pages are inaccessible, please try again after 1-2 days.  
 
-> [!NOTE]
-> I've increased Request limits for above ID's, If exhausted let me know I'll increase it.  
-> We may occasionally delete accounts inorder to improve the platform, it is part of our development process.  
-> Platform is under going some major changes, if in case you are not able to access these webpages, please try again after 1 - 2 days.
 ---
-
 
 ## Table of Contents
-
-- [Introduction](#introduction)
+- [Overview](#overview)
 - [Features](#features)
 - [Technologies](#technologies)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running Locally](#running-locally)
+- [Setup Guide](#setup-guide)
+  - [Frontend](#frontend-setup)
+  - [Backend](#backend-setup)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Introduction
+## Overview
+The Bharat Seva+ Client Interface is a React-based web application enabling users to interact with essential services seamlessly. It connects with robust backend APIs to ensure secure and reliable data handling.
 
-The Bharat Seva User Interface is built to allow users to interact with essential services and tasks easily. It is a web interface that integrates with backend services and databases.
+---
 
 ## Features
-- Fast loading times and optimized performance.
-- Seamless navigation between different services.
-- Secure user authentication and data handling.
+- Fast and optimized performance for better user experience.
+- Smooth navigation through various platform services.
+- Secure user authentication and data management.
+
+---
 
 ## Technologies
-This project is built using:
-- **JavaScript (ES6+)**
-- **React.js** for UI components
-- **CSS** for styling
+This project is developed using:
+- **React.js** for UI development.
+- **CSS** for responsive and clean styling.
+- **JavaScript (ES6+)** for logic implementation.
 
-## Getting Started
+---
 
-To get a local copy of this project up and running, follow these steps.
+## Setup Guide
 
-### Prerequisites
-Make sure you have the following installed:
-- **Node.js** (v16+)
-- **npm** (Node Package Manager)
-- **Git**  (Version Control System)
+### Frontend Setup
+To set up the client interface locally, follow these steps:
 
-### Installation
-1. **Fork this repository**
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/BharatSeva/Client-Interface.git
+   ```
 
-   Click on the "Fork" button at the top right of this repository to create your own copy of the BharatSeva User Interface.
+2. **Navigate to the project directory**
+```bash
+cd Client-Interface
+```
+3. **Install dependencies**
+```bash
+npm install
+```
+4. **Start the development server**
+```bash
+npm start
+```
 
-2. **Clone the repository**
-
-   Use the following command to clone the repository to your local machine:
-
-        git clone https://github.com/YOUR-USERNAME/BharatSeva-Plus-User-Interface.git  
-
-3. Navigate to the project directory:
-
-        cd BharatSeva-Plus-User-Interface 
-
-4. Install the dependencies:
-
-         npm i 
-
-### Running Locally  
-Once the dependencies are installed, you can run the application locally using:
-
-     npm start  
-
-
-This will start the development server, and you can access the app in your browser at [http://localhost:3000](http://localhost:3000)
+Access the application at http://localhost:3000.
+### Backend Setup
+Ensure the backend is running to support the client interface.  
+**Follow this to setup backend** [Click here](https://github.com/BharatSeva/Client-Server)
 
 ## Contributing
-Please refer to [CONTRIBUTING.md](./CONTRIBUTING.md) file for more information on how to contribute.
+We welcome contributions to improve Bharat Seva+. Please refer to [CONTRIBUTING](./CONTRIBUTING.md) for guidelines.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
+This project is licensed under the MIT License.

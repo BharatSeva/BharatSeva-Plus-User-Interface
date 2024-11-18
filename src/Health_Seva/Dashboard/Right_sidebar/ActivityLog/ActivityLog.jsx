@@ -45,9 +45,9 @@ export default function ActivityLog() {
     async function getBiodata() {
         try {
             setBiodataResponse([]);
-            const { data, res } = await FetchData(`/logs/info/viewed`);
+            const { data, res } = await FetchData(`/logs/profile/viewed`);
             if (res.ok) {
-                setBiodataResponse(data.viewed_biodata || []);
+                setBiodataResponse(data.profile_viewed || []);
             } else if (res.status === 405) {
                 setIsRedirect(true);
             } else {

@@ -15,8 +15,7 @@
     position: relative;
 }
 
-.profileImage,
-.profiledetails {
+.profileImage, .profiledetails {
     height: 15vh;
 }
 
@@ -105,7 +104,9 @@
 }
 
 .BioDataAbout div {
+    /* height: 9vh; */
     display: flex;
+    padding: 0 0 0 3vh;
 }
 
 .BioDataAbout div p:nth-child(odd) {
@@ -113,7 +114,7 @@
 }
 
 .BioDataAbout div:nth-child(even) {
-    background-color: rgb(129, 129, 129);
+    background-color: rgb(110, 107, 107);
     border-radius: 1vh;
 }
 
