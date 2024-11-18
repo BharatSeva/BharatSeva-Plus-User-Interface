@@ -42,6 +42,16 @@ jobs:
           echo "Host ${{ secrets.HOST }}" > /home/runner/.ssh/config
           echo "  StrictHostKeyChecking no" >> /home/runner/.ssh/config
 
+      # create static_client if not exists
+      - name: Ensure static_client directory exists
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            mkdir -p /home/azureuser/server/static_client
+
       # copy build files from runner to production server
       - name: Copy build files to server
         run: |
