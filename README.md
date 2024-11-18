@@ -1,5 +1,5 @@
 # Bharat Seva+ (Client Interface)  
-[![ESLint Check](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml/badge.svg)](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml)   [![Deploy UserInterface React build to AzureVM](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/deploy2azure.yaml/badge.svg)](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/deploy2azure.yaml)
+[![ESLint Check](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml/badge.svg)](https://github.com/BharatSeva/BharatSeva-Plus-User-Interface/actions/workflows/strict-lint.yaml)   [![Deploy](https://github.com/BharatSeva/Client-Interface/actions/workflows/deploy.yaml/badge.svg)](https://github.com/BharatSeva/Client-Interface/actions/workflows/deploy.yaml)
 
 Welcome to the **Bharat Seva+ Client Interface**! This repository hosts the frontend code for the Bharat Seva+ platform, focused on delivering a seamless user experience for accessing various services.  
 Visit the [Official Organisation](https://github.com/BharatSeva) for a comprehensive understanding of the project.
