@@ -1,186 +1,145 @@
-.records-outer-container {
-    padding: 2rem;
-  }
-  
-  /* Loading State */
-  .fetching-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    height: 80vh;
-    font-size: 1.25rem;
-  }
-  
-  .fa-rotate {
-    animation: rotate 2s linear infinite;
-  }
-  
-  @keyframes rotate {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  /* Main Container */
-  .records-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #325062;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    box-shadow: 2px 3px 18px rgba(81, 80, 80, 0.5);
-  }
-  
-  /* Header Styles */
-  .records-header {
-    margin-bottom: 2rem;
+/* This one For Spinner */
+.MyRecordsOuterContainer{
+  padding: 2vh;
 }
-.poppins-thin {
-    font-family: "Poppins", sans-serif;
-    font-weight: 100;
-    font-style: normal;
-  }
 
-.records-header h3 {
-    font-family: "Poppins", sans-serif;
-    color: white;
-    font-size: 2rem;
-    font-weight: 700;
-    text-align: center;
-    /* letter-spacing: 0.1em; */
-    text-decoration: underline;
-    text-underline-offset: 0.5rem;
-    margin-bottom: 1.5rem;
+.FetchingDataLogo{
+  font-size: 2.5vh;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 13vw;
+  height: 80vh;
+}
+.fa-solid.fa-rotate{
+  animation: RotateLogo 2s linear  infinite;
+}
+@keyframes RotateLogo {
+  to{
+      transform: rotate(360deg);
   }
-  
-  .last-updated {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 1rem 0;
-  }
-  
-  .last-updated::before {
-    content: '';
-    width: 0.5rem;
-    height: 0.5rem;
-    background-color: #00ff00;
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  
-  .timestamp {
-    color: lime;
-  }
-  
-  @keyframes pulse {
-    0% {
-      box-shadow: 0 0 0 0 rgba(25, 105, 25, 0.3);
+}
+
+.MyRecordsContainer{
+  width: 78vw;
+  background-color: #424242;
+  border-radius: 1vh;
+  padding: 1vh;
+  box-shadow: 2px 3px 18px 3px #515050;
+
+}
+.MyRecordHeader ,h3, p{
+  margin: 1vh;
+  padding: 0%;
+  text-align: left;
+}
+.MyRecordHeader h3{
+  color: white;
+  font-weight: bolder;
+}
+
+.MyRecordHeader p::before{
+  content: '';    
+  position: relative;
+  background-color: green;
+  height: 2vh;
+  width: 1vw;
+  display: inline-block;
+  border-radius: 1vh;
+  margin-right: 1vh;
+
+  animation: pulse 2s  infinite both;
+}
+@keyframes pulse {
+  0% {
+      box-shadow: 0 0 0 0 rgba(25, 105, 25, 0.301);
     }
     70% {
-      box-shadow: 0 0 0 0.5rem rgba(25, 105, 25, 0.3);
+        box-shadow: 0 0 0 5px rgb(25, 105, 25, 0.301);
     }
     100% {
-      box-shadow: 0 0 0 0 rgba(25, 105, 25, 0.3);
-    }
-  }
-  
-  /* Filters */
-  .filters-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 0.5rem;
-  }
-  
-  .filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .filter-select {
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  .filter-clear-btn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    cursor: pointer;
-    background-color: #666;
-    color: #fff;
-    transition: all 0.3s ease;
-  }
-  
-  .filter-clear-btn.active {
-    background-color: lime;
-    box-shadow: 0 0 2rem rgba(0, 255, 0, 0.3);
-  }
-  
-  .filter-clear-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  /* Record Items */
-  .health-record-container {
-    background-color: #2d434f;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin: 1rem 0;
-    box-shadow: 7px 7px 5px rgba(28, 27, 27, 0.5);
-  }
-  
-  .record-field {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin: 0.5rem 0;
-  }
-  
-  .field-label {
-    min-width: 120px;
-    font-weight: 600;
-  }
-  
-  .field-value {
-    flex: 1;
-    word-break: break-word;
-  }
-  
-  /* Messages */
-  .empty-message {
-    text-align: center;
-    font-style: italic;
-    color: #999;
-    padding: 2rem;
-  }
-  
-  .error-message {
-    text-align: center;
-    color: #ff6b6b;
-    padding: 2rem;
-    font-size: 1.25rem;
-  }
-  
-  /* Responsive Design */
-  @media (min-width: 768px) {
-    .filters-container {
-      flex-direction: row;
-      align-items: flex-end;
-      flex-wrap: wrap;
+        box-shadow: 0 0 0 0 rgb(25, 105, 25, 0.301);
     }
   
-    .filter-group {
-      flex: 1;
-      min-width: 250px;
-    }
-  }
+}
+
+.coloredofseverity{
+  color: red;
+}
+.cololimeofseverity{
+  color: orange;
+}
+
+
+/* Health Record Container Goes here */
+.Health_Record_Containers {
+  padding: 1vh;
+  margin: 2vh;
+  border-radius: 1vh;
+  background-color: rgb(54 56 57);
+  box-shadow: 7px 7px 5px rgb(28 27 27);
+}
+
+.Health_Record_Containers div {
+  margin: 0.6vh;
+  display: flex;
+  align-items: center;
+}
+
+.Issues{
+  width: 55vw;
+}
+.Issue_Statement {
+  width: 15vw;
+}
+
+.MyRecordHeader::after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  width: 50vw;
+  height: 0.5vh;
+  background-color: rgb(95 95 95);
+  margin: 1vh;
+}
+
+.MyRecordHeader{
+  text-align: center;
+}
+.MyRecordHeader h3 {
+  font-size: 5vh;
+  letter-spacing: 0.2vh;
+  text-decoration: underline;
+  text-underline-offset: 1vh;
+}
+
+/* FOr Null Records  */
+.MyRecordsEmpty{
+  text-align: center;
+  font-style: italic;
+}
+.MyRecordsFilter{
+  width: 30vw;
+}
+.MyRecordsFilteContainer{
+  margin-left: 2vw;
+}
+#myrecordsFilterbtn{
+  font-size: 2vh;
+  border: none;
+  width: 14vw;
+  height: 5vh;
+  margin: 2vh;
+  border-radius: 1vh;
+  font-weight: bolder;
+  cursor: pointer;
+  /* background-color: white; */
+}
+.myrecordsClearbtn{
+  background-color: lime;
+  box-shadow: 0 0 5vh lime;
+}
+.btnnoseleceted{
+color: red;
+}

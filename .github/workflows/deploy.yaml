@@ -1,4 +1,4 @@
-name: Deploy build to AzureVM
+name: Deploy
 on:
   workflow_dispatch:
   push:
@@ -21,26 +21,33 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # create .env.production or create if not present in folder!!!
+      - name: Overwrite or Create .env.production
+        run: echo "REACT_APP_API_URL=http://${{ secrets.HOST }}/api/v1/user" > .env.production
+
       - name: Build the React app
         run: | 
           npm run build
 
+      # create ssh key file for deployment and give permission
       - name: Create SSH key file
         run: |
           mkdir -p /home/runner/.ssh
           echo "${{ secrets.KEY }}" > /home/runner/.ssh/id_rsa
           chmod 600 /home/runner/.ssh/id_rsa
 
+      # add host to runner machine
       - name: Configure SSH
         run: |
           echo "Host ${{ secrets.HOST }}" > /home/runner/.ssh/config
           echo "  StrictHostKeyChecking no" >> /home/runner/.ssh/config
 
-      - name: Copy build files to AzureVM
+      # copy build files from runner to production server
+      - name: Copy build files to server
         run: |
           scp -i /home/runner/.ssh/id_rsa -r build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/azureuser/server/static_client/
        
-      - name: Deploy to AzureVM
+      - name: Configure Nginx in server (remove and create nginx container)
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -52,4 +59,3 @@ jobs:
             sudo docker rm -f nginx
             sudo docker-compose up -d
             sudo docker exec nginx nginx -s reload
-

@@ -1,211 +1,167 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Select from "react-select";
 import "./MyRecords.css";
 import { FetchData } from "../../../FetchData";
 import { Navigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-const SEVERITY_OPTIONS = [
-    { label: "Dangerous", value: "Dangerous", name: "Medical" },
-    { label: "High", value: "High", name: "Medical" },
-    { label: "Semi-Mid", value: "Semi-Mid", name: "Medical" },
-    { label: "Low", value: "Low", name: "Medical" }
-];
-
-const MONTH_OPTIONS = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-].map(month => ({ label: month, value: month, name: "Months" }));
-
-
-
 const formatDateAndTime = (rawDate) => {
     const dateObj = new Date(rawDate);
     const formattedDate = dateObj.toLocaleDateString("en-GB", {
         day: "2-digit",
         month: "long",
-        year: "numeric"
+        year: "numeric",
     });
     const formattedTime = dateObj.toLocaleTimeString("en-GB", {
         hour: "2-digit",
         minute: "2-digit",
-        second: "2-digit"
+        second: "2-digit",
     });
     return `${formattedDate} - ${formattedTime}`;
 };
 
-const RecordItem = ({ data }) => (
-    <div className="health-record-container">
-        <div className="record-field">
-            <div className="field-label">Issue:</div>
-            <div className="field-value">{data.issue}</div>
-        </div>
-        <div className="record-field">
-            <div className="field-label">Description:</div>
-            <div className="field-value">{data.description}</div>
-        </div>
-        <div className="record-field">
-            <div className="field-label">Issue Date:</div>
-            <div className="field-value">{formatDateAndTime(data.created_at)}</div>
-        </div>
-        <div className="record-field">
-            <div className="field-label">Medical Severity:</div>
-            <div className="field-value">{data.medical_severity}</div>
-        </div>
-        <div className="record-field">
-            <div className="field-label">Healthcare:</div>
-            <div className="field-value">{data.healthcare_name}</div>
-        </div>
-        <div className="record-field">
-            <div className="field-label">Healthcare ID:</div>
-            <div className="field-value">{data.health_id}</div>
-        </div>
-    </div>
-);
+const medicalSeverityOptions = [
+    { label: "Dangerous", value: "Dangerous" },
+    { label: "High", value: "High" },
+    { label: "Semi-Mid", value: "Semi-Mid" },
+    { label: "Low", value: "Low" },
+];
 
 export default function MyRecords() {
-    const [userData, setUserData] = useState({ records: [] });
-    const [filterMonth, setFilterMonth] = useState([]);
-    const [filterSeverity, setFilterSeverity] = useState([]);
+    const [userData, setUserData] = useState(null);
+    const [filters, setFilters] = useState({ month: null, severity: null });
     const [isSearched, setIsSearched] = useState(false);
-    const [fetchStatus, setFetchStatus] = useState({
-        isFetched: false,
-        isSuccess: false,
-    });
-    const [shouldRedirect, setShouldRedirect] = useState(false);
-    const [monthSelectValue, setMonthSelectValue] = useState(null);
+    const [fetchStatus, setFetchStatus] = useState({ isFetched: false, isGood: false });
+    const [isRedirect, setIsRedirect] = useState(false);
 
     useEffect(() => {
-        const fetchRecords = async () => {
-            setFetchStatus(prev => ({ ...prev, isFetched: false }));
+        const fetchData = async () => {
+            setFetchStatus({ isFetched: false, isGood: false });
             try {
-                const { data, res } = await FetchData("/records");
+                const { data, res } = await FetchData(`/records?limit=10`);
                 if (res.ok) {
                     setUserData(data);
-                    setFetchStatus(prev => ({ ...prev, isSuccess: true }));
+                    setFetchStatus({ isFetched: true, isGood: true });
                 } else if (res.status === 405) {
-                    setShouldRedirect(true);
+                    setIsRedirect(true);
+                } else {
+                    throw new Error("Failed to fetch data.");
                 }
             } catch (err) {
-                console.error("Failed to fetch records:", err);
                 alert("Could Not Connect to Server!");
+                console.error(err);
+                setFetchStatus({ isFetched: true, isGood: false });
             }
-            setFetchStatus(prev => ({ ...prev, isFetched: true }));
         };
-
-        fetchRecords();
+        fetchData();
     }, []);
 
-    const handleMonthFilter = (selection) => {
-        if (!userData.records.length) return;
-
-        setMonthSelectValue(selection);
-        const filteredRecords = userData.records.filter(data =>
-            selection.value === new Date(data.created_at)
-                .toLocaleString("default", { month: "long" })
-        );
-        setFilterMonth(filteredRecords);
-        setIsSearched(true);
-    };
-
-    const handleSeverityFilter = (selection) => {
-        if (!userData.records.length) return;
-
-        const baseRecords = filterMonth.length ? filterMonth : userData.records;
-        const filteredRecords = baseRecords.filter(
-            data => data.medical_severity === selection.value
-        );
-        setFilterSeverity(filteredRecords);
-        setIsSearched(true);
-    };
-
     const clearFilters = () => {
-        setMonthSelectValue(null);
-        setFilterMonth([]);
-        setFilterSeverity([]);
+        setFilters({ month: null, severity: null });
         setIsSearched(false);
     };
 
-    const getDisplayRecords = () => {
-        if (!isSearched) {
-            return userData.records.map(data => (
-                <RecordItem key={uuidv4()} data={data} />
-            ));
-        }
-
-        const recordsToDisplay = filterSeverity.length ? filterSeverity :
-            filterMonth.length ? filterMonth : [];
-
-        return recordsToDisplay.length ?
-            recordsToDisplay.map(data => <RecordItem key={uuidv4()} data={data} />) :
-            <p>No Result Found!</p>;
+    const handleFilterChange = (filterType) => (selectedOption) => {
+        setFilters((prev) => ({
+            ...prev,
+            [filterType]: selectedOption?.value || null,
+        }));
+        setIsSearched(true);
     };
 
-    if (shouldRedirect) {
-        return <Navigate to="/client/login" />;
-    }
+    const filteredRecords = useMemo(() => {
+        if (!userData?.records) return [];
+        let records = userData.records;
+        if (filters.month) {
+            records = records.filter((record) =>
+                record.created_at.includes(filters.month)
+            );
+        }
+        if (filters.severity) {
+            records = records.filter((record) =>
+                record.medical_severity.includes(filters.severity)
+            );
+        }
+        return records;
+    }, [userData, filters]);
 
-    if (!fetchStatus.isFetched) {
-        return (
-            <div className="fetching-container">
-                <span>Fetching Records</span>
-                <i className="fa-solid fa-rotate" />
+    const displayRecords = (data) => (
+        <div key={uuidv4()} className="Health_Record_Containers">
+            <div className="Health_Issue">
+                <div className="Issue_Statement">Issue :</div>
+                <div className="Issues">{data.issue}</div>
             </div>
-        );
-    }
-
-    if (!fetchStatus.isSuccess) {
-        return <p className="error-message">Could Not Connect to Server...🙄</p>;
-    }
-
-    return (
-        <div className="records-outer-container">
-            <div className="records-container">
-                <div className="records-header">
-                    <h3 className="poppins-thin">My Records</h3>
-                    {userData.records.length > 0 && (
-                        <p className="last-updated">
-                            Last Updated At:{" "}
-                            <span className="timestamp">
-                                {formatDateAndTime(userData.records[0].created_at)}
-                            </span>
-                        </p>
-                    )}
-                    <div className="filters-container">
-                        <div className="filter-group">
-                            <p>Filter By Month</p>
-                            <Select
-                                options={MONTH_OPTIONS}
-                                className="filter-select month-filter"
-                                onChange={handleMonthFilter}
-                                value={monthSelectValue}
-                            />
-                        </div>
-                        <div className="filter-group">
-                            <p>Filter By Medical Severity</p>
-                            <Select
-                                options={SEVERITY_OPTIONS}
-                                className="filter-select severity-filter"
-                                onChange={handleSeverityFilter}
-                            />
-                        </div>
-                        <button
-                            className={`filter-clear-btn ${isSearched ? "active" : ""}`}
-                            onClick={clearFilters}
-                            disabled={!isSearched}
-                        >
-                            Clear Filter
-                        </button>
-                    </div>
-                </div>
-                <div className="records-list">
-                    {userData.records.length ? (
-                        getDisplayRecords()
-                    ) : (
-                        <p className="empty-message">You don't have any medical records yet</p>
-                    )}
-                </div>
+            <div className="Description">
+                <div className="Issue_Statement">Description :</div>
+                <div className="Issues">{data.description}</div>
+            </div>
+            <div className="HIP_name">
+                <div className="Issue_Statement">Healthcare Name :</div>
+                <div className="Issues">{data.healthcare_name}</div>
+            </div>
+            <div className="HIP_name">
+                <div className="Issue_Statement">Healthcare ID :</div>
+                <div className="Issues">{data.createdby_}</div>
+            </div>
+            <div className="Issue_Date">
+                <div className="Issue_Statement">Issue Date :</div>
+                <div className="Issues">{formatDateAndTime(data.created_at)}</div>
+            </div>
+            <div className="Medical_Severity">
+                <div className="Issue_Statement">Medical Severity :</div>
+                <div className={data.medical_severity==="High" ? "coloredofseverity Issues" : "Issues cololimeofseverity"}>{data.medical_severity}</div>
             </div>
         </div>
+    );
+
+    return (
+        <>
+            {isRedirect && <Navigate to="/client/login" />}
+            <div className="MyRecordsOuterContainer">
+                {fetchStatus.isFetched ? (
+                    fetchStatus.isGood ? (
+                        <div className="MyRecordsContainer">
+                            <div className="MyRecordHeader">
+                                <h3>My Records</h3>
+                                <p>
+                                    Last Updated At:{" "}
+                                    {userData?.records?.[0]
+                                        ? formatDateAndTime(userData.records[0].created_at)
+                                        : "--/--"}
+                                </p>
+                                <div className="MyRecordsFilterContainer">
+                                    <p>Filter By Medical Severity</p>
+                                    <Select
+                                        options={medicalSeverityOptions}
+                                        className="MyRecordsFilter"
+                                        onChange={handleFilterChange("severity")}
+                                    />
+                                    <button
+                                        id="myrecordsFilterbtn"
+                                        className={isSearched ? "myrecordsClearbtn" : "btnnoselected"}
+                                        onClick={clearFilters}
+                                    >
+                                        Clear Filter
+                                    </button>
+                                </div>
+                            </div> 
+                            <div className="Records">
+                                {isSearched && filteredRecords.length === 0 ? (
+                                    <p>No Results Found!</p>
+                                ) : (
+                                    filteredRecords.map(displayRecords)
+                                )}
+                            </div>
+                        </div>
+                    ) : (
+                        <p className="Couldnotconnect">Could Not Connect to Server...🙄</p>
+                    )
+                ) : (
+                    <div className="FetchingDataLogo">
+                        Fetching Records <i className="fa-solid fa-rotate"></i>
+                    </div>
+                )}
+            </div>
+        </>
     );
 }
