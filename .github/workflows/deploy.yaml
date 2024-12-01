@@ -50,8 +50,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            mkdir -p /home/azureuser/server/static_client
-            sudo chmod -R 755 /home/${{ secrets.USERNAME }}/server
+            mkdir -p /home/${{ secrets.USERNAME }}/server/static_client
+            sudo chown -R ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} ~/server
 
       # copy build files from runner to production server
       - name: Copy build files to server
